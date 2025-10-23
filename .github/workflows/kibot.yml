@@ -21,10 +21,12 @@ jobs:
       - name: Generate SKiDL Design Netlist
         working-directory: hardware/k1-lightwave
         run: |
-          # Set KiCad symbol path for SKiDL (try both KICAD9 and fallback)
+          # Set all KiCad symbol search paths for SKiDL (comprehensive fix)
+          export KICAD_SYMBOL_DIR=/usr/share/kicad/symbols
           export KICAD9_SYMBOL_DIR=/usr/share/kicad/symbols
           export KICAD8_SYMBOL_DIR=/usr/share/kicad/symbols
           export KICAD7_SYMBOL_DIR=/usr/share/kicad/symbols
+          export KICAD6_SYMBOL_DIR=/usr/share/kicad/symbols
           python3 skidl/k1_motherboard_revA.py
       - name: Generate Fab Artifacts
         working-directory: hardware/k1-lightwave
