@@ -9,8 +9,13 @@ from skidl import *
 import sys
 import os
 
-# Configure KiCad library paths for macOS
-skidl.config.kicad_lib_path = '/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols'
+# Configure KiCad library paths (cross-platform)
+import platform
+if platform.system() == 'Darwin':
+    skidl.config.kicad_lib_path = '/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols'
+else:
+    # Linux/Ubuntu
+    skidl.config.kicad_lib_path = os.getenv('KICAD_SYMBOL_DIR', '/usr/share/kicad/symbols')
 
 NETLIST_OUT = "hardware/k1-lightwave/skidl/k1_motherboard_revA.net"
 USE_GENERIC_COMB = True
