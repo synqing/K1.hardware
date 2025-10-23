@@ -232,6 +232,50 @@ def _pick(row: Dict[str, str], names: List[str]) -> Optional[str]:
     return None
 
 # =============================================================================
+# Power-Domain Guard (K1-specific)
+# =============================================================================
+
+def kicad_sch_export_netlist(schematic: str, out_net: str = "tmp_sch.net") -> Dict[str, Any]:
+    """Export schematic to netlist for power-domain analysis."""
+    _ensure_dir(Path(out_net).parent.as_posix())
+    return _run([KICAD, "sch", "export", "netlist", "-f", "kicadsexpr", "-o", out_net, schematic])
+
+@mcp.tool()
+def check_power_domains(schematic_kicad_sch: str,
+                        usb_5v_name: str = "VBUS_USB_5V",
+                        led_5v_name: str = "LED_5V") -> Dict[str, Any]:
+    """Fail if any component pin is tied to both 5V nets, or if net names collide.
+    K1-specific: Prevents shorts between USB 5V (controller) and LED 5V (external).
+    """
+    out_net = Path("fab/tmp_sch.net")
+    res = kicad_sch_export_netlist(schematic_kicad_sch, out_net.as_posix())
+    if not res["ok"]:
+        return {"ok": False, "error": f"Netlist export failed: {res['stderr']}"}
+
+    data = Path(out_net).read_text(encoding="utf-8", errors="ignore")
+    same_name = usb_5v_name == led_5v_name
+
+    # Naive but effective: collect component refs under each net and intersect
+    import re
+    def refs_for(netname):
+        block = re.findall(rf'\(net \(code \d+\) \(name "{re.escape(netname)}"\)(.*?)\)\s*\)', data, flags=re.S)
+        pins = re.findall(r'\(node \(ref ([^)]+)\) \(pin ([^)]+)\)\)', block[0]) if block else []
+        return set(r for (r, p) in pins)
+
+    usb_refs = refs_for(usb_5v_name)
+    led_refs = refs_for(led_5v_name)
+    cross = usb_refs.intersection(led_refs)
+
+    ok = (not same_name) and (len(cross) == 0)
+    return {
+        "ok": ok,
+        "shared_refs": sorted(list(cross)),
+        "usb_5v_refs": len(usb_refs),
+        "led_5v_refs": len(led_refs),
+        "error": f"Power-domain violation: {', '.join(cross)} tied to both nets" if not ok else None
+    }
+
+# =============================================================================
 # TOOL 1: make_fab_pack
 # =============================================================================
 
@@ -273,6 +317,15 @@ def make_fab_pack(
 
     for d in (panel_dir, fab_dir, mech_dir, report_dir, ibom_dir):
         _ensure_dir(d.as_posix())
+
+    # 0) Power-domain guard (K1-specific: prevent USB 5V ↔ LED 5V shorts)
+    guard = check_power_domains(schematic_kicad_sch)
+    if not guard.get("ok", False):
+        return {
+            "ok": False,
+            "error": guard.get("error", "Power-domain violation detected"),
+            "guard_result": guard
+        }
 
     # 1) DRC JSON (informational)
     drc_json = (report_dir / "drc.json").as_posix()

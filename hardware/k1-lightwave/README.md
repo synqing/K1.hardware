@@ -227,6 +227,16 @@ result = route("kicad/K1_Lightwave.dsn", ses_out="kicad/K1_Lightwave.ses")
 
 ---
 
+## ⚠️ Critical Safety: Dual 5V Rails
+
+> **External LED 5V required.** USB-C 5V powers the controller only. Do not power LED strips from USB-C.
+> Use the **LED_5V_IN** connector, one polyfuse per LED output, and keep LED return paths short.
+>
+> **Power-domain guard enabled:** Schematic-level check prevents shorts between `VBUS_USB_5V` and `LED_5V` nets.
+> If any component accidentally ties both nets, the fab pipeline will reject the design.
+
+---
+
 ## Design Rules & Constraints
 
 ### **Manufacturing (JLC PCBWay 4-layer)**
@@ -241,6 +251,8 @@ result = route("kicad/K1_Lightwave.dsn", ses_out="kicad/K1_Lightwave.ses")
 
 - **VCC (3.3V logic):** ±0.1V regulation
 - **Power (5V input):** 5A budget, adjust per LED load
+- **USB 5V (controller):** Powers MCUs + audio codec only via LDO
+- **LED 5V (external):** Separate connector; never tied to USB rail
 - **I2S audio:** BCLK/LRCLK/SD differential, <0.5mm lengths matched
 - **SPI (LED data):** <5mm tracklength to level shifter + MCU
 - **Ground:** Multi-point return (polygon fill on both internal planes)

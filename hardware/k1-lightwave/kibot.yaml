@@ -1,184 +1,27 @@
-kibot:
-  version: 1
+project:
+  outputs_dir: _artifacts
 
-preflight:
-  run_erc: true
-  run_drc: true
-  check_zone_fills: true
-  ignore_unconnected: false
-
-global:
-  output: build/
+filters:
+  - name: all
+    comment: Include everything
 
 outputs:
-  - name: schematic_pdf
-    comment: "Schematic PDF"
-    type: pdf_sch
-    dir: build/schematic
-    options:
-      output: K1_Lightwave_Schematic.pdf
-
-  - name: schematic_svg
-    comment: "Schematic SVG"
-    type: svg_sch
-    dir: build/schematic
-    options:
-      output: K1_Lightwave_Schematic.svg
-
-  - name: bom_csv
-    comment: "Bill of Materials (CSV)"
-    type: bom
-    dir: build/bom
-    options:
-      output: K1_Lightwave_BOM.csv
-      format: CSV
-      separator: ","
-      ignore_dnp: true
-
-  - name: bom_xlsx
-    comment: "Bill of Materials (Excel)"
-    type: bom
-    dir: build/bom
-    options:
-      output: K1_Lightwave_BOM.xlsx
-      format: XLSX
-      ignore_dnp: true
-
-  - name: ibom
-    comment: "Interactive HTML BOM"
-    type: ibom
-    dir: build/assembly
-    options:
-      output: K1_Lightwave_iBOM.html
-      show_fields:
-        - Value
-        - Footprint
-        - Reference
-        - Datasheet
-      group_fields:
-        - Value
-
-  - name: erc
-    comment: "Electrical Rule Check Report"
-    type: erc
-    dir: build/erc
-    options:
-      output: K1_Lightwave_ERC_Report.txt
-
   - name: gerbers
-    comment: "Gerber Files (JLCPCB)"
     type: gerber
-    dir: build/gerbers
-    options:
-      output: "%f_%l.gbr"
-      use_x2_attributes: true
-      use_aperture_macros: true
-      exclude_edge_layer: true
-      line_width: 0.0
-      create_drill_marks: false
-
+    dir: fab/gerbers
   - name: drill
-    comment: "Drill File (Excellon)"
-    type: excellon
-    dir: build/gerbers
-    options:
-      output: "%f.drl"
-      map_file_format: pdf
-      route_mode_for_oval_holes: true
-
-  - name: drc
-    comment: "Design Rule Check Report"
-    type: drc
-    dir: build/drc
-    options:
-      output: K1_Lightwave_DRC_Report.txt
-      report_all_violations: true
-
-  - name: ipc2581
-    comment: "IPC-2581 Machine-Readable Spec"
-    type: ipc2581
-    dir: build/ipc2581
-    options:
-      output: K1_Lightwave_IPC2581.xml
-      precision: 4
-      standard: ipc2581b
-
+    type: drill
+    dir: fab/drill
   - name: step
-    comment: "3D STEP Model"
     type: step
-    dir: build/3d
+    dir: mechanical
+    options: { board_thickness: 1.6 }
+  - name: glb
+    type: glb
+    dir: mechanical
+  - name: ibom
+    type: ibom
+    dir: docs/ibom
     options:
-      output: K1_Lightwave.step
-      download: false
-
-  - name: vrml
-    comment: "3D VRML Model"
-    type: vrml
-    dir: build/3d
-    options:
-      output: K1_Lightwave.wrl
-
-  - name: render_top
-    comment: "PCB Top Render (PNG)"
-    type: render_sch
-    dir: build/renders
-    options:
-      output: K1_Lightwave_Top.png
-      horizontal_edge: right
-      vertical_edge: bottom
-
-  - name: fab_notes
-    comment: "Manufacturing Notes"
-    type: txt
-    dir: build/fab_notes
-    options:
-      output: K1_Lightwave_FAB_NOTES.txt
-      content: |
-        K1 LIGHTWAVE - MANUFACTURING NOTES
-        ====================================
-        Target Manufacturer: JLCPCB
-        PCB Spec: JLC02160H-1LG (Standard 4-Layer, 1.6mm FR-4, ENIG)
-
-        STACKUP:
-        - Layer 1 (Top Cu): 35µm
-        - Dielectric 1 (Core): 0.3mm
-        - Layer 2 (GND): 35µm
-        - Dielectric 2 (Prepreg): 0.6mm
-        - Layer 3 (PWR): 35µm
-        - Dielectric 3 (Core): 0.3mm
-        - Layer 4 (Bottom Cu): 35µm
-        Total Thickness: 1.6mm
-
-        DFM REQUIREMENTS:
-        - Min trace width: 0.1mm (4mil)
-        - Min clearance: 0.127mm (5mil)
-        - Via size: 0.3mm min drill, 0.5mm min finished
-        - Annulus ring: 0.05mm min
-        - Solder mask clearance: 0.1mm
-        - Silk width: 0.1mm min
-        - Edge clearance: 0.3mm
-
-        PANELIZATION:
-        - Preferred: V-cuts (score lines)
-        - Fallback: Mouse-bites if panel < 70×70mm
-        - Tab width: 5mm for V-cuts, 3mm for mouse-bites
-        - Frame type: Rail-to-bar (TB/LR)
-
-        ASSEMBLY:
-        - JLCPCB standard parts list
-        - Hand-soldered/prototyping friendly
-        - 3x fiducials minimum
-        - Test pads for I2S + power
-
-        ELECTRICAL:
-        - 4-layer allows controlled impedance for USB D+/D-
-        - GND plane on layer 2 for noise immunity
-        - PWR plane on layer 3 for distribution
-        - No vias under large ICs (except thermal)
-
-        COMPLIANCE:
-        - RoHS-6 compatible
-        - ENIG finish (lead-free)
-
-        Generated: $(date)
-        Design: K1 Lightwave (Dual ESP32-S3 Audio-Reactive LED)
+      extra_fields: ["LCSC","MPN","Manufacturer"]
+      no_browser: true
