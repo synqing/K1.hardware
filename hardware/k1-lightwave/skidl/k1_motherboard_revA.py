@@ -1,130 +1,195 @@
 # hardware/k1-lightwave/skidl/k1_motherboard_revA.py
-# K1 Lightwave – Rev-A Motherboard Skeleton (SKiDL)
-# Purpose:
-#   - Define power domains & connectors (USB-C 5V for logic; external LED_5V for LEDs)
-#   - Instantiate 4x one-wire LED ports (level shifted), reserve pads for +4 and 2x SPI (later)
-#   - Provide I2C accessory ports (Qwiic-compatible pin order) with dual-footprint intent
-#   - Add slot FRU EEPROM (one shown; replicate per slot in layout phase)
-#
-# Notes:
-#   - This generates a netlist only; KiCad symbols must be available locally.
-#   - RefDes and values are illustrative; footprint binding happens in KiCad/KiBot.
+# K1 Lightwave – Rev-A Motherboard (complete SKiDL netlist generator)
+# Dual-MCU system: COM-A (ESP32-S3-WROOM-1 module) + COM-B (bare ESP32-S3)
+# Power domains: VBUS_USB_5V (logic), LED_5V (external)
+# 4× independent LED ports, I2C accessories, I2S mics, inter-MCU SPI+SYNC
 
 from skidl import *
 
-# ---------- Nets / Power domains ----------
-gnd         = Net("GND")
-usb_5v      = Net("VBUS_USB_5V")   # 5V from USB-C (controller-only domain)
-led_5v      = Net("LED_5V")        # 5V from external supply (LED domain)
-v3v3        = Net("+3V3")          # logic rail from buck converter
+NETLIST_OUT = "hardware/k1-lightwave/skidl/k1_motherboard_revA.net"
+USE_GENERIC_COMB = True
 
-# ---------- USB-C sink (5V only; no PD) ----------
-# USB-C receptacle (USB2.0-only symbol)
-j_usbc = Part("Connector_USB", "USB_C_Receptacle_USB2.0", ref="J1", footprint="Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
-# CC pull-downs (Rd ~5.1k) to advertise as Sink
+# Global nets / power domains
+gnd         = Net("GND")
+usb_5v      = Net("VBUS_USB_5V")
+led_5v      = Net("LED_5V")
+v3v3        = Net("+3V3")
+
+# I2C bus
+sda         = Net("SDA")
+scl         = Net("SCL")
+
+# Inter-MCU link
+spi_sck     = Net("SPI_SCK_A2B")
+spi_mosi    = Net("SPI_MOSI_A2B")
+spi_miso    = Net("SPI_MISO_B2A")
+spi_cs      = Net("SPI_CS_A2B")
+sync        = Net("SYNC_A2B")
+ready       = Net("READY_B2A")
+
+# I2S (to COM-A)
+i2s_bclk    = Net("I2S_BCLK")
+i2s_lrck    = Net("I2S_LRCK")
+i2s_sd      = Net("I2S_SD")
+
+# LED data (COM-B → level shifters)
+led_din = [Net(f"LED_DATA{i}_IN") for i in range(1,5)]
+
+# USB-C receptacle
+j_usbc = Part("Connector_USB", "USB_C_Receptacle_USB2.0", ref="J1",
+              footprint="Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 r_cc1 = Part("Device", "R", value="5.1k", ref="R1")
 r_cc2 = Part("Device", "R", value="5.1k", ref="R2")
-# ESD protection (placeholder diode arrays)
-d_esd_usbc = Part("Device", "ESD_Protection", ref="D1")
-
-# Wire CC pins
-j_usbc["CC1"] += r_cc1[1]
-r_cc1[2]      += gnd
-j_usbc["CC2"] += r_cc2[1]
-r_cc2[2]      += gnd
-
-# VBUS to controller domain; add input protection placeholders
-# (In PCB: place ideal-diode/e-fuse + inrush limiter before feeding usb_5v.)
+j_usbc["CC1"] += r_cc1[1]; r_cc1[2] += gnd
+j_usbc["CC2"] += r_cc2[1]; r_cc2[2] += gnd
 j_usbc["VBUS, VBUS"] += usb_5v
-# USB data to MCU (left unconnected here; routed in compute card)
-# j_usbc["D+, D-"] -> compute slot USB signals
-# Shield & GND
 j_usbc["SHIELD"] += gnd
 j_usbc["GND, GND"] += gnd
 
-# ---------- 5V->3V3 buck (symbol as placeholder regulator) ----------
-u_buck = Part("Regulator_Switching", "TPS62133", ref="U2")  # example; swap per BOM
-u_buck["VIN"] += usb_5v
+# 5V→3V3 buck
+u_buck = Part("Regulator_Switching", "TPS62133", ref="U2")
+u_buck["VIN"]  += usb_5v
 u_buck["VOUT"] += v3v3
-u_buck["GND"] += gnd
+u_buck["GND"]  += gnd
 
-# ---------- External LED 5V input ----------
-j_led_in = Part("Connector", "Conn_01x02", ref="J2", value="LED_5V_IN", footprint="Connector_Molex:Molex_MicroFit_3.0_1x02")
+# External LED 5V ingress
+j_led_in = Part("Connector", "Conn_01x02", ref="J2", value="LED_5V_IN",
+                footprint="Connector_Molex:Molex_MicroFit_3.0_1x02")
 j_led_in[1] += led_5v
 j_led_in[2] += gnd
-# NOTE: In PCB, place ideal-diode/OR-FET here to block backfeed to USB 5V.
 
-# ---------- Level shifter (AHCT125) for 4x LED DATA ----------
-u_ls = Part("Logic_LevelTranslator", "SN74AHCT125", ref="U3")  # quad buffer; OE pins to +5V enable
+# LED outputs: 4× one-wire with AHCT125 shifter
+u_ls = Part("Logic_74xx", "74AHCT125", ref="U3")
 
-# Per-port protection components (polyfuse + TVS), series resistor on DATA
 def led_port(idx: int):
-    # 3-pin LED output connector (5V, DATA, GND)
-    j = Part("Connector", "Conn_01x03", ref=f"JLED{idx}", value=f"LED_OUT_{idx}", footprint="Connector_Molex:Molex_KK-254_1x03")
-    # Polyfuse on 5V leg
-    f = Part("Device", "Polyfuse_Small", ref=f"F{idx}", value="0.75A")
-    # TVS diode on 5V to GND
-    d = Part("Device", "D_TVS", ref=f"D{idx}", value="TVS5V")
-    # Series resistor on DATA (damp ringing; 300–500Ω)
-    r = Part("Device", "R", ref=f"RLED{idx}", value="330R")
+    j = Part("Connector", "Conn_01x03", ref=f"JLED{idx}", value=f"LED_OUT_{idx}",
+             footprint="Connector_Molex:Molex_KK-254_1x03")
+    pf = Part("Device", "Polyfuse_Small", ref=f"F{idx}", value="0.75A")
+    tvs= Part("Device", "D_TVS", ref=f"D{idx}", value="TVS5V")
+    rs = Part("Device", "R", ref=f"RLED{idx}", value="330R")
+    led_5v += pf[1]; pf[2] += j[1]
+    tvs[1] += j[1]; tvs[2] += gnd
+    y = u_ls[f"Y{idx}"]; oe = u_ls[f"OE{idx}"]; a = u_ls[f"A{idx}"]
+    oe += led_5v
+    y  += rs[1]; rs[2] += j[2]
+    j[3] += gnd
+    return {"conn": j, "ls_in": a}
 
-    # Wire 5V path: LED_5V -> Polyfuse -> Connector V
-    led_5v += f[1]
-    f[2]    += j[1]
-    # TVS: 5V to GND near connector
-    d[1]    += j[1]
-    d[2]    += gnd
-    # DATA: AHCT125 output -> series R -> connector DATA
-    # Map LS channels 1..4 to ports 1..4
-    ls_out = u_ls["Y{}".format(idx)]
-    ls_oe  = u_ls["OE{}".format(idx)]
-    ls_in  = u_ls["A{}".format(idx)]
-    # OE tied high to +5V (comes from LED_5V via local LDO if needed; use logic 5V rail in PCB)
-    ls_oe += led_5v
-    # Series resistor
-    ls_out += r[1]
-    r[2]   += j[2]
-    # GND
-    j[3]   += gnd
+led_ports = [led_port(i+1) for i in range(4)]
+for i, lp in enumerate(led_ports):
+    lp["ls_in"] += led_din[i]
 
-    return j, f, d, r, ls_in
-
-# Instantiate 4x LED ports (DATA inputs to be driven by MCU GPIOs later)
-ports = {}
-for i in range(1, 5):
-    j, f, d, r, ls_in = led_port(i)
-    ports[i] = {"conn": j, "pfuse": f, "tvs": d, "rser": r, "ls_in": ls_in}
-
-# ---------- Accessory I2C ports (Qwiic/STEMMA pin order: GND,VCC,SDA,SCL) ----------
-def i2c_port(ref, name, vcc=v3v3):
-    j = Part("Connector", "Conn_01x04", ref=ref, value=name, footprint="Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
-    # GND, VCC, SDA, SCL
-    j[1] += gnd
-    j[2] += vcc
-    j[3] += Net("SDA")
-    j[4] += Net("SCL")
+# I2C accessory ports (4×)
+def i2c_port(ref, name, vcc_net):
+    j = Part("Connector", "Conn_01x04", ref=ref, value=name,
+             footprint="Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
+    j[1] += gnd; j[2] += vcc_net; j[3] += sda; j[4] += scl
     return j
 
 j_i2c1 = i2c_port("J3", "I2C_PORT_1_3V3", v3v3)
 j_i2c2 = i2c_port("J4", "I2C_PORT_2_3V3", v3v3)
-# Switchable 5V ports (label; in PCB add level-safe buffers or ensure devices are 5V-tolerant)
-j_i2c3 = i2c_port("J5", "I2C_PORT_3_5V", led_5v)   # supply pin is 5V; data still referenced to 3V3 domain via level-shifter on board
-j_i2c4 = i2c_port("J6", "I2C_PORT_4_5V", led_5v)
+j_i2c3 = i2c_port("J5", "I2C_PORT_3_5V",  led_5v)
+j_i2c4 = i2c_port("J6", "I2C_PORT_4_5V",  led_5v)
 
-# ---------- FRU EEPROM on I2C (slot identity) ----------
-u_fru = Part("Memory_EEPROM", "24LC02", ref="U4", footprint="Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
-u_fru["VCC"] += v3v3
-u_fru["GND"] += gnd
-u_fru["SDA"] += Net("SDA")
-u_fru["SCL"] += Net("SCL")
-# Address pins: tie low for FRU#0
+# FRU EEPROM
+u_fru = Part("Memory_EEPROM", "24LC02", ref="U4")
+u_fru["VCC"] += v3v3; u_fru["GND"] += gnd
+u_fru["SDA"] += sda;  u_fru["SCL"] += scl
 u_fru["A0, A1, A2"] += gnd
 
-# ---------- Expose MCU LED DATA inputs so firmware knows where to wire ----------
-# In layout: connect these to ESP32-S3 GPIOs on the compute card(s).
-for i in range(1, 5):
-    ports[i]["ls_in"] += Net(f"LED_DATA{i}_IN")
+# I2S mic headers (2×)
+def i2s_mic_header(ref, name):
+    j = Part("Connector", "Conn_01x06", ref=ref, value=name,
+             footprint="Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal")
+    j[1] += v3v3; j[2] += gnd; j[3] += i2s_bclk; j[4] += i2s_lrck; j[5] += i2s_sd
+    return j
 
-# ---------- ERC helpers ----------
+j_mic1 = i2s_mic_header("J7", "I2S_MIC_1")
+j_mic2 = i2s_mic_header("J8", "I2S_MIC_2")
+
+# COM-A: K1-M2B compute slot
+j_coma = Part("Connector_Generic", "Conn_02x30_Odd_Even", ref="J9", value="K1-M2B_COM-A")
+j_coma[1]  += v3v3
+j_coma[2]  += gnd
+j_coma[3]  += Net("USB_D+")
+j_coma[4]  += Net("USB_D-")
+j_coma[5]  += sda
+j_coma[6]  += scl
+j_coma[7]  += Net("UART_TX_A")
+j_coma[8]  += Net("UART_RX_A")
+j_coma[9]  += spi_sck
+j_coma[10] += spi_mosi
+j_coma[11] += spi_miso
+j_coma[12] += spi_cs
+j_coma[13] += sync
+j_coma[14] += ready
+j_coma[15] += i2s_bclk
+j_coma[16] += i2s_lrck
+j_coma[17] += i2s_sd
+for pin in range(18, 25):
+    j_coma[pin] += Net(f"COMA_GPIO{pin-17}")
+
+# COM-B: Bare ESP32-S3 renderer
+if USE_GENERIC_COMB:
+    u_comb = Part("Connector_Generic", "Conn_02x20_Odd_Even", ref="J10", value="ESP32-S3_COM-B_LOGICAL")
+    u_comb[1]  += v3v3
+    u_comb[2]  += gnd
+    en_n   = Net("CHIP_PU")
+    boot   = Net("GPIO0_BOOT")
+    u_comb[3]  += en_n
+    u_comb[4]  += boot
+    u_comb[5]  += spi_sck
+    u_comb[6]  += spi_mosi
+    u_comb[7]  += spi_miso
+    u_comb[8]  += spi_cs
+    u_comb[9]  += sync
+    u_comb[10] += ready
+    for i in range(4):
+        u_comb[11+i] += led_din[i]
+    u_comb[15] += Net("UART_TX_B")
+    u_comb[16] += Net("UART_RX_B")
+
+# EN/BOOT startup
+r_en = Part("Device", "R", value="10k", ref="R3")
+c_en = Part("Device", "C", value="1u",  ref="C3")
+r_en[1] += v3v3; r_en[2] += en_n
+c_en[1] += en_n; c_en[2] += gnd
+
+r_boot = Part("Device", "R", value="10k", ref="R4")
+r_boot[1] += v3v3; r_boot[2] += boot
+sw_boot = Part("Switch", "SW_Push", ref="SW1", value="BOOT_SW")
+sw_boot[1] += boot; sw_boot[2] += gnd
+
+# QSPI flash for COM-B
+u_flash = Part("Memory_Flash", "W25Q128JV", ref="U6")
+flash_cs   = Net("FLASH_CS")
+flash_clk  = Net("FLASH_CLK")
+flash_io0  = Net("FLASH_IO0")
+flash_io1  = Net("FLASH_IO1")
+flash_io2  = Net("FLASH_IO2_WP")
+flash_io3  = Net("FLASH_IO3_HOLD")
+u_flash["CS#"]  += flash_cs
+u_flash["CLK"]  += flash_clk
+u_flash["DO"]   += flash_io1
+u_flash["DI"]   += flash_io0
+u_flash["IO2"]  += flash_io2
+u_flash["IO3"]  += flash_io3
+u_flash["VCC"]  += v3v3
+u_flash["GND"]  += gnd
+r_wp   = Part("Device", "R", value="10k", ref="R5"); r_wp[1] += v3v3; r_wp[2] += flash_io2
+r_hold = Part("Device", "R", value="10k", ref="R6"); r_hold[1] += v3v3; r_hold[2] += flash_io3
+
+# 40 MHz crystal
+xtal = Part("Device", "Crystal_GND2", ref="Y1", value="40MHz")
+c_x1 = Part("Device", "C", value="12p", ref="C4")
+c_x2 = Part("Device", "C", value="12p", ref="C5")
+xtal_n1 = Net("XIN_40M")
+xtal_n2 = Net("XOUT_40M")
+xtal[1] += xtal_n1; xtal[2] += xtal_n2; xtal["GND"] += gnd
+c_x1[1] += xtal_n1; c_x1[2] += gnd
+c_x2[1] += xtal_n2; c_x2[2] += gnd
+
+# Generate netlist
 ERC()
-generate_netlist("k1_motherboard_revA.net")
+generate_netlist(NETLIST_OUT)
+print(f"✅ Generated: {NETLIST_OUT}")
