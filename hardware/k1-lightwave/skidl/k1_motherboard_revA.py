@@ -4,18 +4,31 @@
 # Power domains: VBUS_USB_5V (logic), LED_5V (external)
 # 4× independent LED ports, I2C accessories, I2S mics, inter-MCU SPI+SYNC
 
-import skidl
-from skidl import *
 import sys
 import os
-
-# Configure KiCad library paths (cross-platform)
 import platform
+
+# Configure KiCad library paths BEFORE importing SKiDL (critical!)
+# Set environment variables that SKiDL will read during initialization
 if platform.system() == 'Darwin':
-    skidl.config.kicad_lib_path = '/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols'
+    lib_path = '/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols'
 else:
-    # Linux/Ubuntu
-    skidl.config.kicad_lib_path = os.getenv('KICAD_SYMBOL_DIR', '/usr/share/kicad/symbols')
+    # Linux/Ubuntu - use environment or default
+    lib_path = os.getenv('KICAD_SYMBOL_DIR', '/usr/share/kicad/symbols')
+
+# Set env vars for all KiCad versions
+os.environ['KICAD_SYMBOL_DIR'] = lib_path
+os.environ['KICAD9_SYMBOL_DIR'] = lib_path
+os.environ['KICAD8_SYMBOL_DIR'] = lib_path
+os.environ['KICAD7_SYMBOL_DIR'] = lib_path
+os.environ['KICAD6_SYMBOL_DIR'] = lib_path
+
+# NOW import SKiDL after environment is set
+import skidl
+from skidl import *
+
+# Additional SKiDL configuration
+skidl.config.kicad_lib_path = lib_path
 
 NETLIST_OUT = "hardware/k1-lightwave/skidl/k1_motherboard_revA.net"
 USE_GENERIC_COMB = True
