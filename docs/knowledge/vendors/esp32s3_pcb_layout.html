@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RP8SCKE54N"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-RP8SCKE54N');
+        </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCB Layout Design - ESP32-S3 -  &mdash; ESP Hardware Design Guidelines latest documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="_static/js/chatbot_widget.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/js/chatbot_widget_en.js"></script>
+    <script src="_static/js/theme.js"></script>
+
+    
+        
+
+    <script type="text/javascript">
+        DOCUMENTATION_OPTIONS.PAGENAME = 'pcb-layout-design';
+        DOCUMENTATION_OPTIONS.PROJECT_SLUG = 'esp-hardware-design-guidelines';
+        DOCUMENTATION_OPTIONS.LATEST_BRANCH_NAME = 'master';
+        DOCUMENTATION_OPTIONS.VERSIONS_URL = '././_static/docs_version.js';
+        DOCUMENTATION_OPTIONS.LANGUAGES = ["en", "zh_CN"];
+        DOCUMENTATION_OPTIONS.IDF_TARGET = 'esp32s3';
+        DOCUMENTATION_OPTIONS.HAS_IDF_TARGETS = ["esp32", "esp32s2", "esp32s3", "esp32c3", "esp32c6", "esp32h2", "esp32c2", "esp32c5", "esp32p4", "esp32c61"]
+        DOCUMENTATION_OPTIONS.RELEASE = 'latest';
+    </script>
+
+    <script type="text/javascript" src="././_static/docs_version.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Download Guidelines" href="download-guidelines.html" />
+    <link rel="prev" title="Schematic Checklist" href="schematic-checklist.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ESP Hardware Design Guidelines
+            <img src="_static/espressif-logo.svg" class="logo" alt="Logo"/>
+          </a>
+
+          
+            <div class="selectors">
+              <select id="target-select" style="width: 150px;" hidden>
+                <option value="" disabled selected>Choose target...</option>
+              </select>
+            </div>
+          
+
+          <div class="selectors">
+            <select id="version-select" style="width: 150px;" hidden>
+              <option value="" disabled selected>Choose version...</option>
+            </select>
+          </div>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about-this-document.html">About This Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="product-overview.html">Product Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schematic-checklist.html">Schematic Checklist</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PCB Layout Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-principles-of-pcb-layout-for-the-chip">General Principles of PCB Layout for the Chip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#power-supply">Power Supply</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#four-layer-pcb-design">Four-Layer PCB Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#two-layer-pcb-design">Two-Layer PCB Design</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#crystal">Crystal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rf">RF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flash-and-psram">Flash and PSRAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uart">UART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-principles-of-pcb-layout-for-modules-positioning-a-module-on-a-base-board">General Principles of PCB Layout for Modules (Positioning a Module on a Base Board)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usb">USB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sdio">SDIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#touch-sensor">Touch Sensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#electrode-pattern">Electrode Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pcb-layout">PCB Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#waterproof-and-proximity-sensing-design">Waterproof and Proximity Sensing Design</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#typical-layout-problems-and-solutions">Typical Layout Problems and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#when-esp32-s3-sends-data-packages-the-voltage-ripple-is-small-but-rf-tx-performance-is-poor">When ESP32-S3 sends data packages, the voltage ripple is small, but RF TX performance is poor.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-esp32-s3-sends-data-packages-the-power-value-is-much-higher-or-lower-than-the-target-power-value-and-the-evm-is-relatively-poor">When ESP32-S3 sends data packages, the power value is much higher or lower than the target power value, and the EVM is relatively poor.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-performance-is-not-bad-but-the-rx-sensitivity-is-low">TX performance is not bad, but the RX sensitivity is low.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="download-guidelines.html">Download Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related-documentation-and-resources.html">Related Documentation and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="revision-history.html">Revision History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disclaimer-and-copyright.html">Disclaimer and Copyright Notice</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ESP Hardware Design Guidelines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PCB Layout Design</li>
+    <style>
+        .download-pdf {
+            float: right;
+            margin-right: 20px; /* Adjust margin here */
+        }
+    </style>
+    <a href="./esp-hardware-design-guidelines-en-master-esp32s3.pdf" class="download-pdf fa fa-file-pdf-o"> Download PDF</a>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="pcb-layout-design">
+<span id="id1"></span><h1>PCB Layout Design<a class="headerlink" href="#pcb-layout-design" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="../../../zh_CN/latest/esp32s3/pcb-layout-design.html">[中文]</a></p>
+<p>This chapter introduces the key points of how to design an ESP32-S3 PCB layout using an ESP32-S3 module (see Figure <a class="reference internal" href="#fig-pcb-layout-example"><span class="std std-ref">ESP32-S3 Reference PCB Layout</span></a>) as an example.</p>
+<div class="figure align-center" id="fig-pcb-layout-example">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-layout-example.png"><img alt="ESP32-S3 Reference PCB Layout" src="_images/esp32s3-pcb-layout-example.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Reference PCB Layout</span><a class="headerlink" href="#fig-pcb-layout-example" title="Permalink to this image"></a></p>
+</div>
+<div class="section" id="general-principles-of-pcb-layout-for-the-chip">
+<h2>General Principles of PCB Layout for the Chip<a class="headerlink" href="#general-principles-of-pcb-layout-for-the-chip" title="Permalink to this headline"></a></h2>
+<p>It is recommended to use a four-layer PCB design:</p>
+<ul class="simple">
+<li><p>Layer 1 (TOP): Signal traces and components.</p></li>
+<li><p>Layer 2 (GND): No signal traces here to ensure a complete GND plane.</p></li>
+<li><p>Layer 3 (POWER): GND plane should be applied to better isolate the RF and crystal. Route power traces and a few signal traces on this layer, provided that there is a complete GND plane under the RF and crystal.</p></li>
+<li><p>Layer 4 (BOTTOM): Route a few signal traces here. It is not recommended to place any components on this layer.</p></li>
+</ul>
+<p>A two-layer PCB design can also be used:</p>
+<ul class="simple">
+<li><p>Layer 1 (TOP): Signal traces and components.</p></li>
+<li><p>Layer 2 (BOTTOM): Do not place any components on this layer and keep traces to a minimum. Please make sure there is a complete GND plane for the chip, RF, and crystal.</p></li>
+</ul>
+</div>
+<div class="section" id="power-supply">
+<span id="pcb-layout-design-power-supply"></span><h2>Power Supply<a class="headerlink" href="#power-supply" title="Permalink to this headline"></a></h2>
+<div class="section" id="four-layer-pcb-design">
+<h3>Four-Layer PCB Design<a class="headerlink" href="#four-layer-pcb-design" title="Permalink to this headline"></a></h3>
+<p>Figure <a class="reference internal" href="#fig-power-layout-four-layer"><span class="std std-ref">ESP32-S3 Power Traces in a Four-Layer PCB Design</span></a> shows the power traces in a four-layer PCB design.</p>
+<div class="figure align-center" id="fig-power-layout-four-layer">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-power-layout.png"><img alt="ESP32-S3 Power Traces in a Four-Layer PCB Design" src="_images/esp32s3-pcb-power-layout.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Power Traces in a Four-Layer PCB Design</span><a class="headerlink" href="#fig-power-layout-four-layer" title="Permalink to this image"></a></p>
+</div>
+<p><ul class="simple">
+<li><p>A four-layer PCB design is recommended. Whenever possible, route the power traces on the inner layers (not the ground layer) and connect them to the chip pins through vias. There should be at least two vias if the main power traces need to cross layers. The drill diameter on other power traces should be no smaller than the width of the power traces.</p></li>
+<li><p>The 3.3 V power traces, highlighted in yellow, are routed as shown in Figure <a class="reference internal" href="#fig-power-layout-four-layer"><span class="std std-ref">ESP32-S3 Power Traces in a Four-Layer PCB Design</span></a>. The width of the main power traces should be no less than 25 mil. The width of VDD3P3 at pin2 and pin3 power traces should be no less than 20 mil. The recommended width of other power traces is 10 mil. Ensure the power traces are surrounded by ground copper.</p></li>
+<li><p>The red circles in <a class="reference internal" href="#fig-power-layout-four-layer"><span class="std std-ref">ESP32-S3 Power Traces in a Four-Layer PCB Design</span></a> show ESD protection diodes. Place them close to the power input. Add a 10 µF capacitor before the power trace enters the chip. You can also add a 0.1 µF or 1 µF capacitor in parallel. After that, the power trace can branch out in a star-shaped layout to reduce coupling between different power pins.</p></li>
+<li><p>The power supply for pin2 and pin3 is RF related, so please place a 10 µF capacitor for each pin. You can also add a 0.1 µF or 1 µF capacitor in parallel.</p></li>
+<li><p>Add a CLC/LC filter circuit near pin2 and pin3 to suppress high-frequency harmonics.The power trace can be routed at a 45-degree angle to maintain distance from adjacent RF traces. Except for the 10 µF capacitor, it is recommended to use 0201 components. This allows the filter circuit for pin2 and pin3 to be placed closer to the pins, with a GND isolation layer separating them from surrounding RF and GPIO traces, while also maximizing the placement of ground vias. Using 0201 components enables placing a via to the bottom layer at the first capacitor near the chip, while maintaining a keep-out area on other layers, further reducing harmonic interference. See Figure <a class="reference internal" href="#fig-power-layout-four-layer"><span class="std std-ref">ESP32-S3 Power Traces in a Four-Layer PCB Design</span></a>.</p></li>
+</ul>
+</p>
+<p><ul class="simple">
+<li><p>In Figure <a class="reference internal" href="#fig-power-layout-four-layer"><span class="std std-ref">ESP32-S3 Power Traces in a Four-Layer PCB Design</span></a>, the 10 µF capacitor is shared by the analog power supply VDD3P3 at pin2 and pin3, and the power entrance since the analog power is close to the chip power entrance. If the chip power entrance is not near VDD3P3 at pin2 and pin3, it is recommended to add a 10 µF capacitor to both the chip power entrance and VDD3P3 at pin2 and pin3.</p></li>
+<li><p>Place appropriate decoupling capacitors at the rest of the power pins. Ground vias should be added close to the capacitor’s ground pad to ensure a short return path.</p></li>
+<li><p>The ground pad at the bottom of the chip should be connected to the ground plane through at least nine ground vias.</p></li>
+<li><p>The ground pads of the chip and surrounding circuit components should make full contact with the ground copper pour rather than being connected via traces.</p></li>
+<li><p>If you need to add a thermal pad EPAD under the chip on the bottom of the module, it is recommended to employ a square grid on the EPAD, cover the gaps with solder paste, and place ground vias in the gaps, as shown in Figure <a class="reference internal" href="#fig-power-layout-four-layer"><span class="std std-ref">ESP32-S3 Power Traces in a Four-Layer PCB Design</span></a>. This helps effectively reduce solder leakage issues when soldering the module EPAD to the substrate.</p></li>
+<li><p>For optimal grounding, connect the EPAD to a large external ground area using wide traces or copper planes. See the figure below.</p></li>
+</ul>
+</p>
+<div class="figure align-center" id="fig-pcb-epad-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-epad-layout.png"><img alt="ESP32-S3 EPAD Design at Chip Bottom" src="_images/esp32s3-pcb-epad-layout.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 EPAD Design at Chip Bottom</span><a class="headerlink" href="#fig-pcb-epad-layout" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="two-layer-pcb-design">
+<h3>Two-Layer PCB Design<a class="headerlink" href="#two-layer-pcb-design" title="Permalink to this headline"></a></h3>
+<p>Figure <a class="reference internal" href="#fig-power-layout-two-layer"><span class="std std-ref">ESP32 Power Traces in a Two-Layer PCB Design</span></a> shows the power traces in a two-layer PCB design.</p>
+<blockquote>
+<div><div class="figure align-center" id="fig-power-layout-two-layer">
+<a class="reference internal image-reference" href="_images/shared-pcb-power-layout-two-layer.png"><img alt="ESP32 Power Traces in a Two-Layer PCB Design" src="_images/shared-pcb-power-layout-two-layer.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">ESP32 Power Traces in a Two-Layer PCB Design</span><a class="headerlink" href="#fig-power-layout-two-layer" title="Permalink to this image"></a></p>
+</div>
+</div></blockquote>
+<p><ul class="simple">
+<li><p>For a two-layer design, ensure to provide a continuous reference ground for the chip, RF, and crystal oscillator, as shown in the figure above.</p></li>
+<li><p>In the figure above, the trace VDD33 represents the 3.3 V power trace. Unlike a four-layer design, the power trace should be routed on the top layer as much as possible. Therefore, the thermal pad in the center of the chip should be reduced in size, allowing the power trace to pass between the signal pads and the thermal pad. Vias to the bottom layer should only be used when absolutely necessary.</p></li>
+<li><p>Other layout considerations are the same as for a four-layer design.</p></li>
+<li><p>Note that there are no official two-layer modules. The figure above uses the ESP32 module as an example.</p></li>
+</ul>
+</p>
+</div>
+</div>
+<div class="section" id="crystal">
+<span id="crystal-layout"></span><h2>Crystal<a class="headerlink" href="#crystal" title="Permalink to this headline"></a></h2>
+<p>Figure <a class="reference internal" href="#fig-crystal-not-to-gnd"><span class="std std-ref">ESP32-S3 Crystal Layout (with Keep-out Area on Top Layer)</span></a> shows a reference PCB layout where the crystal is connected to the ground through vias and a keep-out area is maintained around the crystal on the top layer for ground isolation.</p>
+<div class="figure align-center" id="fig-crystal-not-to-gnd">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-crystal-not-to-gnd.png"><img alt="ESP32-S3 Crystal Layout (with Keep-out Area on Top Layer)" src="_images/esp32s3-pcb-crystal-not-to-gnd.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Crystal Layout (with Keep-out Area on Top Layer)</span><a class="headerlink" href="#fig-crystal-not-to-gnd" title="Permalink to this image"></a></p>
+</div>
+<p>Figure <a class="reference internal" href="#fig-crystal-to-gnd"><span class="std std-ref">ESP32-S3 Crystal Layout (without Keep-out Area on Top Layer)</span></a> shows the layout for the crystal that is connected to the ground through vias but there is no keep-out area on the top layer for ground isolation.</p>
+<div class="figure align-center" id="fig-crystal-to-gnd">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-crystal-to-gnd.png"><img alt="ESP32-S3 Crystal Layout (without Keep-out Area on Top Layer)" src="_images/esp32s3-pcb-crystal-to-gnd.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Crystal Layout (without Keep-out Area on Top Layer)</span><a class="headerlink" href="#fig-crystal-to-gnd" title="Permalink to this image"></a></p>
+</div>
+<p>If there is sufficient ground on the top layer, it is recommended to maintain a keep-out area around the crystal for ground isolation. This helps to reduce the value of parasitic capacitance and suppress temperature conduction, which can otherwise affect the frequency offset. If there is no sufficient ground, do not maintain any keep-out area.</p>
+<p>The layout of the crystal should follow the guidelines below:</p>
+<ul class="simple">
+<li><p>Ensure a complete GND plane for the RF, crystal, and chip.</p></li>
+<li><p>The crystal should be placed far from the clock pin to avoid interference on the chip. The gap should be at least 2.0 mm. It is good practice to add high-density ground vias stitching around the clock trace for better isolation.</p></li>
+<li><p>There should be no vias for the clock input and output traces.</p></li>
+<li><p>Components in series to the crystal trace should be placed close to the chip side.</p></li>
+<li><p>The external matching capacitors should be placed on the two sides of the crystal, preferably at the end of the clock trace, but not connected directly to the series components. This is to make sure the ground pad of the capacitor is close to that of the crystal.</p></li>
+<li><p>Do not route high-frequency digital signal traces under the crystal. It is best not to route any signal trace under the crystal. The vias on the power traces on both sides of the crystal clock trace should be placed as far away from the clock trace as possible, and the two sides of the clock trace should be surrounded by ground copper.</p></li>
+<li><p>As the crystal is a sensitive component, do not place any magnetic components nearby that may cause interference, for example large inductance component, and ensure that there is a clean large-area ground plane around the crystal.</p></li>
+</ul>
+</div>
+<div class="section" id="rf">
+<span id="rf-layout"></span><h2>RF<a class="headerlink" href="#rf" title="Permalink to this headline"></a></h2>
+<p>The RF trace is routed as shown highlighted in pink in Figure <a class="reference internal" href="#fig-rf-layout"><span class="std std-ref">ESP32-S3 RF Layout in a Four-layer PCB Design</span></a>.</p>
+<div class="figure align-center" id="fig-rf-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-rf-layout.png"><img alt="ESP32-S3 RF Layout in a Four-layer PCB Design" src="_images/esp32s3-pcb-rf-layout.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 RF Layout in a Four-layer PCB Design</span><a class="headerlink" href="#fig-rf-layout" title="Permalink to this image"></a></p>
+</div>
+<p>The RF layout should meet the following guidelines:</p>
+<p><ul class="simple">
+<li><p>The RF trace should have a 50 Ω characteristic impedance. The reference plane is the layer next to the chip. For designing the RF trace at 50 Ω impedance, you could refer to the PCB stack-up design shown below.</p></li>
+</ul>
+</p>
+<div class="figure align-center" id="fig-stackup-design">
+<a class="reference internal image-reference" href="_images/shared-stackup-design__en.png"><img alt="ESP32-S3 PCB Stack up Design" src="_images/shared-stackup-design__en.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 PCB Stack-up Design</span><a class="headerlink" href="#fig-stackup-design" title="Permalink to this image"></a></p>
+</div>
+<p><ul class="simple">
+<li><p>A CLC matching circuit is required for chip tuning. Please use 0201 components and place them close to the pin in a zigzag. In other words, the two capacitors should not be oriented in the same direction to minimize interference.</p></li>
+<li><p>Add a stub on the grounding capacitor near the chip side in the CLC matching circuit to suppress the second harmonics. It is preferable to keep the stub length 15 mil, and determine the stub width according to the PCB stack-up so that the characteristic impedance of the stub is 100 Ω ± 10%. In addition, please connect the stub via to the third layer, and maintain a keep-out area on the first and second layers. The trace highlighted in figure below is the stub. Note that a stub is not required for package types of 0402 and above.</p></li>
+<li><p>It is recommended to keep all layers clear under the IPEX antenna connector. See Figure <a class="reference internal" href="#fig-pcb-ipex-layout"><span class="std std-ref">ESP32-S3 IPEX Layout</span></a>.</p></li>
+<li><p>For PCB antennas, make sure to validate them through both simulation and real-world testing on a development board. It is recommended to include an additional CLC matching circuit for antenna tuning. Place this circuit as close to the antenna as possible.</p></li>
+</ul>
+</p>
+<div class="figure align-center" id="fig-stub-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-stub-layout.png"><img alt="ESP32-S3 Stub in a Four-layer PCB Design" src="_images/esp32s3-pcb-stub-layout.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Stub in a Four-layer PCB Design</span><a class="headerlink" href="#fig-stub-layout" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-center" id="fig-pcb-ipex-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-ipex-layout.png"><img alt="ESP32-S3 IPEX Layout" src="_images/esp32s3-pcb-ipex-layout.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 IPEX Layout</span><a class="headerlink" href="#fig-pcb-ipex-layout" title="Permalink to this image"></a></p>
+</div>
+<ul class="simple">
+<li><p>The RF trace should have a consistent width and not branch out. It should be as short as possible with dense ground vias around for interference shielding.</p></li>
+<li><p>The RF trace should be routed on the outer layer without vias, i.e., should not cross layers. The RF trace should be routed at a 135° angle, or with circular arcs if trace bends are required.</p></li>
+<li><p>The ground plane on the adjacent layer needs to be complete. Do not route any traces under the RF trace whenever possible.</p></li>
+<li><p>There should be no high-frequency signal traces routed close to the RF trace. The RF antenna should be placed away from high-frequency components, such as crystals, DDR SDRAM, high-frequency clocks, etc. In addition, the USB port, USB-to-serial chip, UART signal lines (including traces, vias, test points, header pins, etc.) must be as far away from the antenna as possible. The UART signal line should be surrounded by ground copper and ground vias.</p></li>
+</ul>
+</div>
+<div class="section" id="flash-and-psram">
+<h2>Flash and PSRAM<a class="headerlink" href="#flash-and-psram" title="Permalink to this headline"></a></h2>
+<p>The layout for flash and PSRAM should follow the guidelines below:</p>
+<p><ul class="simple">
+<li><p>Place the zero-ohm resistors in series on the SPI lines close to ESP32-S3.</p></li>
+<li><p>Route the SPI traces on the inner layer (e.g., the third layer) whenever possible, and add ground copper and ground vias around the clock and data traces of SPI separately.</p></li>
+<li><p>Octal SPI traces should have matching lengths.</p></li>
+<li><p>If the flash and PSRAM are located far from ESP32-S3, it is recommended to place appropriate decoupling capacitors both at VDD_SPI and near the flash and PSRAM power supply.</p></li>
+</ul>
+</p>
+<p>Figure <a class="reference internal" href="#fig-flash-layout"><span class="std std-ref">ESP32-S3 Quad SPI Flash Layout</span></a> shows the quad SPI flash layout.</p>
+<div class="figure align-center" id="fig-flash-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-flash-layout.png"><img alt="ESP32-S3 Quad SPI Flash Layout" src="_images/esp32s3-pcb-flash-layout.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Quad SPI Flash Layout</span><a class="headerlink" href="#fig-flash-layout" title="Permalink to this image"></a></p>
+</div>
+<p>Figure <a class="reference internal" href="#fig-octal-flash-layout"><span class="std std-ref">ESP32-S3 Octal SPI Flash Layout</span></a> shows the octal SPI flash layout.</p>
+<div class="figure align-center" id="fig-octal-flash-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-octal-flash-layout.png"><img alt="ESP32-S3 Octal SPI Flash Layout" src="_images/esp32s3-pcb-octal-flash-layout.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Octal SPI Flash Layout</span><a class="headerlink" href="#fig-octal-flash-layout" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="uart">
+<h2>UART<a class="headerlink" href="#uart" title="Permalink to this headline"></a></h2>
+<p>Figure <a class="reference internal" href="#fig-uart-layout"><span class="std std-ref">ESP32-S3 UART Layout</span></a> shows the UART layout.</p>
+<div class="figure align-center" id="fig-uart-layout">
+<a class="reference internal image-reference" href="_images/esp32s3-pcb-uart-layout.png"><img alt="ESP32-S3 UART Layout" src="_images/esp32s3-pcb-uart-layout.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 UART Layout</span><a class="headerlink" href="#fig-uart-layout" title="Permalink to this image"></a></p>
+</div>
+<p>The UART layout should meet the following guidelines:</p>
+<ul class="simple">
+<li><p>The series resistor on the U0TXD trace needs to be placed close to the chip side and away from the crystal.</p></li>
+<li><p>The U0TXD and U0RXD traces on the top layer should be as short as possible.</p></li>
+<li><p>The UART trace should be surrounded by ground copper and ground vias stitching.</p></li>
+</ul>
+</div>
+<div class="section" id="general-principles-of-pcb-layout-for-modules-positioning-a-module-on-a-base-board">
+<span id="pcb-layout-design-on-a-base-board"></span><h2>General Principles of PCB Layout for Modules (Positioning a Module on a Base Board)<a class="headerlink" href="#general-principles-of-pcb-layout-for-modules-positioning-a-module-on-a-base-board" title="Permalink to this headline"></a></h2>
+<p>If module-on-board design is adopted, attention should be paid while positioning the module on the base board. The interference of the baseboard on the module’s antenna performance should be minimized.</p>
+<p>It is suggested to place the module’s on-board PCB antenna outside the base board, and the feed point of the antenna closest to the board. In the following example figures, positions with mark ✓ are strongly recommended, while positions without a mark are not recommended.</p>
+<div class="figure align-center" id="fig-module-place-on-base-board-right">
+<a class="reference internal image-reference" href="_images/esp32s3-module-place-on-base-board-right.png"><img alt="Placement of ESP32-S3 Modules on Base Board (antenna feed point on the right)" src="_images/esp32s3-module-place-on-base-board-right.png" style="width: 85%;" /></a>
+<p class="caption"><span class="caption-text">Placement of ESP32-S3 Modules on Base Board (antenna feed point on the right)</span><a class="headerlink" href="#fig-module-place-on-base-board-right" title="Permalink to this image"></a></p>
+</div>
+<div class="figure align-center" id="fig-module-place-on-base-board-left">
+<a class="reference internal image-reference" href="_images/esp32s3-module-place-on-base-board-left.png"><img alt="Placement of ESP32-S3 Modules on Base Board (antenna feed point on the left)" src="_images/esp32s3-module-place-on-base-board-left.png" style="width: 85%;" /></a>
+<p class="caption"><span class="caption-text">Placement of ESP32-S3 Modules on Base Board (antenna feed point on the left)</span><a class="headerlink" href="#fig-module-place-on-base-board-left" title="Permalink to this image"></a></p>
+</div>
+<p>If the PCB antenna cannot be placed outside the board, please ensure a clearance of at least 15 mm (in all directions) around the antenna area (no copper, routing, or components on it), and place the feed point of the antenna closest to the board. If there is a base board under the antenna area, it is recommended to cut it off to minimize its impact on the antenna. Figure <a class="reference internal" href="#fig-module-clearance"><span class="std std-ref">Keepout Zone for ESP32-S3 Module’s Antenna on the Base Board</span></a> shows the suggested clearance for modules whose antenna feed point is on the right.</p>
+<div class="figure align-center" id="fig-module-clearance">
+<a class="reference internal image-reference" href="_images/esp32s3-module-clearance.png"><img alt="Keepout Zone for ESP32-S3 Module’s Antenna on the Base Board" src="_images/esp32s3-module-clearance.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">Keepout Zone for ESP32-S3 Module’s Antenna on the Base Board</span><a class="headerlink" href="#fig-module-clearance" title="Permalink to this image"></a></p>
+</div>
+<p>When designing an end product, attention should be paid to the interference caused by the housing of the antenna and it is recommended to carry out RF verification. It is necessary to test the throughput and communication signal range of the whole product to ensure the product’s actual RF performance.</p>
+</div>
+<div class="section" id="usb">
+<span id="usb-layout"></span><h2>USB<a class="headerlink" href="#usb" title="Permalink to this headline"></a></h2>
+<p>The USB layout should meet the following guidelines:</p>
+<ul class="simple">
+<li><p>Reserve space for resistors and capacitors on the USB traces close to the chip side.</p></li>
+<li><p>Use differential pairs and route them in parallel at equal lengths. Maintain a differential pair impedance of 90 Ω with a tolerance of ±10%.</p></li>
+<li><p>USB differential traces should minimize via transitions as much as possible to ensure better impedance control and avoid signal reflections. If vias are necessary, add a pair of ground return vias at each transition point.</p></li>
+<li><p>Ensure there is a continuous reference layer (a ground layer is recommended) beneath the USB traces.</p></li>
+<li><p>Surround the USB traces with ground copper.</p></li>
+</ul>
+</div>
+<div class="section" id="sdio">
+<span id="sdio-layout"></span><h2>SDIO<a class="headerlink" href="#sdio" title="Permalink to this headline"></a></h2>
+<p>The SDIO layout should follow the guidelines below:</p>
+<p><ul class="simple">
+<li><p>Minimize parasitic capacitance of SDIO traces as they involve high-speed signals.</p></li>
+<li><p>The trace lengths for SDIO_CMD and SDIO_DATA0 ~ SDIO_DATA3 should be within ± 50 mil of the SDIO_CLK trace length. Use serpentine routing if necessary.</p></li>
+<li><p>For SDIO routing, maintain a 50 Ω single-ended impedance with a tolerance of ±10%.</p></li>
+<li><p>Keep the total trace length from SDIO GPIOs to the master SDIO interface as short as possible, ideally within 2000 mil.</p></li>
+<li><p>Ensure that SDIO traces do not cross layers. Besides, a reference plane (preferably a ground plane) must be placed beneath the traces, and continuity of the reference plane must be ensured.</p></li>
+<li><p>It is recommended to surround the SDIO_CLK trace with ground copper.</p></li>
+</ul>
+</p>
+</div>
+<div class="section" id="touch-sensor">
+<h2>Touch Sensor<a class="headerlink" href="#touch-sensor" title="Permalink to this headline"></a></h2>
+<p>ESP32-S3 offers up to 14 capacitive IOs that detect changes in capacitance on touch sensors due to finger contact or proximity. The chip’s internal capacitance detection circuit features low noise and high sensitivity. It allows to use touch pads with smaller area to implement the touch detection function. You can also use the touch panel array to detect a larger area or more test points.</p>
+<p>Figure <a class="reference internal" href="#fig-touch-design"><span class="std std-ref">ESP32-S3 Typical Touch Sensor Application</span></a> depicts a typical touch sensor application.</p>
+<div class="figure align-center" id="fig-touch-design">
+<a class="reference internal image-reference" href="_images/shared-touch-design.png"><img alt="ESP32-S3 Typical Touch Sensor Application" src="_images/shared-touch-design.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Typical Touch Sensor Application</span><a class="headerlink" href="#fig-touch-design" title="Permalink to this image"></a></p>
+</div>
+<p>To prevent capacitive coupling and other electrical interference to the sensitivity of the touch sensor system, the following factors should be taken into account.</p>
+<div class="section" id="electrode-pattern">
+<h3>Electrode Pattern<a class="headerlink" href="#electrode-pattern" title="Permalink to this headline"></a></h3>
+<p>The proper size and shape of an electrode improves system sensitivity. Round, oval, or shapes similar to a human fingertip are commonly applied. Large size or irregular shape might lead to incorrect responses from nearby electrodes.</p>
+<p>Figure <a class="reference internal" href="#fig-touch-electrode"><span class="std std-ref">ESP32-S3 Electrode Pattern Requirements</span></a> shows the proper and improper size or shape of electrode. Please note that the examples illustrated in the figure are not of actual scale. It is suggested to use a human fingertip as reference.</p>
+<div class="figure align-center" id="fig-touch-electrode">
+<a class="reference internal image-reference" href="_images/shared-touch-electrode.png"><img alt="ESP32-S3 Electrode Pattern Requirements" src="_images/shared-touch-electrode.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Electrode Pattern Requirements</span><a class="headerlink" href="#fig-touch-electrode" title="Permalink to this image"></a></p>
+</div>
+</div>
+<div class="section" id="pcb-layout">
+<h3>PCB Layout<a class="headerlink" href="#pcb-layout" title="Permalink to this headline"></a></h3>
+<p>Figure <a class="reference internal" href="#fig-touch-sensor-routing"><span class="std std-ref">ESP32-S3 Sensor Track Routing Requirements</span></a> illustrates the general guidelines to routing traces. Specifically,</p>
+<ul class="simple">
+<li><p>The trace should be as short as possible and no longer than 300 mm.</p></li>
+<li><p>The trace width (W) can not be larger than 0.18 mm (7 mil).</p></li>
+<li><p>The alignment angle (R) should not be less than 90°.</p></li>
+<li><p>The trace-to-ground gap (S) should be in the range of 0.5 mm to 1 mm.</p></li>
+<li><p>The electrode diameter (D) should be in the range of 8 mm to 15 mm.</p></li>
+<li><p>Hatched ground should be added around the electrodes and traces.</p></li>
+<li><p>The traces should be isolated well and routed away from that of the antenna.</p></li>
+</ul>
+<div class="figure align-center" id="fig-touch-sensor-routing">
+<a class="reference internal image-reference" href="_images/shared-touch-sensor-routing.png"><img alt="ESP32-S3 Sensor Track Routing Requirements" src="_images/shared-touch-sensor-routing.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Sensor Track Routing Requirements</span><a class="headerlink" href="#fig-touch-sensor-routing" title="Permalink to this image"></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more details on the hardware design of the touch sensor, please refer to <a class="reference external" href="https://github.com/espressif/esp-iot-solution/blob/release/v1.0/documents/touch_pad_solution/touch_sensor_design_en.md">Touch Sensor Application Note</a>.</p>
+</div>
+</div>
+<div class="section" id="waterproof-and-proximity-sensing-design">
+<h3>Waterproof and Proximity Sensing Design<a class="headerlink" href="#waterproof-and-proximity-sensing-design" title="Permalink to this headline"></a></h3>
+<p>ESP32-S3 touch sensor has a waterproof design and features proximity sensor function. Figure <a class="reference internal" href="#fig-touch-waterproof-design"><span class="std std-ref">ESP32-S3 Waterproof and Proximity Sensing Design</span></a> shows an example layout of a waterproof and proximity sensing design.</p>
+<div class="figure align-center" id="fig-touch-waterproof-design">
+<a class="reference internal image-reference" href="_images/shared-touch-waterproof-design.png"><img alt="ESP32-S3 Waterproof and Proximity Sensing Design" src="_images/shared-touch-waterproof-design.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-text">ESP32-S3 Waterproof and Proximity Sensing Design</span><a class="headerlink" href="#fig-touch-waterproof-design" title="Permalink to this image"></a></p>
+</div>
+<p>Note the following guidelines to better implement the waterproof and proximity sensing design:</p>
+<ul class="simple">
+<li><p>The recommended width of the shield electrode width is 2 cm.</p></li>
+<li><p>Employ a grid on the top layer with a trace width of 7 mil and a grid width of 45 mil (25% fill). The filled grid is connected to the driver shield signal.</p></li>
+<li><p>Employ a grid on the bottom layer with a trace width of 7 mil and a grid width of 70 mil (17% fill). The filled grid is connected to the driver shield signal.</p></li>
+<li><p>The protective sensor should be in a rectangle shape with curved edges and surround all other sensors.</p></li>
+<li><p>The recommended width of the protective sensor is 2 mm.</p></li>
+<li><p>The recommended gap between the protective sensor and shield sensor is 1 mm.</p></li>
+<li><p>The sensing distance of the proximity sensor is directly proportional to the area of the proximity sensor. However, increasing the sensing area will introduce more noise. Actual testing is needed for optimized performance.</p></li>
+<li><p>It is recommended that the shape of the proximity sensor is a closed loop. The recommended width is 1.5 mm.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="typical-layout-problems-and-solutions">
+<h2>Typical Layout Problems and Solutions<a class="headerlink" href="#typical-layout-problems-and-solutions" title="Permalink to this headline"></a></h2>
+<div class="section" id="when-esp32-s3-sends-data-packages-the-voltage-ripple-is-small-but-rf-tx-performance-is-poor">
+<h3>When ESP32-S3 sends data packages, the voltage ripple is small, but RF TX performance is poor.<a class="headerlink" href="#when-esp32-s3-sends-data-packages-the-voltage-ripple-is-small-but-rf-tx-performance-is-poor" title="Permalink to this headline"></a></h3>
+<p><strong>Analysis:</strong> The RF TX performance can be affected not only by voltage ripples, but also by the crystal itself. Poor quality and big frequency offsets of the crystal decrease the RF TX performance. The crystal clock may be corrupted by other interfering signals, such as high-speed output or input signals. In addition, high-frequency signal traces, such as the SDIO traces and UART traces under the crystal, could also result in the malfunction of the crystal. Besides, sensitive components or radiating components, such as inductors and antennas, may also decrease the RF performance.</p>
+<p><strong>Solution:</strong> This problem is caused by improper layout for the crystal and can be solved by re-layout. Please refer to Section <a class="reference internal" href="#crystal-layout"><span class="std std-ref">Crystal</span></a> for details.</p>
+</div>
+<div class="section" id="when-esp32-s3-sends-data-packages-the-power-value-is-much-higher-or-lower-than-the-target-power-value-and-the-evm-is-relatively-poor">
+<h3>When ESP32-S3 sends data packages, the power value is much higher or lower than the target power value, and the EVM is relatively poor.<a class="headerlink" href="#when-esp32-s3-sends-data-packages-the-power-value-is-much-higher-or-lower-than-the-target-power-value-and-the-evm-is-relatively-poor" title="Permalink to this headline"></a></h3>
+<p><strong>Analysis:</strong> The disparity between the tested value and the target value may be due to signal reflection caused by the impedance mismatch on the transmission line connecting the RF pin and the antenna. Besides, the impedance mismatch will affect the working state of the internal PA, making the PA prematurely access the saturated region in an abnormal way. The EVM becomes poor as the signal distortion happens.</p>
+<p><strong>Solution:</strong> Match the antenna’s impedance with the π-type circuit on the RF trace, so that the impedance of the antenna as seen from the RF pin matches closely with that of the chip. This reduces reflections to the minimum.</p>
+</div>
+<div class="section" id="tx-performance-is-not-bad-but-the-rx-sensitivity-is-low">
+<h3>TX performance is not bad, but the RX sensitivity is low.<a class="headerlink" href="#tx-performance-is-not-bad-but-the-rx-sensitivity-is-low" title="Permalink to this headline"></a></h3>
+<p><strong>Analysis:</strong> Good TX performance indicates proper RF impedance matching. Poor RX sensitivity may result from external coupling to the antenna. For instance, the crystal signal harmonics could couple to the antenna. If the TX and RX traces of UART cross over with RF trace, they will affect the RX performance, as well. If there are many high-frequency interference sources on the board, signal integrity should be considered.</p>
+<p><strong>Solution:</strong> Keep the antenna away from crystals. Do not route high-frequency signal traces close to the RF trace. Please refer to Section <a class="reference internal" href="#rf-layout"><span class="std std-ref">RF</span></a> for details.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+    
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        
+          <a href="download-guidelines.html" class="btn btn-neutral float-right" title="Download Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        
+        
+          <a href="schematic-checklist.html" class="btn btn-neutral float-left" title="Schematic Checklist" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        
+      </div>
+    
+  
+    <hr />
+    <div class="f5 contribution" style="height:100px;width:300px;float:left;"><b>Suggestion on this document?</b><br><br><font size=2>
+      
+      
+      <a id="feedback" class="btn btn-neutral" href="https://www.espressif.com/en/company/documents/documentation_feedback?docId=5419&sections=PCB Layout Design (pcb-layout-design)&version=esp32s3 latest (master)">
+        <svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="2 2 16 16" width="12" height="12" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible">
+          <path fill-rule="evenodd" d="M17.218,2.268L2.477,8.388C2.13,8.535,2.164,9.05,2.542,9.134L9.33,10.67l1.535,6.787c0.083,0.377,0.602,0.415,0.745,0.065l6.123-14.74C17.866,2.46,17.539,2.134,17.218,2.268 M3.92,8.641l11.772-4.89L9.535,9.909L3.92,8.641z M11.358,16.078l-1.268-5.613l6.157-6.157L11.358,16.078z"></path>
+        </svg>&nbsp;Provide feedback
+      </a>
+    </font></div>
+    
+    <div style="height:100px;width:180px;float:right;"><b>Need more information?</b>
+      <div><font size = 2><br><a id="ESP forum" href="https://www.esp32.com/viewforum.php?f=23"><svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="2 0 16 16" width="12" height="12" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M17.659,3.681H8.468c-0.211,0-0.383,0.172-0.383,0.383v2.681H2.341c-0.21,0-0.383,0.172-0.383,0.383v6.126c0,0.211,0.172,0.383,0.383,0.383h1.532v2.298c0,0.566,0.554,0.368,0.653,0.27l2.569-2.567h4.437c0.21,0,0.383-0.172,0.383-0.383v-2.681h1.013l2.546,2.567c0.242,0.249,0.652,0.065,0.652-0.27v-2.298h1.533c0.211,0,0.383-0.172,0.383-0.382V4.063C18.042,3.853,17.87,3.681,17.659,3.681 M11.148,12.87H6.937c-0.102,0-0.199,0.04-0.27,0.113l-2.028,2.025v-1.756c0-0.211-0.172-0.383-0.383-0.383H2.724V7.51h5.361v2.68c0,0.21,0.172,0.382,0.383,0.382h2.68V12.87z M17.276,9.807h-1.533c-0.211,0-0.383,0.172-0.383,0.383v1.755L13.356,9.92c-0.07-0.073-0.169-0.113-0.27-0.113H8.851v-5.36h8.425V9.807z"></path></svg>&nbsp;Check ESP forum</a></font>
+      </div>
+       <div><font size = 2><a id="sales-questions" href="https://www.espressif.com/en/contact-us/sales-questions"><svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="0 0 16 16" width="12" height="12" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M15.573,11.624c0.568-0.478,0.947-1.219,0.947-2.019c0-1.37-1.108-2.569-2.371-2.569s-2.371,1.2-2.371,2.569c0,0.8,0.379,1.542,0.946,2.019c-0.253,0.089-0.496,0.2-0.728,0.332c-0.743-0.898-1.745-1.573-2.891-1.911c0.877-0.61,1.486-1.666,1.486-2.812c0-1.79-1.479-3.359-3.162-3.359S4.269,5.443,4.269,7.233c0,1.146,0.608,2.202,1.486,2.812c-2.454,0.725-4.252,2.998-4.252,5.685c0,0.218,0.178,0.396,0.395,0.396h16.203c0.218,0,0.396-0.178,0.396-0.396C18.497,13.831,17.273,12.216,15.573,11.624 M12.568,9.605c0-0.822,0.689-1.779,1.581-1.779s1.58,0.957,1.58,1.779s-0.688,1.779-1.58,1.779S12.568,10.427,12.568,9.605 M5.06,7.233c0-1.213,1.014-2.569,2.371-2.569c1.358,0,2.371,1.355,2.371,2.569S8.789,9.802,7.431,9.802C6.073,9.802,5.06,8.447,5.06,7.233 M2.309,15.335c0.202-2.649,2.423-4.742,5.122-4.742s4.921,2.093,5.122,4.742H2.309z M13.346,15.335c-0.067-0.997-0.382-1.928-0.882-2.732c0.502-0.271,1.075-0.429,1.686-0.429c1.828,0,3.338,1.385,3.535,3.161H13.346z"></path></svg>&nbsp;Sales Questions</a>
+        </font></div>
+       <div><font size = 2><a id="technical-inquiries" href="https://www.espressif.com/en/contact-us/technical-inquiries"><svg aria-hidden="true" role="img" class="octicon mr-1" viewBox="0 0 16 16" width="12" height="12" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path fill-rule="evenodd" d="M15.573,11.624c0.568-0.478,0.947-1.219,0.947-2.019c0-1.37-1.108-2.569-2.371-2.569s-2.371,1.2-2.371,2.569c0,0.8,0.379,1.542,0.946,2.019c-0.253,0.089-0.496,0.2-0.728,0.332c-0.743-0.898-1.745-1.573-2.891-1.911c0.877-0.61,1.486-1.666,1.486-2.812c0-1.79-1.479-3.359-3.162-3.359S4.269,5.443,4.269,7.233c0,1.146,0.608,2.202,1.486,2.812c-2.454,0.725-4.252,2.998-4.252,5.685c0,0.218,0.178,0.396,0.395,0.396h16.203c0.218,0,0.396-0.178,0.396-0.396C18.497,13.831,17.273,12.216,15.573,11.624 M12.568,9.605c0-0.822,0.689-1.779,1.581-1.779s1.58,0.957,1.58,1.779s-0.688,1.779-1.58,1.779S12.568,10.427,12.568,9.605 M5.06,7.233c0-1.213,1.014-2.569,2.371-2.569c1.358,0,2.371,1.355,2.371,2.569S8.789,9.802,7.431,9.802C6.073,9.802,5.06,8.447,5.06,7.233 M2.309,15.335c0.202-2.649,2.423-4.742,5.122-4.742s4.921,2.093,5.122,4.742H2.309z M13.346,15.335c-0.067-0.997-0.382-1.928-0.882-2.732c0.502-0.271,1.075-0.429,1.686-0.429c1.828,0,3.338,1.385,3.535,3.161H13.346z"></path></svg>&nbsp;Technical Inquiries </a>
+        </font></div>
+    </div>
+    <div role="contentinfo">
+    </div>
+    <ul class="footer">
+      <li>
+        <br> <!-- Separate Feedback/Information part with Copyright/Sphinx -->
+          
+          &copy; Copyright 2023 - 2025, Espressif Systems (Shanghai) Co., Ltd
+      <p>
+        
+        
+        Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/espressif/sphinx_idf_theme">theme</a>  based on <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs Sphinx Theme</a>.
+      </li></p> 
+  </footer>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
