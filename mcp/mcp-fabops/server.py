@@ -342,7 +342,7 @@ def make_fab_pack(
     # 4) iBOM
     ibom_res = {}
     if gen_ibom:
-        ibom_res = ibom_generate(panel_pcb, ibom_dir.as_posix(), "ibom", ibom_extra_fields)
+        ibom_res = ibom_generate(board_kicad_pcb, ibom_dir.as_posix(), "ibom", ibom_extra_fields)
 
     # 5) 3D exports (from single board, not panel)
     step_res = {}

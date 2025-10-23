@@ -1,0 +1,81 @@
+(kicad_symbol_lib (version 20211014) (generator kicad)
+
+  ;; SN74AXC2T245 — dual-bit translator, 1.8↔3.3V, up to 380 Mb/s
+  (symbol "K1:SN74AXC2T245_UQFN10" (pin_names (offset 0)) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (id 0) (at 0 0 0))
+    (property "Value" "SN74AXC2T245RSW" (id 1) (at 0 -2.54 0))
+    (property "Footprint" "Package_DFN_QFN:UQFN-10_1.8x1.4mm_P0.40mm" (id 2) (at 0 -4.2 0))
+    (property "Datasheet" "https://www.ti.com/product/SN74AXC2T245" (id 3) (at 0 -6.0 0))
+    (property "LCSC" "C1882550" (id 4) (at 0 -8.0 0))
+    (symbol "SN74AXC2T245_0_1"
+      (rectangle (start -7.62 7.62) (end 7.62 -7.62) (stroke (width 0.15)) (fill (type none))))
+    (symbol "SN74AXC2T245_1_1"
+      (pin input line (at -10.16 5.08 0) (length 2.54) (name "A1") (number "1"))
+      (pin input line (at -10.16 2.54 0) (length 2.54) (name "A2") (number "2"))
+      (pin input line (at -10.16 0.00 0) (length 2.54) (name "DIR2") (number "3"))
+      (pin power_in line (at -10.16 -2.54 0) (length 2.54) (name "VCCA") (number "4"))
+      (pin power_in line (at -10.16 -5.08 0) (length 2.54) (name "GND") (number "5"))
+      (pin input line (at 10.16 -5.08 180) (length 2.54) (name "OE") (number "6"))
+      (pin power_in line (at 10.16 -2.54 180) (length 2.54) (name "VCCB") (number "7"))
+      (pin input line (at 10.16 0.00 180) (length 2.54) (name "DIR1") (number "8"))
+      (pin input line (at 10.16 2.54 180) (length 2.54) (name "B2") (number "9"))
+      (pin input line (at 10.16 5.08 180) (length 2.54) (name "B1") (number "10"))))
+
+  ;; TPS7A2018 — 1.8V fixed LDO, SOT-23-5
+  (symbol "K1:TPS7A2018_SOT23-5" (pin_names (offset 0)) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (id 0) (at 0 0 0))
+    (property "Value" "TPS7A2018PDBVR" (id 1) (at 0 -2.54 0))
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (id 2) (at 0 -4.2 0))
+    (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a20.pdf" (id 3) (at 0 -6.0 0))
+    (property "LCSC" "C963430" (id 4) (at 0 -8.0 0))
+    (property "Manufacturer" "Texas Instruments" (id 5) (at 0 -10.0 0))
+    (symbol "TPS7A2018_0_1"
+      (rectangle (start -7.62 5.08) (end 7.62 -5.08) (stroke (width 0.15)) (fill (type none))))
+    (symbol "TPS7A2018_1_1"
+      (pin power_in line (at -10.16 2.54 0) (length 2.54) (name "IN") (number "1"))
+      (pin power_in line (at -10.16 0.00 0) (length 2.54) (name "GND") (number "2"))
+      (pin input line (at -10.16 -2.54 0) (length 2.54) (name "EN") (number "3"))
+      (pin no_connect line (at 10.16 -2.54 180) (length 2.54) (name "NC/FB") (number "4"))
+      (pin power_out line (at 10.16 2.54 180) (length 2.54) (name "OUT") (number "5"))))
+
+  ;; INA226 — high-side current monitor, I2C, VSSOP-10
+  (symbol "K1:INA226_VSSOP10" (pin_names (offset 0)) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (id 0) (at 0 0 0))
+    (property "Value" "INA226AIDGSR" (id 1) (at 0 -2.54 0))
+    (property "Footprint" "Package_SO:VSSOP-10_3x3mm_P0.5mm" (id 2) (at 0 -4.2 0))
+    (property "Datasheet" "https://www.ti.com/product/INA226" (id 3) (at 0 -6.0 0))
+    (property "LCSC" "C49851" (id 4) (at 0 -8.0 0))
+    (property "Manufacturer" "Texas Instruments" (id 5) (at 0 -10.0 0))
+    (symbol "INA226_0_1"
+      (rectangle (start -8.89 7.62) (end 8.89 -7.62) (stroke (width 0.15)) (fill (type none))))
+    (symbol "INA226_1_1"
+      (pin power_in line (at -11.43 5.08 0) (length 2.54) (name "VS") (number "1"))
+      (pin power_in line (at -11.43 2.54 0) (length 2.54) (name "GND") (number "2"))
+      (pin input line (at -11.43 0.00 0) (length 2.54) (name "IN+") (number "3"))
+      (pin input line (at -11.43 -2.54 0) (length 2.54) (name "IN-") (number "4"))
+      (pin no_connect line (at -11.43 -5.08 0) (length 2.54) (name "NC") (number "11"))
+      (pin input line (at 11.43 -5.08 180) (length 2.54) (name "A1") (number "6"))
+      (pin input line (at 11.43 -2.54 180) (length 2.54) (name "A0") (number "7"))
+      (pin output line (at 11.43 0.00 180) (length 2.54) (name "ALERT") (number "8"))
+      (pin bidir line (at 11.43 2.54 180) (length 2.54) (name "SCL") (number "9"))
+      (pin bidir line (at 11.43 5.08 180) (length 2.54) (name "SDA") (number "10"))))
+
+  ;; LTC4412 — ideal diode controller (monolithic, TSOT-23-6)
+  (symbol "K1:LTC4412_TSOT23" (pin_names (offset 0)) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (id 0) (at 0 0 0))
+    (property "Value" "LTC4412ES6#TRMPBF" (id 1) (at 0 -2.54 0))
+    (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-6" (id 2) (at 0 -4.2 0))
+    (property "Datasheet" "https://www.analog.com/en/products/ltc4412.html" (id 3) (at 0 -6.0 0))
+    (property "LCSC" "C459883" (id 4) (at 0 -8.0 0))
+    (property "Manufacturer" "Analog Devices" (id 5) (at 0 -10.0 0))
+    (symbol "LTC4412_0_1"
+      (rectangle (start -7.62 5.08) (end 7.62 -5.08) (stroke (width 0.15)) (fill (type none))))
+    (symbol "LTC4412_1_1"
+      (pin power_in line (at -10.16 2.54 0) (length 2.54) (name "IN") (number "1"))
+      (pin power_in line (at -10.16 0.00 0) (length 2.54) (name "GND") (number "2"))
+      (pin output line (at -10.16 -2.54 0) (length 2.54) (name "GATE") (number "3"))
+      (pin power_out line (at 10.16 2.54 180) (length 2.54) (name "OUT") (number "5"))
+      (pin no_connect line (at 10.16 0.00 180) (length 2.54) (name "NC") (number "4"))
+      (pin no_connect line (at 10.16 -2.54 180) (length 2.54) (name "NC2") (number "6"))))
+
+)

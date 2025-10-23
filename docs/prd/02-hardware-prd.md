@@ -213,6 +213,18 @@
 1. SPI loop at 20–40 MHz on pins (12/11/13/10); toggle SYNC; ISR on COM-B.
 2. MISO loopback; CRC-16 validation.
 
+### Priority 2B: PDM/I2S Clock Verification (10 min)
+
+1. **PDM Clock (if 1.8V IM69D130 build)**
+   - Measure clock frequency on GPIO12
+   - Expected: **3.072 MHz** (48 kHz × 64) or **6.144 MHz** (48 kHz × 128)
+   - Tolerance: ±5% (2.92–3.22 MHz or 5.84–6.45 MHz)
+
+2. **I2S Clock (if 3.3V SPH0645 build)**
+   - Measure BCLK on GPIO43 (from COM-A)
+   - Expected: **1.536 MHz** (mono) or **3.072 MHz** (stereo) @ 48 kHz
+   - Use logic analyzer to verify phase alignment with LRCK
+
 ### I²S Mics
 
 1. Feed tone; 48 kHz/24-bit capture on COM-A.
@@ -222,6 +234,26 @@
 
 1. External 5V in; per-port fuse OK.
 2. iBOM shows AHCT125 + 330Ω + TVS per port.
+
+### Priority 3B: Thermal Validation (30 min)
+
+1. **Setup**
+   - Populate 300× WS2812B test strip on LED1_OUT
+   - Set all pixels to 100% white (255, 255, 255) all channels
+   - Soak for 15 minutes continuous operation
+
+2. **Measurement**
+   - FLIR thermal scan of power components (LTC4412, TPS7A2018, shunt resistors)
+   - Measure junction temps at multiple points
+
+3. **Acceptance Criteria**
+   - **PASS**: <70°C (safe headroom for INA226 shunt 0.05Ω @ 3A)
+   - **WARNING**: 60–70°C (firmware brightness capping recommended)
+   - **FAIL**: >70°C (LTC4412 overheat risk, redesign required)
+
+4. **Alternative (No FLIR)**
+   - Touch-test: skin contact on U2 (LTC4412) and U5 (TPS7A2018) should be warm but safe (<60°C hand tolerance)
+   - Record ambient temperature for baseline correction
 
 ---
 

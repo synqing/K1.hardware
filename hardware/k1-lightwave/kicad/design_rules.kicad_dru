@@ -31,8 +31,8 @@
   (rule "Silk Width (min 0.1mm)"
     (constraint silk_width (min 0.1)))
 
-  (rule "Edge Clearance (copper to board edge, min 0.3mm)"
-    (constraint edge_clearance (min 0.3)))
+  (rule "Edge Clearance (copper to board edge, min 0.5mm JLCPCB V-cut)"
+    (constraint edge_clearance (min 0.5)))
 
   (rule "Min Trace Width (outer layers 0.1mm, inner 0.1mm)"
     (constraint track_width (min 0.1)))
