@@ -27,6 +27,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Dict
 
 def get_config_path() -> Path:
     """Get the path to claude_desktop_config.json"""
