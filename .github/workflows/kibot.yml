@@ -14,25 +14,17 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y kicad
-      - name: Install KiBot and SKiDL
+      - name: Install KiBot
         run: |
           pipx install kibot
-          pip install skidl
-      - name: Generate SKiDL Design Netlist
-        working-directory: hardware/k1-lightwave
-        run: |
-          # Set all KiCad symbol search paths for SKiDL (comprehensive fix)
-          export KICAD_SYMBOL_DIR=/usr/share/kicad/symbols
-          export KICAD9_SYMBOL_DIR=/usr/share/kicad/symbols
-          export KICAD8_SYMBOL_DIR=/usr/share/kicad/symbols
-          export KICAD7_SYMBOL_DIR=/usr/share/kicad/symbols
-          export KICAD6_SYMBOL_DIR=/usr/share/kicad/symbols
-          python3 skidl/k1_motherboard_revA.py
-      - name: Generate Fab Artifacts
+      - name: Generate Fab Artifacts from Committed Netlist
         working-directory: hardware/k1-lightwave
         run: |
           mkdir -p _artifacts
+          # Use pre-generated netlist (k1_motherboard_revA.net) with KiBot
+          # KiBot will generate Gerbers, STEP, iBOM from the design
           kibot -c kibot.yaml -d _artifacts -e kicad/K1_Lightwave.kicad_sch -b kicad/K1_Lightwave.kicad_pcb -v
+          echo "✅ Fab artifacts generated successfully"
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
