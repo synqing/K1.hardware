@@ -1,0 +1,26 @@
+(kicad_sch (version 20230121)
+  (uuid "87654321-4321-4321-4321-210987654321")
+  (paper "A4")
+  (title_block
+    (title "K1 Lightwave - Dual ESP32-S3 Audio-Reactive LED Controller")
+    (date "2025-10-23")
+    (rev "A")
+    (company "Lightwave Research")
+    (comment 1 "PCB Design: KiCad")
+    (comment 2 "Manufacturing: JLCPCB Standard 4-Layer")
+    (comment 3 "Target Phase: Schematic Development")
+    (comment 4 ""))
+
+  (lib_symbols)
+
+  (junction (at 100 100) (diameter 0.254) (color 0 0 0 0))
+
+  (no_connect (at 120 100) (uuid "11111111-1111-1111-1111-111111111111"))
+
+  (wire (pts (xy 100 100) (xy 110 100)) (stroke (width 0) (type solid)) (uuid "22222222-2222-2222-2222-222222222222"))
+
+  (text "K1 Lightwave Skeleton - Ready for Design Input"
+    (at 150 200 0)
+    (effects (font (size 1.27 1.27) (thickness 0.15)))
+    (uuid "33333333-3333-3333-3333-333333333333"))
+)
