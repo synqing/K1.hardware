@@ -1,247 +1,160 @@
-# K1 Lightwave — Hardware PRD
+# K1 Lightwave — Hardware PRD (Rev-A Frozen)
 
-## Electrical Architecture
-
-### **Power Distribution**
-
-| Rail | Voltage | Max Current | Source | Notes |
-|------|---------|-------------|--------|-------|
-| VCC_5V_IN | 5V ±0.25V | 5A (budget) | USB-C or barrel jack | Unregulated input |
-| VCC_5V | 5V ±0.1V | 3A | Ferrite bead filtered from VCC_5V_IN | LED power bus (direct) |
-| VCC_3V3 | 3.3V ±0.1V | 2A | LDO from VCC_5V (TPS7333 or similar) | Logic + Audio (MCU, codec, mics) |
-| VDDA_3V3 | 3.3V ±0.05V | 0.5A | LDO with analog filtering | Analog reference for audio codec (if used) |
-
-**Decoupling:**
-- 100µF bulk cap near each power entry
-- 10µF per MCU (VDD, VDDA)
-- 100nF per IC, min 0603 footprint
-- Star grounding at power entry; separate analog/digital returns if codec used
+**Status:** LOCKED for schematic design. All GPIO, power domains, and compute architecture final.
 
 ---
 
-### **Microcontroller (MCU)**
+## Power
 
-**Part:** 2× ESP32-S3-WROOM-1/1U (or -1U-N4, 8MB variant TBD)
-- **Core:** Xtensa dual-core LX7, up to 240 MHz
-- **RAM:** 512 KB SRAM (embedded)
-- **Flash:** 8 MB (on-module)
-- **I/O:** 43 GPIO (shared with USB, JTAG)
-- **Wireless:** 802.11b/g/n Wi-Fi; BLE 5.0
+- **USB-C 5V, up to 3A** (Type-C current mode; no PD). Powers **controller logic only**.
+- **LED power:** **external 5V** via locking connector; **no back-feed** to USB-C (ideal-diode/OR-FET).
+- 5V→3.3V buck (≥2A), input fuse/e-fuse, inrush, ESD on CC/D+/D−.
 
-**Key GPIO Assignments (TBD):**
-| Signal | ESP32-S3 Pin | Alt Func | Purpose |
-|--------|--------------|----------|---------|
-| I2S_BCLK | GPIO8 | I2S0 | Audio clock |
-| I2S_LRCLK | GPIO9 | I2S0 | Audio left/right |
-| I2S_SD | GPIO10 | I2S0 | Audio data in (from mic) |
-| LED_DATA | GPIO11 | GPIO | WS2812B data (via level shifter) |
-| LED_CLK | GPIO12 | GPIO | Optional secondary LED strand |
-| UART_TX | GPIO43 | UART0 | Serial console (bringup/debug) |
-| UART_RX | GPIO44 | UART0 | Serial console |
-
-*Note: Pin assignments to be confirmed during schematic phase.*
+| Rail | Voltage | Source | Usage | Notes |
+|------|---------|--------|-------|-------|
+| VBUS_USB_5V | 5V ±0.25V | USB-C | Logic only | Fused @ 1A; feeds buck |
+| LED_5V | 5V ±0.1V | External connector | LED domain (high current) | Isolated via ideal diode |
+| +3V3 | 3.3V ±0.1V | TPS62133 buck | MCU, codec, I2C, mics, LS drivers | ≥2A; 100µF bulk + 10µF per MCU |
 
 ---
 
-### **Audio Input Chain**
+## LED Outputs
 
-**Option A: Digital I2S Microphones (Baseline)**
-- **SPH0645:** MEMS omni-directional, 94 dBSPL, PDM→I2S converter on-chip
-- **IM69D130:** Omnidirectional, ~120 dB SPL dynamic range, PDM→I2S
-- **Count:** 2 mics (stereo capture, spatial info)
-- **Clock:** 64 kHz I2S master clock from MCU; 16-bit left-justified
-- **Connector:** 4-pin JST-PH (VCC_3V3, GND, I2S_SD, I2S_BCLK) + shared LRCLK
-
-**Option B: Analog Audio Codec (Future, if analog line-in needed)**
-- **ES8388 or SGTL5000** (full-featured audio codec)
-- **Not in v1 baseline**
+- **Populate:** **4× one-wire** ports (WS2812B/SK6812) with **SN74AHCT125** (quad shifter) + 330Ω series resistor, polyfuse (0.75A), TVS diode, 3-pin locking headers (Molex KK-254).
+- **Reserve (DNP):** **+4× one-wire** and **2× SPI (APA102/DotStar)** headers.
+- **Throughput:** 1-wire @800 kHz ≈ 30 µs/LED → **60 FPS ~ 555 LEDs/port**, **120 FPS ~ 277 LEDs/port**.
+- **Power protection:** Polyfuse per port; TVS across 5V-to-GND at connector; no back-feed to USB domain.
 
 ---
 
-### **LED Output**
+## Compute
 
-**Addressable LED Standard:**
-- **WS2812B or SK6812 (RGB/RGBW):** 5V logic, 800 kHz PWM protocol
-- **Level Shifter:** SN74AHCT125 (3.3V → 5V translation, max 50Ω load)
-- **Max LEDs per strand:** 300 (current design); expandable to 600+ with buffer
+### COM-A (Audio/DSP) — ESP32-S3-WROOM-1 Module
 
-**LED Power Budget:**
-- **Per LED:** ~20 mA white @ full brightness (RGB) → ~60 mA
-- **300 LEDs @ 50% avg:** 9A continuous (budget 15A at 5V input)
-- **5V rail:** Current limit via ferrite bead + sense resistor (TBD)
+- **Form factor:** K1-M2B slot (M.2 B-key 2230; custom electrical mapping, not PC-M.2 standard).
+- **USB-C connects here** (for flashing, CDC debug).
+- **Consumes:** I²S from mic headers, SPI master to COM-B, UART debug, I²C mgmt.
+- **Produces:** I²S_BCLK/LRCK/SD (sampled audio), SPI_MOSI/MISO/CS/SCK (high-rate), SYNC pulse (frame timing).
 
-**Connectors:**
-- 3-pin JST-XH (GND, 5V, DATA) for main strand
-- Optional 2-pin JST-XH (CLK, GND) if using CLK-based LEDs (APA102, DotStar)
+### COM-B (LED Renderer) — Bare ESP32-S3 QFN
 
----
-
-### **High-Speed Signals**
-
-**I2S Audio:**
-- BCLK, LRCLK, SD: Differential pair treatment preferred (minimize skew)
-- Length-matched within ±2 mm
-- Ground plane spacing: min 0.5 mm from adjacent high-speed signals
-- Termination: None (I2S is 1:1 master→slave)
-
-**SPI (if used for future external memory/sensor):**
-- MOSI, MISO, CLK: Group together, ground guard if needed
-- Trace width: 0.15 mm (typical SPI)
-
-**LED Data:**
-- Single-ended, 50Ω driver (SN74AHCT125)
-- 1–2 m max length without active buffer (design constraint)
-- NO ground guard (1-wire protocol; guard would break signal)
+- **Flash:** **QSPI 8–16 MB** (W25Q128JV or equivalent). **Dedicated SPI0/1 pins (26–32)** per Espressif; **do not repurpose for GPIO**.
+- **Clock:** **40 MHz crystal** with 12pF load caps (tied to XIN/XOUT pins).
+- **Boot:** EN/BOOT RC network (10k/1µ); BOOT strap to GND via pushbutton for download mode.
+- **Consumes:** SPI slave from COM-A (20–40 MHz, CRC-16 frames), SYNC pulse for alignment.
+- **Produces:** 4× GPIO to level shifter (LED_DATA1..4_IN), READY/ERR GPIO back to COM-A.
 
 ---
 
-### **Power Connectors**
+## Inter-MCU Link
 
-**Input:**
-- **USB-C (preferred):** VBUS → 5V rail (with reverse-protection diode if not integrated)
-- **Barrel jack (optional):** 5.5 mm OD × 2.1 mm ID, center positive (alternative or redundant)
-
-**Test Points:**
-- TP_VCC_5V (5V input)
-- TP_VCC_3V3 (3.3V logic)
-- TP_GND (signal/power return)
-- TP_I2S_BCLK, TP_I2S_LRCLK, TP_I2S_SD (audio debug)
-- TP_LED_DATA (LED signal debug)
-
----
-
-## PCB Layout & Stackup
-
-### **4-Layer Stackup (JLC/PCBWay Standard)**
-
-| Layer | Purpose | Notes |
-|-------|---------|-------|
-| Layer 1 | Signal / Components (top) | Traces, pads, silkscreen |
-| Layer 2 | Ground plane | Continuous (analog/digital common) |
-| Layer 3 | Power plane | 5V + 3.3V zones (not separated unless needed) |
-| Layer 4 | Signal / Ground (bottom) | Traces, test points, back-side components |
-
-### **Design Rules (JLC 4-Layer)**
-
-| Parameter | Value | Notes |
-|-----------|-------|-------|
-| Min trace width | 0.1 mm | Fine-pitch devices OK |
-| Min clearance | 0.1 mm | Standard spacing |
-| Min via diameter | 0.3 mm (finished) | Plated through |
-| Via antipad | 0.2 mm | Via-to-plane spacing |
-| Copper weight | 1 oz (35 µm) | Standard for both signals & planes |
-| Solder mask | ±0.025 mm | Fine details OK |
-
-### **Layout Priorities**
-
-1. **Power distribution:** 5V input near connector; 3.3V LDO near MCU
-2. **Ground plane:** Continuous on Layer 2; stitching vias every 0.5 mm at high-current areas
-3. **Audio path:** I2S mics → MCU isolated from LED switching; ground guard traces if needed
-4. **RF keepout:** 5 mm no-trace zone around ESP32-S3 antenna (module datasheet)
-5. **Thermal vias:** 8–16× 0.3 mm vias under LDO and LED driver (if separate IC)
+- **Protocol:** SPI-DMA, **20–40 MHz**, CRC-16, sequence number, **200–400 Hz frame rate** (~400 B/frame typical).
+- **Pins (COM-B):**
+  - **GPIO12** = SPI_SCK_A2B (input from COM-A)
+  - **GPIO11** = SPI_MOSI_A2B (input)
+  - **GPIO13** = SPI_MISO_B2A (output)
+  - **GPIO10** = SPI_CS_A2B (input)
+  - **GPIO38** = SYNC_A2B (frame pulse from COM-A)
+  - **GPIO39** = READY_B2A (back-pressure from COM-B)
+- **All pins selected for clean IO_MUX mapping and no strap/memory conflicts.** ([Espressif Docs](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/))
 
 ---
 
-## Manufacturing & Assembly
+## Audio
 
-### **Component Sourcing (LCSC/JLC Prioritized)**
-
-| Component | LCSC Mfg | LCSC Part # | Qty | Notes |
-|-----------|----------|------------|-----|-------|
-| ESP32-S3-WROOM-1U | Espressif | C... | 2 | 8MB flash |
-| SPH0645 | Knowles | C... | 1–2 | PDM→I2S mic |
-| IM69D130 | InvenSense/TDK | C... | 0–1 | Alt digital mic |
-| WS2812B (bare die / strip) | Worldsemi | C... | 1–N | Addressable LED |
-| SN74AHCT125 | TI | C... | 1 | Level shifter |
-| TPS7333 (or alternative LDO) | TI | C... | 1 | 3.3V regulator |
-| USB-C connector | Various | C... | 1 | USB 2.0 (power only) |
-| JST-XH 3pin | JST | C... | 2 | LED connectors |
-| JST-PH 4pin | JST | C... | 1 | Mic connectors |
-
-**BOM Total:** ~12–15 components (mostly passives + 2× MCU)
-
-### **Panelization (Future)**
-
-- **Target:** 4×8 grid (32 boards per panel)
-- **V-cuts + mousebites:** 0.4 mm clearance (JLC standard)
-- **Rails:** 5 mm top/bottom for handling
-- **Breakaway time:** <1 minute manual
-
-### **Solder Mask & Silkscreen**
-
-- White solder mask (standard contrast for rework)
-- Black silkscreen: Reference designators (R1, C1, U1), test point labels, revision
-- No copper-to-mask isolation issues expected (standard 0.1 mm process)
+- **I²S digital microphones** @ **48 kHz/24-bit** (32-bit slots). Two **6-pin JST-GH headers** (`3V3,GND,BCLK,LRCK,SD,SEL`).
+  - SEL pin strapped on **mic board** (not on baseboard).
+- **Target mics:** SPH0645 or IM69D130 (PDM→I2S converters).
+- **Alt:** mikroBUS codec card slot (future, consume I²S from COM-A if present).
+- **I²S pins (COM-A):**
+  - **I2S_BCLK** (input from mics or codec)
+  - **I2S_LRCK** (input)
+  - **I2S_SD** (input)
 
 ---
 
-## Electrical Compliance & Risk Mitigation
+## Accessory I²C
 
-### **ESD Protection**
-
-- **Mic connectors:** 100 kΩ series resistor on each audio line (input protection)
-- **USB VBUS:** 5V clamp diode (if not in connector module)
-- **LED data:** Optional ferrite + cap (if susceptible during testing)
-
-### **EMI Hotspots**
-
-- **LED switching (800 kHz PWM):** Keep away from audio, antenna
-- **Microphone input:** Low-impedance lines, ground coupling caps on codec inputs
-- **USB data lines:** Not routed; power-only USB (simplified EMI)
-
-### **Known Risks & Mitigations**
-
-| Risk | Symptom | Mitigation |
-|------|---------|-----------|
-| 1-wire LED noise | Corrupted colors / LED flicker | Ground guard on data line; use level shifter with proper termination |
-| I2S clock jitter | Audio dropouts / skipped frames | PLL bypass if available; 64 kHz gen from internal oscillator (stable enough) |
-| Thermal runaway @ full LEDs | LDO shutdown / MCU brown-out | Sense 5V current; software current limit if >4A; heatsink evaluation |
-| Ground bounce | Glitches in digital signals | Multi-point ground return; stitching vias under high-current pads |
-| Antenna detuning | Reduced Wi-Fi range | 5 mm keepout respected; antenna traces routed to edge |
+- **Qwiic-compatible pin order:** `GND, VCC, SDA, SCL` (standard Qwiic footprint).
+- **Dual footprints per port:** JST-SH (default) + JST-GH (alternate, placed in PCB as parallel pads).
+- **4 ports:**
+  - **I2C_PORT_1, I2C_PORT_2:** powered by **3.3V** (logic accessories, sensors, etc.).
+  - **I2C_PORT_3, I2C_PORT_4:** powered by **5V** (supply only; data lines **level-shifted** on motherboard to 3.3V safe levels).
+- **FRU EEPROM:** 24LC02 on I²C (slot/base identification).
 
 ---
 
-## Acceptance Criteria
+## GPIO Summary (COM-B, Final)
 
-### **Design-Complete Gate**
+| Function | GPIO | Rationale |
+|----------|------|-----------|
+| SPI_SCK_A2B (in) | **12** | IO_MUX SCLK for SPI2; robust 20–40 MHz. |
+| SPI_MOSI_A2B (in) | **11** | IO_MUX MOSI for SPI2. |
+| SPI_MISO_B2A (out) | **13** | IO_MUX MISO for SPI2. |
+| SPI_CS_A2B (in) | **10** | IO_MUX CS0 for SPI2. |
+| SYNC_A2B (in) | **38** | Clean, non-strap. |
+| READY_B2A (out) | **39** | Clean, non-strap. |
+| LED_DATA1_IN (out) | **8** | Free; goes to LS A1. |
+| LED_DATA2_IN (out) | **18** | Free; goes to LS A2. |
+| LED_DATA3_IN (out) | **21** | Free; goes to LS A3. |
+| LED_DATA4_IN (out) | **47** | Free; goes to LS A4. |
+| UART_TX_B | **14** | Optional debug (not a strap). |
+| UART_RX_B | **15** | Optional debug. |
+| EN (CHIP_PU) | **EN pin** | RC 10k/1µF; standard bring-up. |
+| GPIO0 (BOOT) | **GPIO0** | 10k pullup + pushbutton to GND. |
 
-- [ ] ERC clean (no violations)
-- [ ] DRC clean (JLC 4-layer rules)
-- [ ] BOM 100% sourced (all parts available on LCSC)
-- [ ] Datasheets present for all active components
-- [ ] 3D STEP model generated (clearance check)
+**Avoided:** Strap pins (0, 3, 45, 46), memory/flash pins (26–32), and reserved Octal I/O (33–37).
 
-### **Manufacturing Gate**
+---
 
-- [ ] Gerber, drill, and IPC-2581 exported
-- [ ] Panelization validated (if applicable)
-- [ ] Assembly BOM & pick-and-place generated
-- [ ] Lead time confirmed with fab (<3 weeks)
+## Panelization & DFM
 
-### **Electrical Validation Gate**
+- **KiKit:** V-cuts when panel ≥ 70×70 mm; else mouse-bites.
+- **Rails:** 5 mm top/bottom (handling); fiducials (3×).
+- **Clearance:** 0.3 mm edge; 0.4 mm V-cut clearance.
+- **JLC 4-layer:** Standard stackup; ENIG finish.
 
-- [ ] Power-up test passes (no shorts, correct rail voltages)
-- [ ] Audio capture confirmed @ 16 kHz (I2S loopback)
-- [ ] LEDs respond to test pattern
-- [ ] Thermal rise <50°C @ full load
+---
+
+## Bring-Up Plan
+
+### Power-Only Smoke
+
+1. USB-C 5V in → 3.3V buck OK; no current on LED_5V.
+2. Check **no continuity** between `VBUS_USB_5V` and `LED_5V`.
+3. Fabops power-domain guard validates isolation in schematic.
+
+### COM-B Minimal Life
+
+1. Strap RC, EN high, BOOT pulled up; flash programming via UART.
+2. QSPI flash wired; first blinky on **GPIO8** (LED_DATA1_IN) confirms IO.
+
+### COM-A ↔ COM-B Link
+
+1. SPI loop at 20–40 MHz on pins (12/11/13/10); toggle SYNC; ISR on COM-B.
+2. MISO loopback; CRC-16 validation.
+
+### I²S Mics
+
+1. Feed tone; 48 kHz/24-bit capture on COM-A.
+2. FFT shows line at input frequency.
+
+### LED Ports
+
+1. External 5V in; per-port fuse OK.
+2. iBOM shows AHCT125 + 330Ω + TVS per port.
 
 ---
 
 ## References
 
+- **SKiDL netlist generator:** `hardware/k1-lightwave/skidl/k1_motherboard_revA.py`
+- **Espressif GPIO & SPI:** https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/
+- **Espressif flash pins:** https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/
 - **Datasheets:** `/docs/datasheets/`
-  - ESP32-S3 (SoC & module)
-  - SPH0645 & IM69D130 (microphones)
-  - WS2812B & SK6812 (LEDs)
-  - SN74AHCT125 (level shifter)
-  - TPS7333 (LDO example)
-
-- **Governance:** `/claude/GOVERNANCE.md` (design change protocol)
-- **Product Brief:** `/docs/prd/01-product-brief.md`
-- **Validation Plan:** `/docs/prd/03-validation-plan.md`
 
 ---
 
-**Version:** 0.1 (Alpha PRD)
-**Last updated:** Oct 23, 2025
-**Status:** Design input phase; ready for schematic entry
+**Version:** 1.0 (FROZEN for Rev-A schematic)
+**Date:** October 23, 2025
+**Status:** Ready for KiCad import & layout
