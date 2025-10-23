@@ -35,7 +35,7 @@ i2s_sd      = Net("I2S_SD")
 # LED data (COM-B → level shifters)
 led_din = [Net(f"LED_DATA{i}_IN") for i in range(1,5)]
 
-# USB-C receptacle
+# USB-C receptacle with ESD protection
 j_usbc = Part("Connector_USB", "USB_C_Receptacle_USB2.0", ref="J1",
               footprint="Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 r_cc1 = Part("Device", "R", value="5.1k", ref="R1")
@@ -46,17 +46,57 @@ j_usbc["VBUS, VBUS"] += usb_5v
 j_usbc["SHIELD"] += gnd
 j_usbc["GND, GND"] += gnd
 
+# USB ESD protection (TPD4E05U06 – 4-channel, < 0.5 pF for USB2.0 compliance)
+u_esd = Part("Protection", "TPD4E05U06", ref="U1", value="TPD4E05U06")
+u_esd["VCC"]     += v3v3
+u_esd["GND"]     += gnd
+u_esd["IN_A"]    += Net("USB_D+")
+u_esd["OUT_A"]   += Net("USB_D+")
+u_esd["IN_B"]    += Net("USB_D-")
+u_esd["OUT_B"]   += Net("USB_D-")
+u_esd["IN_C"]    += j_usbc["CC1"]
+u_esd["OUT_C"]   += j_usbc["CC1"]
+u_esd["IN_D"]    += j_usbc["CC2"]
+u_esd["OUT_D"]   += j_usbc["CC2"]
+
 # 5V→3V3 buck
 u_buck = Part("Regulator_Switching", "TPS62133", ref="U2")
 u_buck["VIN"]  += usb_5v
 u_buck["VOUT"] += v3v3
 u_buck["GND"]  += gnd
 
-# External LED 5V ingress
+# External LED 5V ingress with ideal diode blocking (LTC4412)
 j_led_in = Part("Connector", "Conn_01x02", ref="J2", value="LED_5V_IN",
                 footprint="Connector_Molex:Molex_MicroFit_3.0_1x02")
-j_led_in[1] += led_5v
+led_in_raw = Net("LED_5V_RAW")  # Before ideal diode
+j_led_in[1] += led_in_raw
 j_led_in[2] += gnd
+
+# Ideal diode controller (LTC4412) + external P-FET for reverse-blocking on LED power
+# Prevents back-feed from LED_5V rail into USB 5V during bulk-cap discharge
+u_ideal_diode = Part("Power_Management", "LTC4412", ref="U5", value="LTC4412")
+u_ideal_diode["IN"]  += led_in_raw
+u_ideal_diode["OUT"] += led_5v
+u_ideal_diode["GND"] += gnd
+# P-FET gate drive: connect to a BSS84 (or similar) for logic-level N-ch pull-down behavior
+# (LTC4412 datasheet shows example circuit with external P-FET for high-current OR-ing)
+p_fet = Part("Transistor_FET", "Si2301", ref="Q1", value="Si2301")
+u_ideal_diode["GATE"] += p_fet["G"]
+p_fet["S"] += led_in_raw
+p_fet["D"] += led_5v
+
+# Current monitor on LED_5V bus (INA226 – I2C, high-side, 36V capable)
+u_ina226 = Part("Sensor_Current", "INA226", ref="U7", value="INA226")
+u_ina226["VCC"] += v3v3
+u_ina226["GND"] += gnd
+u_ina226["SDA"] += sda
+u_ina226["SCL"] += scl
+u_ina226["IN+"] += led_5v
+u_ina226["IN-"] += gnd
+# Shunt resistor for current measurement (sized for ~3A max, ~100mV drop at 3A → 0.033Ω nominal, use 0.05Ω for margin)
+r_shunt = Part("Device", "R", ref="R7", value="0.05R", footprint="Resistor_SMD:R_2512_6332Metric_Pad1.52x3.35mm_HandSolder")
+r_shunt[1] += u_ina226["IN-"]
+r_shunt[2] += gnd
 
 # LED outputs: 4× one-wire with AHCT125 shifter
 u_ls = Part("Logic_74xx", "74AHCT125", ref="U3")
@@ -107,8 +147,74 @@ def i2s_mic_header(ref, name):
 j_mic1 = i2s_mic_header("J7", "I2S_MIC_1")
 j_mic2 = i2s_mic_header("J8", "I2S_MIC_2")
 
+# ---------- Final PDM pin map (ESP32-S3) + 0R bypass options ----------
+# MCU-side nets: tie these to the actual ESP32-S3 pins in KiCad
+#   CLK  -> GPIO12   (IO_MUX for SPI2 SCLK; clean clock-capable)
+#   DATA -> GPIO13   (IO_MUX for SPI2 MISO; clean input-capable)
+mc_pdm_clk  = Net("PDM_CLK_MCUSIDE")
+mc_pdm_data = Net("PDM_DATA_MCUSIDE")
+
+# Mic-side nets (go to the PDM header)
+mic_pdm_clk  = Net("MIC_PDM_CLK")     # Header pin 3
+mic_pdm_data = Net("MIC_PDM_DATA")    # Header pin 4
+
+# --- 0-ohm population options: direct (3.3V build) vs translator (1.8V build) ---
+# Direct path links (DNP when using 1.8V + translator):
+r_bypass_clk  = Part("Device", "R", ref="R_BYPASS_CLK",  value="0R")
+r_bypass_data = Part("Device", "R", ref="R_BYPASS_DATA", value="0R")
+# Wire direct path: MCU <-> MIC (place only for 3.3V mic builds)
+r_bypass_clk[1]  += mc_pdm_clk
+r_bypass_clk[2]  += mic_pdm_clk
+r_bypass_data[1] += mic_pdm_data
+r_bypass_data[2] += mc_pdm_data
+
+# Translator path (SN74AXC2T245): for 1.8V build
+# When using 1.8V mic, populate U8 + R_LVT_* (DNP the bypass links)
+u_lvt = Part("Logic_Buffers", "SN74AXC2T245", ref="U8", value="SN74AXC2T245")
+
+# Translator path jumpers (DNP when using direct 3.3V path):
+r_lvt_clk_in   = Part("Device", "R", ref="R_LVT_CLK_IN",   value="0R")  # MCU -> LVT.B1
+r_lvt_clk_out  = Part("Device", "R", ref="R_LVT_CLK_OUT",  value="0R")  # LVT.A1 -> MIC
+r_lvt_data_in  = Part("Device", "R", ref="R_LVT_DATA_IN",  value="0R")  # MIC -> LVT.A2
+r_lvt_data_out = Part("Device", "R", ref="R_LVT_DATA_OUT", value="0R")  # LVT.B2 -> MCU
+
+# Connect translator pins: Channel1 for CLK (B1 ↔ A1), Channel2 for DATA (A2 ↔ B2)
+r_lvt_clk_in[1]   += mc_pdm_clk
+r_lvt_clk_in[2]   += u_lvt["B1"]
+r_lvt_clk_out[1]  += u_lvt["A1"]
+r_lvt_clk_out[2]  += mic_pdm_clk
+
+r_lvt_data_in[1]  += mic_pdm_data
+r_lvt_data_in[2]  += u_lvt["A2"]
+r_lvt_data_out[1] += u_lvt["B2"]
+r_lvt_data_out[2] += mc_pdm_data
+
+# Direction straps (1.8V logic domain):
+u_lvt["DIR1"] += v3v3    # logic '1' (B->A) for CLK
+u_lvt["DIR2"] += gnd     # logic '0' (A->B) for DATA
+u_lvt["OE"]   += v3v3    # enable
+u_lvt["VCC_A"] += v3v3   # 3.3V side (COM-B)
+u_lvt["VCC_B"] += Net("MIC_1V8")  # 1.8V side (mic domain); tie to 1.8V buck output
+u_lvt["GND"]  += gnd
+
+# Series damping on the clock near the source (helps ringing at multi-MHz)
+r_pdm_clk_series = Part("Device", "R", ref="R_PDM_CLK_SER", value="33R")
+# Place this in series on the clock path. For 1.8V build: between LVT output (A1) and MIC header.
+# For 3.3V build: naturally in series via bypass link. Populate accordingly in layout.
+r_pdm_clk_series[1] += u_lvt["A1"]  # Translator output (1.8V side)
+r_pdm_clk_series[2] += mic_pdm_clk  # To header
+
+# PDM header (J9): tie MIC_PDM_CLK/DATA to header pins
+j_pdm = Part("Connector", "Conn_01x06", ref="J9", value="PDM_MIC_HEADER",
+             footprint="Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal")
+j_pdm[1] += v3v3
+j_pdm[2] += gnd
+j_pdm[3] += mic_pdm_clk
+j_pdm[4] += mic_pdm_data
+j_pdm[5] += Net("SEL")  # mic select (tie to 0 for IM69D130, leave open/1.8V for SPH0645)
+
 # COM-A: K1-M2B compute slot
-j_coma = Part("Connector_Generic", "Conn_02x30_Odd_Even", ref="J9", value="K1-M2B_COM-A")
+j_coma = Part("Connector_Generic", "Conn_02x30_Odd_Even", ref="J11", value="K1-M2B_COM-A")
 j_coma[1]  += v3v3
 j_coma[2]  += gnd
 j_coma[3]  += Net("USB_D+")
@@ -131,7 +237,7 @@ for pin in range(18, 25):
 
 # COM-B: Bare ESP32-S3 renderer
 if USE_GENERIC_COMB:
-    u_comb = Part("Connector_Generic", "Conn_02x20_Odd_Even", ref="J10", value="ESP32-S3_COM-B_LOGICAL")
+    u_comb = Part("Connector_Generic", "Conn_02x20_Odd_Even", ref="J12", value="ESP32-S3_COM-B_LOGICAL")
     u_comb[1]  += v3v3
     u_comb[2]  += gnd
     en_n   = Net("CHIP_PU")
