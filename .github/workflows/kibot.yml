@@ -13,9 +13,9 @@ jobs:
       - name: Install KiCad & Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y kicad kibot
-      - name: Verify KiBot Installation
-        run: kibot --version
+          sudo apt-get install -y kicad
+      - name: Install KiBot
+        run: pipx install kibot
       - name: Generate Fab Artifacts
         working-directory: hardware/k1-lightwave
         run: |
