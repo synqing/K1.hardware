@@ -10,8 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install KiBot
-        run: pipx install kibot
+      - name: Install KiCad & Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y kicad kibot
+      - name: Verify KiBot Installation
+        run: kibot --version
       - name: Generate Fab Artifacts
         working-directory: hardware/k1-lightwave
         run: |
