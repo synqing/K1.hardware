@@ -3,6 +3,7 @@ name: K1 Fab Pack
 on:
   push: { branches: ["**"] }
   pull_request: {}
+  workflow_dispatch: {}
 
 jobs:
   build:
