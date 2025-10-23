@@ -1,20 +1,75 @@
-(kicad_sch (version 20230121)
-  (uuid "12345678-1234-1234-1234-123456789012")
-  (host_version "8.0.0")
-  (title "K1 Lightwave")
-  (company "Lightwave Research")
-  (revision "A")
-  (comment 1 "Dual ESP32-S3 Audio-Reactive LED Controller")
-  (comment 2 "Target: JLCPCB Standard 4-Layer")
-  (comment 3 "Design Phase: Skeleton - Ready for Schematic Development")
-  (comment 4 "")
-  (symbol_lib_table
-    (lib (name "Device")(type "KiCad")(uri "${KICAD_SYMBOL_DIR}/Device.kicad_sym")(options "")(descr ""))
-    (lib (name "Connector")(type "KiCad")(uri "${KICAD_SYMBOL_DIR}/Connector.kicad_sym")(options "")(descr ""))
-    (lib (name "Regulator_Linear")(type "KiCad")(uri "${KICAD_SYMBOL_DIR}/Regulator_Linear.kicad_sym")(options "")(descr "")))
-  (footprint_lib_table
-    (lib (name "Package_QFP")(type "KiCad")(uri "${KICAD_FOOTPRINT_DIR}/Package_QFP.pretty")(options "")(descr ""))
-    (lib (name "Package_BGA")(type "KiCad")(uri "${KICAD_FOOTPRINT_DIR}/Package_BGA.pretty")(options "")(descr ""))
-    (lib (name "Connector_USB")(type "KiCad")(uri "${KICAD_FOOTPRINT_DIR}/Connector_USB.pretty")(options "")(descr "")))
-  (net 0 "")
+(kicad_pro
+  (version 1)
+  (generator "K1-Gen")
+  (project
+    (title "K1 Lightwave – Rev A")
+    (page "A4")
+  )
+  (schematic
+    (erc
+      (inherit_from_schematic yes)
+    )
+    (net_classes
+      (net_class "Default"
+        (clearance 0.20)
+        (wire_width 0.25)
+      )
+      (net_class "LED_POWER"
+        (clearance 0.50)
+        (wire_width 0.50)
+      )
+      (net_class "USB"
+        (clearance 0.20)
+        (wire_width 0.25)
+      )
+      (net_class "I2C"
+        (clearance 0.20)
+        (wire_width 0.30)
+      )
+      (net_class "LED_DATA"
+        (clearance 0.20)
+        (wire_width 0.30)
+      )
+    )
+  )
+  (board
+    (design_settings
+      (track_widths 0.25 0.30 0.50 1.00 2.00)
+      (via_sizes (via (size 0.80) (drill 0.40)) (via (size 1.20) (drill 0.60)) (via (size 1.60) (drill 0.80)))
+      (net_classes
+        (add_net_class "Default"
+          (clearance 0.20) (track_width 0.25)
+          (via_dia 0.80) (via_drill 0.40)
+          (uvia_dia 0.30) (uvia_drill 0.10)
+        )
+        (add_net_class "LED_POWER"
+          (clearance 0.50) (track_width 2.00)
+          (via_dia 1.60) (via_drill 0.80)
+          (add_net "LED_5V")
+        )
+        (add_net_class "VBUS"
+          (clearance 0.25) (track_width 0.80)
+          (via_dia 1.20) (via_drill 0.60)
+          (add_net "VBUS_USB_5V")
+        )
+        (add_net_class "LED_DATA"
+          (clearance 0.20) (track_width 0.30)
+          (via_dia 0.80) (via_drill 0.40)
+          (add_net "LED_DATA1_IN") (add_net "LED_DATA2_IN")
+          (add_net "LED_DATA3_IN") (add_net "LED_DATA4_IN")
+        )
+        (add_net_class "I2C"
+          (clearance 0.20) (track_width 0.30)
+          (via_dia 0.80) (via_drill 0.40)
+          (add_net "SDA") (add_net "SCL")
+        )
+        (add_net_class "USB"
+          (clearance 0.20) (track_width 0.25)
+          (diff_pair_width 0.15) (diff_pair_gap 0.15)
+          (via_dia 0.80) (via_drill 0.40)
+          (add_net "USB_D+") (add_net "USB_D-")
+        )
+      )
+    )
+  )
 )
