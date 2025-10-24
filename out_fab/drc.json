@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2025-10-24T17:11:16+0800",
+    "date": "2025-10-24T20:25:07+0800",
     "kicad_version": "9.0.5",
     "schematic_parity": [],
     "source": "K1_Lightwave.kicad_pcb",
@@ -15,7 +15,7 @@
                         "x": 38.644442,
                         "y": 11.95
                     },
-                    "uuid": "9722f0a7-5a51-49b5-99d2-eb1507a9d449"
+                    "uuid": "21d357f9-d99c-49fe-a870-08a5d4ef4ea8"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J12",
@@ -23,7 +23,7 @@
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "fbf6fad2-7630-45e7-92a6-40305a2f9279"
+                    "uuid": "dfe15027-a721-4a8e-aacc-9b89a5dfa58b"
                 }
             ],
             "severity": "error",
@@ -38,7 +38,7 @@
                         "x": 49.322219,
                         "y": 11.95
                     },
-                    "uuid": "94effead-baf7-4890-be05-ea1553a700f9"
+                    "uuid": "57b8871f-86c9-4a15-851d-64a9806401b9"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J7",
@@ -46,7 +46,7 @@
                         "x": 38.644442,
                         "y": 11.95
                     },
-                    "uuid": "9722f0a7-5a51-49b5-99d2-eb1507a9d449"
+                    "uuid": "21d357f9-d99c-49fe-a870-08a5d4ef4ea8"
                 }
             ],
             "severity": "error",
@@ -61,7 +61,7 @@
                         "x": 59.999996,
                         "y": 11.95
                     },
-                    "uuid": "db7cc6d1-9d1c-4504-860c-3159e1db7d87"
+                    "uuid": "7013d02c-aaa5-433d-9356-71d8b05daa3e"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J8",
@@ -69,7 +69,7 @@
                         "x": 49.322219,
                         "y": 11.95
                     },
-                    "uuid": "94effead-baf7-4890-be05-ea1553a700f9"
+                    "uuid": "57b8871f-86c9-4a15-851d-64a9806401b9"
                 }
             ],
             "severity": "error",
@@ -84,7 +84,7 @@
                         "x": 59.999996,
                         "y": 29.48125
                     },
-                    "uuid": "ec367b42-283b-4d2f-8574-a8d8d28089d0"
+                    "uuid": "8469452c-9b3b-45ed-babb-e2c4cc00b51b"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of R3",
@@ -92,7 +92,7 @@
                         "x": 59.999996,
                         "y": 43.50625
                     },
-                    "uuid": "1bfa59bb-696e-42dc-9112-e999f8b83737"
+                    "uuid": "c6e76299-18f6-475d-8cc3-4278c94419d5"
                 }
             ],
             "severity": "error",
@@ -107,7 +107,7 @@
                         "x": 59.999996,
                         "y": 43.50625
                     },
-                    "uuid": "1bfa59bb-696e-42dc-9112-e999f8b83737"
+                    "uuid": "c6e76299-18f6-475d-8cc3-4278c94419d5"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of R4",
@@ -115,7 +115,7 @@
                         "x": 70.677773,
                         "y": 43.50625
                     },
-                    "uuid": "d213a007-2b27-4c81-8178-fa8188fe23ab"
+                    "uuid": "62db137d-a52e-491f-9b6c-e4f435253a3c"
                 }
             ],
             "severity": "error",
@@ -130,7 +130,7 @@
                         "x": 59.999996,
                         "y": 57.53125
                     },
-                    "uuid": "6519fe5e-72cb-477b-bed3-41f9f0695773"
+                    "uuid": "c85f4606-efeb-4725-bf8a-d44ae0112798"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of R3",
@@ -138,7 +138,7 @@
                         "x": 59.999996,
                         "y": 43.50625
                     },
-                    "uuid": "1bfa59bb-696e-42dc-9112-e999f8b83737"
+                    "uuid": "c6e76299-18f6-475d-8cc3-4278c94419d5"
                 }
             ],
             "severity": "error",
@@ -153,7 +153,7 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "eaadacdc-253d-45a7-b59c-346f8e14c4a4"
+                    "uuid": "441c50f5-d162-4344-9587-0db2a1e1955b"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J9",
@@ -161,7 +161,7 @@
                         "x": 59.999996,
                         "y": 11.95
                     },
-                    "uuid": "db7cc6d1-9d1c-4504-860c-3159e1db7d87"
+                    "uuid": "7013d02c-aaa5-433d-9356-71d8b05daa3e"
                 }
             ],
             "severity": "error",
@@ -176,7 +176,7 @@
                         "x": 70.677773,
                         "y": 29.48125
                     },
-                    "uuid": "fc82397d-0e0f-4c20-9163-24173275165e"
+                    "uuid": "9cc07b4c-7f7d-4f1d-bb05-6373e2edbc7d"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of C_BOUT1",
@@ -184,7 +184,7 @@
                         "x": 59.999996,
                         "y": 29.48125
                     },
-                    "uuid": "ec367b42-283b-4d2f-8574-a8d8d28089d0"
+                    "uuid": "8469452c-9b3b-45ed-babb-e2c4cc00b51b"
                 }
             ],
             "severity": "error",
@@ -199,7 +199,7 @@
                         "x": 70.677773,
                         "y": 29.48125
                     },
-                    "uuid": "fc82397d-0e0f-4c20-9163-24173275165e"
+                    "uuid": "9cc07b4c-7f7d-4f1d-bb05-6373e2edbc7d"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J11",
@@ -207,7 +207,7 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "eaadacdc-253d-45a7-b59c-346f8e14c4a4"
+                    "uuid": "441c50f5-d162-4344-9587-0db2a1e1955b"
                 }
             ],
             "severity": "error",
@@ -222,7 +222,7 @@
                         "x": 70.677773,
                         "y": 43.50625
                     },
-                    "uuid": "d213a007-2b27-4c81-8178-fa8188fe23ab"
+                    "uuid": "62db137d-a52e-491f-9b6c-e4f435253a3c"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of R5",
@@ -230,7 +230,7 @@
                         "x": 81.35555,
                         "y": 43.50625
                     },
-                    "uuid": "eb62f38f-d71c-4a41-964a-bb70ce9a8165"
+                    "uuid": "75860a19-fda3-464e-a8d3-c83539b2aaa6"
                 }
             ],
             "severity": "error",
@@ -245,7 +245,7 @@
                         "x": 81.35555,
                         "y": 43.50625
                     },
-                    "uuid": "eb62f38f-d71c-4a41-964a-bb70ce9a8165"
+                    "uuid": "75860a19-fda3-464e-a8d3-c83539b2aaa6"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of R6",
@@ -253,7 +253,7 @@
                         "x": 92.033327,
                         "y": 43.50625
                     },
-                    "uuid": "5ad3e0e1-8601-4a4d-a8cd-289ce6efba06"
+                    "uuid": "22d9f662-ed0b-4f21-abc4-1f842e224c03"
                 }
             ],
             "severity": "error",
@@ -268,7 +268,7 @@
                         "x": 81.35555,
                         "y": 50.51875
                     },
-                    "uuid": "37d0a2f1-b280-44c0-995d-518257b72ccc"
+                    "uuid": "aa286789-aee2-4a90-a909-e182994ffb36"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of R5",
@@ -276,7 +276,7 @@
                         "x": 81.35555,
                         "y": 43.50625
                     },
-                    "uuid": "eb62f38f-d71c-4a41-964a-bb70ce9a8165"
+                    "uuid": "75860a19-fda3-464e-a8d3-c83539b2aaa6"
                 }
             ],
             "severity": "error",
@@ -291,7 +291,7 @@
                         "x": 59.999996,
                         "y": 50.51875
                     },
-                    "uuid": "d65ae75a-9161-4ba1-b763-c9e013126852"
+                    "uuid": "efc9f087-4038-490a-a7fb-5ed1dff009d4"
                 },
                 {
                     "description": "PTH pad 1 [COMA_PDM_CLK] of R_PDM_CLK_SER",
@@ -299,7 +299,7 @@
                         "x": 38.644442,
                         "y": 57.53125
                     },
-                    "uuid": "875cd9ca-9c18-4cf9-af85-e311cc8d38dc"
+                    "uuid": "f7d1b565-f707-466f-8385-fc5dc20aa032"
                 }
             ],
             "severity": "error",
@@ -314,7 +314,7 @@
                         "x": 92.033327,
                         "y": 50.51875
                     },
-                    "uuid": "254bb8b5-b447-4950-870e-1ef6d3c5a4b9"
+                    "uuid": "c0f881fc-c414-48a9-a2e4-50bc2f7ac5a8"
                 },
                 {
                     "description": "PTH pad 1 [COMA_PDM_CLK] of R_BYPASS_CLK",
@@ -322,7 +322,7 @@
                         "x": 59.999996,
                         "y": 50.51875
                     },
-                    "uuid": "d65ae75a-9161-4ba1-b763-c9e013126852"
+                    "uuid": "efc9f087-4038-490a-a7fb-5ed1dff009d4"
                 }
             ],
             "severity": "error",
@@ -337,7 +337,7 @@
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "7afede21-ebae-42f3-81a0-83350d444c85"
+                    "uuid": "d5cd389e-bca0-4444-8ba0-d8f1241a0561"
                 },
                 {
                     "description": "PTH pad 1 [GND] of J6",
@@ -345,7 +345,7 @@
                         "x": 27.966665,
                         "y": 11.95
                     },
-                    "uuid": "02710b51-965f-4f0e-8d8f-f589e8ed5699"
+                    "uuid": "a58ff7a1-4ecc-49e4-a4b7-2e5062b05779"
                 }
             ],
             "severity": "error",
@@ -360,7 +360,7 @@
                         "x": 27.966665,
                         "y": 11.95
                     },
-                    "uuid": "02710b51-965f-4f0e-8d8f-f589e8ed5699"
+                    "uuid": "a58ff7a1-4ecc-49e4-a4b7-2e5062b05779"
                 },
                 {
                     "description": "PTH pad 1 [GND] of J3",
@@ -368,7 +368,7 @@
                         "x": 92.033327,
                         "y": 11.95
                     },
-                    "uuid": "7e8321e4-b2ac-418e-b07f-a03f18cebfde"
+                    "uuid": "7276b02b-e005-4289-8357-a8d3ebd4871d"
                 }
             ],
             "severity": "error",
@@ -383,7 +383,7 @@
                         "x": 92.033327,
                         "y": 11.95
                     },
-                    "uuid": "7e8321e4-b2ac-418e-b07f-a03f18cebfde"
+                    "uuid": "7276b02b-e005-4289-8357-a8d3ebd4871d"
                 },
                 {
                     "description": "PTH pad 1 [GND] of J4",
@@ -391,7 +391,7 @@
                         "x": 102.711104,
                         "y": 11.95
                     },
-                    "uuid": "722c34fd-f2cb-4f28-96ef-e095431b5300"
+                    "uuid": "60791e98-6d6f-4ec6-b6f1-7f504917d932"
                 }
             ],
             "severity": "error",
@@ -406,7 +406,7 @@
                         "x": 81.35555,
                         "y": 36.49375
                     },
-                    "uuid": "a3f7b0e5-a16e-4712-b2ac-9cf13476b08f"
+                    "uuid": "0a10fbed-c076-43a1-b12c-d34b301f92b3"
                 },
                 {
                     "description": "PTH pad 1 [LED_5V] of F4",
@@ -414,7 +414,7 @@
                         "x": 17.288888,
                         "y": 43.50625
                     },
-                    "uuid": "d037d455-366d-4796-97d8-99134abdb8ef"
+                    "uuid": "da96aae0-8dae-43a2-bcb9-99a55e72b812"
                 }
             ],
             "severity": "error",
@@ -429,7 +429,7 @@
                         "x": 92.033327,
                         "y": 36.49375
                     },
-                    "uuid": "ec381108-fda4-4900-896f-844bacbc098f"
+                    "uuid": "302d29df-4153-4d3b-be8a-5c32be0e5ec7"
                 },
                 {
                     "description": "PTH pad 1 [LED_5V] of F1",
@@ -437,7 +437,7 @@
                         "x": 81.35555,
                         "y": 36.49375
                     },
-                    "uuid": "a3f7b0e5-a16e-4712-b2ac-9cf13476b08f"
+                    "uuid": "0a10fbed-c076-43a1-b12c-d34b301f92b3"
                 }
             ],
             "severity": "error",
@@ -452,7 +452,7 @@
                         "x": 102.711104,
                         "y": 36.49375
                     },
-                    "uuid": "7ff6888d-dea7-4de7-bdca-9c36d031349c"
+                    "uuid": "59b85c05-02db-46f9-ab9a-ce378b60bb16"
                 },
                 {
                     "description": "PTH pad 1 [LED_5V] of F2",
@@ -460,7 +460,7 @@
                         "x": 92.033327,
                         "y": 36.49375
                     },
-                    "uuid": "ec381108-fda4-4900-896f-844bacbc098f"
+                    "uuid": "302d29df-4153-4d3b-be8a-5c32be0e5ec7"
                 }
             ],
             "severity": "error",
@@ -475,7 +475,7 @@
                         "x": 102.711104,
                         "y": 43.50625
                     },
-                    "uuid": "e3dd71f3-cefc-45dc-ad36-3578b72593b4"
+                    "uuid": "b20266c7-d21d-4e41-9293-e897e688bdc4"
                 },
                 {
                     "description": "PTH pad 1 [LED_5V] of F3",
@@ -483,7 +483,7 @@
                         "x": 102.711104,
                         "y": 36.49375
                     },
-                    "uuid": "7ff6888d-dea7-4de7-bdca-9c36d031349c"
+                    "uuid": "59b85c05-02db-46f9-ab9a-ce378b60bb16"
                 }
             ],
             "severity": "error",
@@ -498,7 +498,7 @@
                         "x": 70.677773,
                         "y": 36.49375
                     },
-                    "uuid": "8ad954aa-2140-4486-a0fd-cee81c6e9885"
+                    "uuid": "b38e0ef3-49f6-4d4c-8a0c-47ea9627cc7c"
                 },
                 {
                     "description": "PTH pad 1 [LED_5V_RAW] of J2",
@@ -506,7 +506,7 @@
                         "x": 81.35555,
                         "y": 11.95
                     },
-                    "uuid": "12b12ba9-ef42-4d27-988c-be75633e4ac5"
+                    "uuid": "dc95398f-fb1f-4a25-ac45-5b8df251dd4b"
                 }
             ],
             "severity": "error",
@@ -521,7 +521,7 @@
                         "x": 17.288888,
                         "y": 57.53125
                     },
-                    "uuid": "0224fe63-6177-4716-a478-348052c1e9f9"
+                    "uuid": "fcb25a7e-5c67-4237-90a3-21b216bb3bd8"
                 },
                 {
                     "description": "PTH pad 1 [MIC_PDM_DATA] of R_BYPASS_DATA",
@@ -529,7 +529,7 @@
                         "x": 70.677773,
                         "y": 50.51875
                     },
-                    "uuid": "4f8326e3-5d7d-459a-bc11-1af6644d287a"
+                    "uuid": "1a4a679f-2b97-4d84-966b-dc6d614e1107"
                 }
             ],
             "severity": "error",
@@ -544,7 +544,7 @@
                         "x": 27.966665,
                         "y": 36.49375
                     },
-                    "uuid": "5d86bd02-5f5a-468c-a2eb-cb67873a7eef"
+                    "uuid": "9eb95360-005d-4c77-8f16-bef735c19c42"
                 },
                 {
                     "description": "PTH pad 1 [N$1] of R1",
@@ -552,7 +552,7 @@
                         "x": 38.644442,
                         "y": 43.50625
                     },
-                    "uuid": "2ced1b68-3980-4e9a-88fb-204e302ea70b"
+                    "uuid": "c17ab00a-41e3-4582-8047-ad1e38af69dc"
                 }
             ],
             "severity": "error",
@@ -567,7 +567,7 @@
                         "x": 17.288888,
                         "y": 36.49375
                     },
-                    "uuid": "a9ff4fa3-bbd4-4da0-930a-9bb251127fdd"
+                    "uuid": "f14b3925-c24a-4478-a487-e5104fa28241"
                 },
                 {
                     "description": "PTH pad 1 [N$10] of JLED4",
@@ -575,7 +575,7 @@
                         "x": 102.711104,
                         "y": 11.95
                     },
-                    "uuid": "a690ae6c-3afb-43e7-ab74-4147c483dbb1"
+                    "uuid": "1034772b-d415-4087-8f10-36d66e373d6f"
                 }
             ],
             "severity": "error",
@@ -590,7 +590,7 @@
                         "x": 38.644442,
                         "y": 36.49375
                     },
-                    "uuid": "cb94dcb0-3547-401b-a435-cc93eb2f51e4"
+                    "uuid": "83beb5f8-9ea7-4539-a1da-4bf5bbcd8700"
                 },
                 {
                     "description": "PTH pad 1 [N$2] of R2",
@@ -598,7 +598,7 @@
                         "x": 49.322219,
                         "y": 43.50625
                     },
-                    "uuid": "85d52471-c0dd-4554-8bef-376151ffdd5c"
+                    "uuid": "bd415054-1e3e-48ed-9256-9bdf8270ae3d"
                 }
             ],
             "severity": "error",
@@ -613,7 +613,7 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "81ebffa9-2e71-4d37-87b6-1f10a4d46c09"
+                    "uuid": "1301ddf5-6218-47c0-87e3-fa0ad5af5959"
                 },
                 {
                     "description": "PTH pad 1 [N$4] of D1",
@@ -621,7 +621,7 @@
                         "x": 81.35555,
                         "y": 29.48125
                     },
-                    "uuid": "329f45ca-e0c2-4156-ab3d-b431fed5c367"
+                    "uuid": "4e05461e-ea12-4ad1-924d-881031e621b3"
                 }
             ],
             "severity": "error",
@@ -636,7 +636,7 @@
                         "x": 81.35555,
                         "y": 11.95
                     },
-                    "uuid": "f5e35501-a944-4553-8a9c-4cc567822daa"
+                    "uuid": "56eda1e5-d713-4af7-a257-6aa1ca1944ae"
                 },
                 {
                     "description": "PTH pad 1 [N$6] of D2",
@@ -644,7 +644,7 @@
                         "x": 92.033327,
                         "y": 29.48125
                     },
-                    "uuid": "48856aab-2af6-413f-b897-74f1c2b3d0e2"
+                    "uuid": "7a062df2-d2e2-4293-853f-7cb726dfc1eb"
                 }
             ],
             "severity": "error",
@@ -659,7 +659,7 @@
                         "x": 92.033327,
                         "y": 11.95
                     },
-                    "uuid": "e6180610-c238-44c4-913d-8ba32e81c564"
+                    "uuid": "9ff35f10-debc-43ae-9818-6ffc56889f80"
                 },
                 {
                     "description": "PTH pad 1 [N$8] of D3",
@@ -667,7 +667,7 @@
                         "x": 102.711104,
                         "y": 29.48125
                     },
-                    "uuid": "186391d2-23f4-4a82-a988-2a23bd844714"
+                    "uuid": "3bea5047-8878-44c8-a38d-817fadc516fa"
                 }
             ],
             "severity": "error",
@@ -675,6 +675,75 @@
         }
     ],
     "violations": [
+        {
+            "description": "Items shorting two nets (nets N$8 and GND)",
+            "items": [
+                {
+                    "description": "PTH pad 1 [N$8] of JLED3",
+                    "pos": {
+                        "x": 92.033327,
+                        "y": 11.95
+                    },
+                    "uuid": "9ff35f10-debc-43ae-9818-6ffc56889f80"
+                },
+                {
+                    "description": "PTH pad 1 [GND] of J3",
+                    "pos": {
+                        "x": 92.033327,
+                        "y": 11.95
+                    },
+                    "uuid": "7276b02b-e005-4289-8357-a8d3ebd4871d"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "Items shorting two nets (nets LED_5V_RAW and N$6)",
+            "items": [
+                {
+                    "description": "PTH pad 1 [LED_5V_RAW] of J2",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 11.95
+                    },
+                    "uuid": "dc95398f-fb1f-4a25-ac45-5b8df251dd4b"
+                },
+                {
+                    "description": "PTH pad 1 [N$6] of JLED2",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 11.95
+                    },
+                    "uuid": "56eda1e5-d713-4af7-a257-6aa1ca1944ae"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
+        {
+            "description": "Items shorting two nets (nets N$10 and GND)",
+            "items": [
+                {
+                    "description": "PTH pad 1 [N$10] of JLED4",
+                    "pos": {
+                        "x": 102.711104,
+                        "y": 11.95
+                    },
+                    "uuid": "1034772b-d415-4087-8f10-36d66e373d6f"
+                },
+                {
+                    "description": "PTH pad 1 [GND] of J4",
+                    "pos": {
+                        "x": 102.711104,
+                        "y": 11.95
+                    },
+                    "uuid": "60791e98-6d6f-4ec6-b6f1-7f504917d932"
+                }
+            ],
+            "severity": "error",
+            "type": "shorting_items"
+        },
         {
             "description": "Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.0000 mm)",
             "items": [
@@ -684,7 +753,7 @@
                         "x": 59.999996,
                         "y": 11.95
                     },
-                    "uuid": "db7cc6d1-9d1c-4504-860c-3159e1db7d87"
+                    "uuid": "7013d02c-aaa5-433d-9356-71d8b05daa3e"
                 },
                 {
                     "description": "PTH pad 1 [<no net>] of J1",
@@ -692,80 +761,11 @@
                         "x": 59.999996,
                         "y": 11.95
                     },
-                    "uuid": "61333b57-c18d-4f5f-b926-37d79acde1e6"
+                    "uuid": "a9886fda-af6a-4d95-960b-91994a118309"
                 }
             ],
             "severity": "error",
             "type": "clearance"
-        },
-        {
-            "description": "Items shorting two nets (nets GND and N$10)",
-            "items": [
-                {
-                    "description": "PTH pad 1 [GND] of J4",
-                    "pos": {
-                        "x": 102.711104,
-                        "y": 11.95
-                    },
-                    "uuid": "722c34fd-f2cb-4f28-96ef-e095431b5300"
-                },
-                {
-                    "description": "PTH pad 1 [N$10] of JLED4",
-                    "pos": {
-                        "x": 102.711104,
-                        "y": 11.95
-                    },
-                    "uuid": "a690ae6c-3afb-43e7-ab74-4147c483dbb1"
-                }
-            ],
-            "severity": "error",
-            "type": "shorting_items"
-        },
-        {
-            "description": "Items shorting two nets (nets N$6 and LED_5V_RAW)",
-            "items": [
-                {
-                    "description": "PTH pad 1 [N$6] of JLED2",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 11.95
-                    },
-                    "uuid": "f5e35501-a944-4553-8a9c-4cc567822daa"
-                },
-                {
-                    "description": "PTH pad 1 [LED_5V_RAW] of J2",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 11.95
-                    },
-                    "uuid": "12b12ba9-ef42-4d27-988c-be75633e4ac5"
-                }
-            ],
-            "severity": "error",
-            "type": "shorting_items"
-        },
-        {
-            "description": "Items shorting two nets (nets GND and N$8)",
-            "items": [
-                {
-                    "description": "PTH pad 1 [GND] of J3",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 11.95
-                    },
-                    "uuid": "7e8321e4-b2ac-418e-b07f-a03f18cebfde"
-                },
-                {
-                    "description": "PTH pad 1 [N$8] of JLED3",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 11.95
-                    },
-                    "uuid": "e6180610-c238-44c4-913d-8ba32e81c564"
-                }
-            ],
-            "severity": "error",
-            "type": "shorting_items"
         },
         {
             "description": "Items shorting two nets (nets +3V3 and GND)",
@@ -776,7 +776,7 @@
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "fbf6fad2-7630-45e7-92a6-40305a2f9279"
+                    "uuid": "dfe15027-a721-4a8e-aacc-9b89a5dfa58b"
                 },
                 {
                     "description": "PTH pad 1 [GND] of J5",
@@ -784,7 +784,7 @@
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "7afede21-ebae-42f3-81a0-83350d444c85"
+                    "uuid": "d5cd389e-bca0-4444-8ba0-d8f1241a0561"
                 }
             ],
             "severity": "error",
@@ -799,7 +799,7 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "81ebffa9-2e71-4d37-87b6-1f10a4d46c09"
+                    "uuid": "1301ddf5-6218-47c0-87e3-fa0ad5af5959"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J11",
@@ -807,80 +807,11 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "eaadacdc-253d-45a7-b59c-346f8e14c4a4"
+                    "uuid": "441c50f5-d162-4344-9587-0db2a1e1955b"
                 }
             ],
             "severity": "error",
             "type": "shorting_items"
-        },
-        {
-            "description": "Drilled holes co-located",
-            "items": [
-                {
-                    "description": "PTH pad 1 [<no net>] of J1",
-                    "pos": {
-                        "x": 59.999996,
-                        "y": 11.95
-                    },
-                    "uuid": "61333b57-c18d-4f5f-b926-37d79acde1e6"
-                },
-                {
-                    "description": "PTH pad 1 [+3V3] of J9",
-                    "pos": {
-                        "x": 59.999996,
-                        "y": 11.95
-                    },
-                    "uuid": "db7cc6d1-9d1c-4504-860c-3159e1db7d87"
-                }
-            ],
-            "severity": "warning",
-            "type": "holes_co_located"
-        },
-        {
-            "description": "Drilled holes co-located",
-            "items": [
-                {
-                    "description": "PTH pad 1 [GND] of J4",
-                    "pos": {
-                        "x": 102.711104,
-                        "y": 11.95
-                    },
-                    "uuid": "722c34fd-f2cb-4f28-96ef-e095431b5300"
-                },
-                {
-                    "description": "PTH pad 1 [N$10] of JLED4",
-                    "pos": {
-                        "x": 102.711104,
-                        "y": 11.95
-                    },
-                    "uuid": "a690ae6c-3afb-43e7-ab74-4147c483dbb1"
-                }
-            ],
-            "severity": "warning",
-            "type": "holes_co_located"
-        },
-        {
-            "description": "Drilled holes co-located",
-            "items": [
-                {
-                    "description": "PTH pad 1 [LED_5V_RAW] of J2",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 11.95
-                    },
-                    "uuid": "12b12ba9-ef42-4d27-988c-be75633e4ac5"
-                },
-                {
-                    "description": "PTH pad 1 [N$6] of JLED2",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 11.95
-                    },
-                    "uuid": "f5e35501-a944-4553-8a9c-4cc567822daa"
-                }
-            ],
-            "severity": "warning",
-            "type": "holes_co_located"
         },
         {
             "description": "Drilled holes co-located",
@@ -891,7 +822,7 @@
                         "x": 92.033327,
                         "y": 11.95
                     },
-                    "uuid": "7e8321e4-b2ac-418e-b07f-a03f18cebfde"
+                    "uuid": "7276b02b-e005-4289-8357-a8d3ebd4871d"
                 },
                 {
                     "description": "PTH pad 1 [N$8] of JLED3",
@@ -899,7 +830,76 @@
                         "x": 92.033327,
                         "y": 11.95
                     },
-                    "uuid": "e6180610-c238-44c4-913d-8ba32e81c564"
+                    "uuid": "9ff35f10-debc-43ae-9818-6ffc56889f80"
+                }
+            ],
+            "severity": "warning",
+            "type": "holes_co_located"
+        },
+        {
+            "description": "Drilled holes co-located",
+            "items": [
+                {
+                    "description": "PTH pad 1 [N$6] of JLED2",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 11.95
+                    },
+                    "uuid": "56eda1e5-d713-4af7-a257-6aa1ca1944ae"
+                },
+                {
+                    "description": "PTH pad 1 [LED_5V_RAW] of J2",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 11.95
+                    },
+                    "uuid": "dc95398f-fb1f-4a25-ac45-5b8df251dd4b"
+                }
+            ],
+            "severity": "warning",
+            "type": "holes_co_located"
+        },
+        {
+            "description": "Drilled holes co-located",
+            "items": [
+                {
+                    "description": "PTH pad 1 [N$10] of JLED4",
+                    "pos": {
+                        "x": 102.711104,
+                        "y": 11.95
+                    },
+                    "uuid": "1034772b-d415-4087-8f10-36d66e373d6f"
+                },
+                {
+                    "description": "PTH pad 1 [GND] of J4",
+                    "pos": {
+                        "x": 102.711104,
+                        "y": 11.95
+                    },
+                    "uuid": "60791e98-6d6f-4ec6-b6f1-7f504917d932"
+                }
+            ],
+            "severity": "warning",
+            "type": "holes_co_located"
+        },
+        {
+            "description": "Drilled holes co-located",
+            "items": [
+                {
+                    "description": "PTH pad 1 [+3V3] of J9",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 11.95
+                    },
+                    "uuid": "7013d02c-aaa5-433d-9356-71d8b05daa3e"
+                },
+                {
+                    "description": "PTH pad 1 [<no net>] of J1",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 11.95
+                    },
+                    "uuid": "a9886fda-af6a-4d95-960b-91994a118309"
                 }
             ],
             "severity": "warning",
@@ -914,7 +914,7 @@
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "7afede21-ebae-42f3-81a0-83350d444c85"
+                    "uuid": "d5cd389e-bca0-4444-8ba0-d8f1241a0561"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J12",
@@ -922,7 +922,7 @@
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "fbf6fad2-7630-45e7-92a6-40305a2f9279"
+                    "uuid": "dfe15027-a721-4a8e-aacc-9b89a5dfa58b"
                 }
             ],
             "severity": "warning",
@@ -937,7 +937,7 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "81ebffa9-2e71-4d37-87b6-1f10a4d46c09"
+                    "uuid": "1301ddf5-6218-47c0-87e3-fa0ad5af5959"
                 },
                 {
                     "description": "PTH pad 1 [+3V3] of J11",
@@ -945,7 +945,7 @@
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "eaadacdc-253d-45a7-b59c-346f8e14c4a4"
+                    "uuid": "441c50f5-d162-4344-9587-0db2a1e1955b"
                 }
             ],
             "severity": "warning",
@@ -955,227 +955,20 @@
             "description": "Silkscreen overlap",
             "items": [
                 {
-                    "description": "Reference field of R_LVT_DATA_OUT",
-                    "pos": {
-                        "x": 27.966665,
-                        "y": 57.53125
-                    },
-                    "uuid": "12985e96-c3ee-471b-9fb2-c1f1a6d36333"
-                },
-                {
-                    "description": "Reference field of R_LVT_DATA_IN",
+                    "description": "Reference field of J5",
                     "pos": {
                         "x": 17.288888,
-                        "y": 57.53125
-                    },
-                    "uuid": "9310daca-1b14-45d0-95a4-4af042d86de1"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_LVT_DATA_OUT",
-                    "pos": {
-                        "x": 27.966665,
-                        "y": 57.53125
-                    },
-                    "uuid": "12985e96-c3ee-471b-9fb2-c1f1a6d36333"
-                },
-                {
-                    "description": "Reference field of R_PDM_CLK_SER",
-                    "pos": {
-                        "x": 38.644442,
-                        "y": 57.53125
-                    },
-                    "uuid": "4dca47e4-bced-44c2-8e0d-62ff6131a799"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_BYPASS_CLK",
-                    "pos": {
-                        "x": 59.999996,
-                        "y": 50.51875
-                    },
-                    "uuid": "9f2d003c-612f-4f81-98d4-fffa1c04a37c"
-                },
-                {
-                    "description": "Reference field of R_BYPASS_DATA",
-                    "pos": {
-                        "x": 70.677773,
-                        "y": 50.51875
-                    },
-                    "uuid": "afc75cda-d469-4047-a91c-525083aba46a"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_SPI_MOSI_SER",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 57.53125
-                    },
-                    "uuid": "60e0e673-d26d-475f-abb3-bc7ad41a9be6"
-                },
-                {
-                    "description": "Reference field of R_SPI_MISO_SER",
-                    "pos": {
-                        "x": 70.677773,
-                        "y": 57.53125
-                    },
-                    "uuid": "d2feb588-505f-44a1-9804-1b60d8b37cfd"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_SPI_MOSI_SER",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 57.53125
-                    },
-                    "uuid": "60e0e673-d26d-475f-abb3-bc7ad41a9be6"
-                },
-                {
-                    "description": "Reference field of R_SPI_SCK_SER",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 57.53125
-                    },
-                    "uuid": "9f134aad-cd0f-4d0b-8e3b-7dc656b50184"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_FET_GATE",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 50.51875
-                    },
-                    "uuid": "4052c8a2-984d-4398-93c9-8fb0e3301920"
-                },
-                {
-                    "description": "Reference field of R_BYPASS_DATA",
-                    "pos": {
-                        "x": 70.677773,
-                        "y": 50.51875
-                    },
-                    "uuid": "afc75cda-d469-4047-a91c-525083aba46a"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_LVT_CLK_IN",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 50.51875
-                    },
-                    "uuid": "4042e29b-8f22-4e5f-af2f-6a4549c5b984"
-                },
-                {
-                    "description": "Reference field of R_FET_GATE",
-                    "pos": {
-                        "x": 81.35555,
-                        "y": 50.51875
-                    },
-                    "uuid": "4052c8a2-984d-4398-93c9-8fb0e3301920"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_SPI_MISO_SER",
-                    "pos": {
-                        "x": 70.677773,
-                        "y": 57.53125
-                    },
-                    "uuid": "d2feb588-505f-44a1-9804-1b60d8b37cfd"
-                },
-                {
-                    "description": "Reference field of R_SPI_CS_PU",
-                    "pos": {
-                        "x": 59.999996,
-                        "y": 57.53125
-                    },
-                    "uuid": "df2c5007-11c5-4b00-8b5c-df8d9c949966"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of J1",
-                    "pos": {
-                        "x": 59.999996,
                         "y": 11.95
                     },
-                    "uuid": "9c757787-8f52-40f8-9315-c1604f53a272"
+                    "uuid": "21e2f1ef-67dc-4aba-994f-ac65b8274f8f"
                 },
-                {
-                    "description": "Reference field of J9",
-                    "pos": {
-                        "x": 59.999996,
-                        "y": 11.95
-                    },
-                    "uuid": "b3eaf67f-98c9-4229-b082-584538101b6e"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
                 {
                     "description": "Reference field of J12",
                     "pos": {
                         "x": 17.288888,
                         "y": 11.95
                     },
-                    "uuid": "11d74278-d011-4151-9e0e-8c35f48b0230"
-                },
-                {
-                    "description": "Reference field of J5",
-                    "pos": {
-                        "x": 17.288888,
-                        "y": 11.95
-                    },
-                    "uuid": "396e65ec-644f-49ea-b558-96927a9a80a0"
+                    "uuid": "af5ccf36-8a3c-4960-885d-f428193c06f1"
                 }
             ],
             "severity": "warning",
@@ -1185,20 +978,43 @@
             "description": "Silkscreen overlap",
             "items": [
                 {
-                    "description": "Reference field of R_READY_PD",
+                    "description": "Reference field of R_LVT_DATA_IN",
                     "pos": {
-                        "x": 49.322219,
+                        "x": 17.288888,
                         "y": 57.53125
                     },
-                    "uuid": "036e62e7-e209-4680-810d-11261d89fa83"
+                    "uuid": "e5661139-50d1-492a-9a3f-80515f398963"
                 },
+                {
+                    "description": "Reference field of R_LVT_DATA_OUT",
+                    "pos": {
+                        "x": 27.966665,
+                        "y": 57.53125
+                    },
+                    "uuid": "f5f757e8-696c-42f5-947a-e672046e9b61"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
                 {
                     "description": "Reference field of R_PDM_CLK_SER",
                     "pos": {
                         "x": 38.644442,
                         "y": 57.53125
                     },
-                    "uuid": "4dca47e4-bced-44c2-8e0d-62ff6131a799"
+                    "uuid": "687dcd5e-120f-40a6-ae11-5565ebdab150"
+                },
+                {
+                    "description": "Reference field of R_LVT_DATA_OUT",
+                    "pos": {
+                        "x": 27.966665,
+                        "y": 57.53125
+                    },
+                    "uuid": "f5f757e8-696c-42f5-947a-e672046e9b61"
                 }
             ],
             "severity": "warning",
@@ -1207,90 +1023,44 @@
         {
             "description": "Silkscreen overlap",
             "items": [
+                {
+                    "description": "Reference field of R_PDM_CLK_SER",
+                    "pos": {
+                        "x": 38.644442,
+                        "y": 57.53125
+                    },
+                    "uuid": "687dcd5e-120f-40a6-ae11-5565ebdab150"
+                },
                 {
                     "description": "Reference field of R_READY_PD",
                     "pos": {
                         "x": 49.322219,
                         "y": 57.53125
                     },
-                    "uuid": "036e62e7-e209-4680-810d-11261d89fa83"
-                },
+                    "uuid": "ca0101df-88f7-427c-b375-acb01b6fa45d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
                 {
-                    "description": "Reference field of R_SPI_CS_PU",
+                    "description": "Reference field of R_SPI_SCK_SER",
                     "pos": {
-                        "x": 59.999996,
+                        "x": 92.033327,
                         "y": 57.53125
                     },
-                    "uuid": "df2c5007-11c5-4b00-8b5c-df8d9c949966"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of J4",
-                    "pos": {
-                        "x": 102.711104,
-                        "y": 11.95
-                    },
-                    "uuid": "3b1a0f36-2dcf-4ac3-8b0f-48eb7682338d"
+                    "uuid": "6f41a89f-940a-4039-9111-3947223b69f9"
                 },
                 {
-                    "description": "Reference field of JLED4",
+                    "description": "Reference field of R_SPI_MOSI_SER",
                     "pos": {
-                        "x": 102.711104,
-                        "y": 11.95
+                        "x": 81.35555,
+                        "y": 57.53125
                     },
-                    "uuid": "5621fd48-ca30-4434-9751-ce5d3bb26156"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of J3",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 11.95
-                    },
-                    "uuid": "908b698f-604f-4963-846c-c9613b542323"
-                },
-                {
-                    "description": "Reference field of JLED3",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 11.95
-                    },
-                    "uuid": "98a5f2e4-c41a-495a-8381-93c566666958"
-                }
-            ],
-            "severity": "warning",
-            "type": "silk_overlap"
-        },
-        {
-            "description": "Silkscreen overlap",
-            "items": [
-                {
-                    "description": "Reference field of R_LVT_CLK_IN",
-                    "pos": {
-                        "x": 92.033327,
-                        "y": 50.51875
-                    },
-                    "uuid": "4042e29b-8f22-4e5f-af2f-6a4549c5b984"
-                },
-                {
-                    "description": "Reference field of R_LVT_CLK_OUT",
-                    "pos": {
-                        "x": 102.711104,
-                        "y": 50.51875
-                    },
-                    "uuid": "d9b1f221-1574-44b9-8a1f-7f1313586fa1"
+                    "uuid": "b4c2f085-fcdb-40bc-bd45-e2ec70e055cf"
                 }
             ],
             "severity": "warning",
@@ -1305,7 +1075,7 @@
                         "x": 102.711104,
                         "y": 57.53125
                     },
-                    "uuid": "80b6f8b4-67db-4df8-be68-208dfd5cec2d"
+                    "uuid": "43b4c4e8-4a06-4056-8625-9c2abf059cef"
                 },
                 {
                     "description": "Reference field of R_SPI_SCK_SER",
@@ -1313,7 +1083,122 @@
                         "x": 92.033327,
                         "y": 57.53125
                     },
-                    "uuid": "9f134aad-cd0f-4d0b-8e3b-7dc656b50184"
+                    "uuid": "6f41a89f-940a-4039-9111-3947223b69f9"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_LVT_CLK_IN",
+                    "pos": {
+                        "x": 92.033327,
+                        "y": 50.51875
+                    },
+                    "uuid": "3721592f-cbf2-4501-a8f9-e2e593f3c680"
+                },
+                {
+                    "description": "Reference field of R_LVT_CLK_OUT",
+                    "pos": {
+                        "x": 102.711104,
+                        "y": 50.51875
+                    },
+                    "uuid": "c8845ecc-6514-4c1c-80a5-b6f503cac8ca"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_SPI_MISO_SER",
+                    "pos": {
+                        "x": 70.677773,
+                        "y": 57.53125
+                    },
+                    "uuid": "72f8d1a4-63f7-48db-b80c-78f8a72f24fc"
+                },
+                {
+                    "description": "Reference field of R_SPI_MOSI_SER",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 57.53125
+                    },
+                    "uuid": "b4c2f085-fcdb-40bc-bd45-e2ec70e055cf"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_FET_GATE",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 50.51875
+                    },
+                    "uuid": "679f2dc9-0d03-42a7-b274-762cb35afdc0"
+                },
+                {
+                    "description": "Reference field of R_BYPASS_DATA",
+                    "pos": {
+                        "x": 70.677773,
+                        "y": 50.51875
+                    },
+                    "uuid": "67cd945a-5e0d-49cb-9be6-6fe4cba8b43d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_LVT_CLK_IN",
+                    "pos": {
+                        "x": 92.033327,
+                        "y": 50.51875
+                    },
+                    "uuid": "3721592f-cbf2-4501-a8f9-e2e593f3c680"
+                },
+                {
+                    "description": "Reference field of R_FET_GATE",
+                    "pos": {
+                        "x": 81.35555,
+                        "y": 50.51875
+                    },
+                    "uuid": "679f2dc9-0d03-42a7-b274-762cb35afdc0"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of JLED3",
+                    "pos": {
+                        "x": 92.033327,
+                        "y": 11.95
+                    },
+                    "uuid": "3b8554b6-4588-48b7-857e-64f914a86674"
+                },
+                {
+                    "description": "Reference field of J3",
+                    "pos": {
+                        "x": 92.033327,
+                        "y": 11.95
+                    },
+                    "uuid": "6b1716ae-7b9d-4c12-872f-6d91c2db8b55"
                 }
             ],
             "severity": "warning",
@@ -1328,7 +1213,7 @@
                         "x": 81.35555,
                         "y": 11.95
                     },
-                    "uuid": "a3f84b9e-0c68-47b9-ab9e-fc96b9f7ba18"
+                    "uuid": "6105d684-f8c0-4d33-91ca-a9b609ec6df8"
                 },
                 {
                     "description": "Reference field of JLED2",
@@ -1336,7 +1221,7 @@
                         "x": 81.35555,
                         "y": 11.95
                     },
-                    "uuid": "bc596112-9be0-489c-bdd7-1b384f90ab27"
+                    "uuid": "b785aa90-a045-4048-9b83-28471a02c533"
                 }
             ],
             "severity": "warning",
@@ -1346,20 +1231,135 @@
             "description": "Silkscreen overlap",
             "items": [
                 {
-                    "description": "Reference field of J11",
+                    "description": "Reference field of JLED4",
                     "pos": {
-                        "x": 70.677773,
+                        "x": 102.711104,
                         "y": 11.95
                     },
-                    "uuid": "2caffe5f-690a-41b1-a4f2-ec29ff093a42"
+                    "uuid": "b1ff032d-8853-423c-a64b-4ca0fb729a4e"
                 },
+                {
+                    "description": "Reference field of J4",
+                    "pos": {
+                        "x": 102.711104,
+                        "y": 11.95
+                    },
+                    "uuid": "e2359a74-62fa-4322-ac2e-9c66b2d0b1ce"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
                 {
                     "description": "Reference field of JLED1",
                     "pos": {
                         "x": 70.677773,
                         "y": 11.95
                     },
-                    "uuid": "be84b901-dc5f-4ba4-9b29-5a1262ccce32"
+                    "uuid": "2d687011-353f-4d7b-856b-30cb94d06a7a"
+                },
+                {
+                    "description": "Reference field of J11",
+                    "pos": {
+                        "x": 70.677773,
+                        "y": 11.95
+                    },
+                    "uuid": "70ffa4dc-30e0-42f2-9e00-500a38934cf4"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_SPI_CS_PU",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 57.53125
+                    },
+                    "uuid": "40d235d8-c8c1-4e6f-aa3f-6736ce37c0eb"
+                },
+                {
+                    "description": "Reference field of R_SPI_MISO_SER",
+                    "pos": {
+                        "x": 70.677773,
+                        "y": 57.53125
+                    },
+                    "uuid": "72f8d1a4-63f7-48db-b80c-78f8a72f24fc"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_SPI_CS_PU",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 57.53125
+                    },
+                    "uuid": "40d235d8-c8c1-4e6f-aa3f-6736ce37c0eb"
+                },
+                {
+                    "description": "Reference field of R_READY_PD",
+                    "pos": {
+                        "x": 49.322219,
+                        "y": 57.53125
+                    },
+                    "uuid": "ca0101df-88f7-427c-b375-acb01b6fa45d"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of R_BYPASS_DATA",
+                    "pos": {
+                        "x": 70.677773,
+                        "y": 50.51875
+                    },
+                    "uuid": "67cd945a-5e0d-49cb-9be6-6fe4cba8b43d"
+                },
+                {
+                    "description": "Reference field of R_BYPASS_CLK",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 50.51875
+                    },
+                    "uuid": "c1dac43b-a419-4a36-bf9f-3a1591d8ef69"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_overlap"
+        },
+        {
+            "description": "Silkscreen overlap",
+            "items": [
+                {
+                    "description": "Reference field of J9",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 11.95
+                    },
+                    "uuid": "0fb54964-b71a-4c5f-9a25-16ece4f0c33c"
+                },
+                {
+                    "description": "Reference field of J1",
+                    "pos": {
+                        "x": 59.999996,
+                        "y": 11.95
+                    },
+                    "uuid": "ff9c71ec-b88e-496f-b6f8-8e4414f89950"
                 }
             ],
             "severity": "warning",
