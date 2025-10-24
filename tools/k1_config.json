@@ -1,0 +1,17 @@
+{
+  "board_file": "hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb",
+  "netlist_file": "hardware/k1-lightwave/k1_motherboard_revA.net",
+  "output_dir": "out_fab",
+  "freerouting_jar": "tools/freerouting.jar",
+  "dsn_path": "out_fab/k1.dsn",
+  "ses_path": "out_fab/k1.ses",
+  "spi_netclass": {
+    "width_mm": 0.20,
+    "clear_mm": 0.20
+  },
+  "usb_pair": {
+    "enabled": false,
+    "diff_impedance_ohm": 90.0
+  },
+  "strict": true
+}

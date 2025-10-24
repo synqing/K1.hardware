@@ -2,7 +2,7 @@
   (version "D")
   (design
     (source "k1_motherboard_revA.py")
-    (date "10/24/2025 03:14 AM")
+    (date "10/24/2025 04:45 PM")
     (tool "SKiDL (2.1.1)")
     (sheet
       (number 1)
@@ -46,18 +46,18 @@
       (ref "C3")
       (value "1u")
       (description "Unpolarized capacitor")
-      (footprint "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
       (fields
         (field
           (name "Description") "Unpolarized capacitor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "njG9GijfUt")
+          (name "SKiDL Tag") "fUcCh9BfUA")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:373"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:409"))
       (libsource
         (lib "Device")
         (part "C"))
@@ -65,23 +65,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "2eb62110-539d-5b80-bb9c-3a8b8cfb389b"))
+      (tstamps "bcb2de87-1319-5024-b5bc-d211490ee7bb"))
     (comp
       (ref "C4")
       (value "12p")
       (description "Unpolarized capacitor")
-      (footprint "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
       (fields
         (field
           (name "Description") "Unpolarized capacitor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "KYy_cvD35v")
+          (name "SKiDL Tag") "3S8tDykN6w")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:411"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:454"))
       (libsource
         (lib "Device")
         (part "C"))
@@ -89,23 +89,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "1244e3f2-35f8-5c56-8810-c70aae702af3"))
+      (tstamps "80a5b48d-f690-5185-b7d3-1cf5d9278a29"))
     (comp
       (ref "C5")
       (value "12p")
       (description "Unpolarized capacitor")
-      (footprint "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
       (fields
         (field
           (name "Description") "Unpolarized capacitor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "IFtvuDxSds")
+          (name "SKiDL Tag") "PU4UxXqc2F")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:412"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:456"))
       (libsource
         (lib "Device")
         (part "C"))
@@ -113,23 +113,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "47649c2b-3f83-5bb2-bd1e-7312aac9c654"))
+      (tstamps "996ccc70-56ae-5d95-8b7c-c4a8c4fa169c"))
     (comp
       (ref "C_BIN1")
       (value "10u")
       (description "Unpolarized capacitor")
-      (footprint "")
+      (footprint "Capacitor_SMD:C_1206_3216Metric")
       (fields
         (field
           (name "Description") "Unpolarized capacitor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "mumEC2h0MA")
+          (name "SKiDL Tag") "N9tbnr8aaN")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:162"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:176"))
       (libsource
         (lib "Device")
         (part "C"))
@@ -137,23 +137,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "ac4d383c-2aaa-58dd-9fc5-760523acfdae"))
+      (tstamps "185a0088-26c0-51fd-89b4-be4877043406"))
     (comp
       (ref "C_BOUT1")
       (value "10u")
       (description "Unpolarized capacitor")
-      (footprint "")
+      (footprint "Capacitor_SMD:C_1206_3216Metric")
       (fields
         (field
           (name "Description") "Unpolarized capacitor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "rFN2sY8djK")
+          (name "SKiDL Tag") "MC_1z4NtEc")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:163"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:178"))
       (libsource
         (lib "Device")
         (part "C"))
@@ -161,23 +161,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "f9f50baa-b9fd-5c30-a5eb-a1242b84a879"))
+      (tstamps "d6c8c88b-b44b-55f3-871d-f67f8baa63d8"))
     (comp
       (ref "C_INA")
       (value "100n")
       (description "Unpolarized capacitor")
-      (footprint "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
       (fields
         (field
           (name "Description") "Unpolarized capacitor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "YrfNagBA6l")
+          (name "SKiDL Tag") "Di7_Y03uaH")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:202"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:220"))
       (libsource
         (lib "Device")
         (part "C"))
@@ -185,23 +185,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "d6fe211f-7c7b-56d7-8fe8-ad46e8c2c427"))
+      (tstamps "dbbeca64-9903-5163-a3d8-f83deab1d15e"))
     (comp
       (ref "D1")
       (value "TVS5V")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "f7QeW_GCM6")
+          (name "SKiDL Tag") "2G7bkNQRU1")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:221"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:243"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -209,23 +209,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "a7a269a6-af36-567f-8672-c660f89713ff"))
+      (tstamps "b5835f02-75f6-58ce-a24d-eac64a8bb42b"))
     (comp
       (ref "D2")
       (value "TVS5V")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "cG8oai01Y1")
+          (name "SKiDL Tag") "U6ooexiW97")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:221"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:243"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -233,23 +233,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b22fe450-3a93-53bc-98b4-81e9c2812b49"))
+      (tstamps "4dc54f68-776f-5775-b489-5d94d86599d1"))
     (comp
       (ref "D3")
       (value "TVS5V")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "pNxppQNy4y")
+          (name "SKiDL Tag") "6ThghTU6_2")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:221"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:243"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -257,23 +257,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "a4134475-d7a1-511a-ad2a-5c12da09daa7"))
+      (tstamps "ec37eb91-ba41-57ef-8a5e-a2c52a86f6db"))
     (comp
       (ref "D4")
       (value "TVS5V")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "gA3xQeRmim")
+          (name "SKiDL Tag") "S4RQuFDYNW")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:221"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:243"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -281,23 +281,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "66e78476-5290-57a7-a4c3-98a15e31bd26"))
+      (tstamps "2364169f-5f92-5347-a690-632313cae593"))
     (comp
       (ref "D_ESD_CC1")
       (value "SMF05CA")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "7_M7IWrcBh")
+          (name "SKiDL Tag") "01Be44d6Pp")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:131"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:141"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -305,23 +305,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "c6d6648d-3704-518c-a1c3-5946cc41e5a8"))
+      (tstamps "71e6f9d0-b863-5db3-b65a-0e0fb11700b1"))
     (comp
       (ref "D_ESD_CC2")
       (value "SMF05CA")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "mHGkddubzB")
+          (name "SKiDL Tag") "_jNUYNTvJf")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:132"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:143"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -329,23 +329,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "faccab42-e5e7-528f-9275-bfac96aa0b97"))
+      (tstamps "04a47a88-3d63-5aec-8a7a-15c9d689ab21"))
     (comp
       (ref "D_ESD_DM")
       (value "SMAJ5.0A")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "6Ua0UWGec1")
+          (name "SKiDL Tag") "879YuPsVEu")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:130"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:139"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -353,23 +353,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "a916c46d-dbb2-57dc-9791-5ca623059b22"))
+      (tstamps "d9ba7e12-b371-5e6f-ba9b-2499028caf59"))
     (comp
       (ref "D_ESD_DP")
       (value "SMAJ5.0A")
       (description "Bidirectional transient-voltage-suppression diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Bidirectional transient-voltage-suppression diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "bR29z_SEkL")
+          (name "SKiDL Tag") "C0k5QYt1vg")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:129"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:137"))
       (libsource
         (lib "Device")
         (part "D_TVS"))
@@ -377,23 +377,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "f37d20ec-7feb-58b8-ae50-9b97ded35c3d"))
+      (tstamps "b60fbfa6-4433-5409-8520-15a108b8290e"))
     (comp
       (ref "D_IDEAL")
       (value "Schottky")
       (description "Diode")
-      (footprint "")
+      (footprint "Diode_SMD:D_SOD-323")
       (fields
         (field
           (name "Description") "Diode")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Diode_SMD:D_SOD-323")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "YVSi8__NRd")
+          (name "SKiDL Tag") "QpCAXoZGDF")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:181"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:197"))
       (libsource
         (lib "Device")
         (part "D"))
@@ -401,23 +401,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "f5fc308a-c85e-58ef-b58c-244e1a730ce4"))
+      (tstamps "caf6b273-ae99-57fa-820f-19f00fa397de"))
     (comp
       (ref "F1")
       (value "Polyfuse_0.75A")
       (description "Resistor")
-      (footprint "")
+      (footprint "Fuse:Fuse_1206_3216Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Fuse:Fuse_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "GeGZ0WiOc6")
+          (name "SKiDL Tag") "SAoQ1zvi3q")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:220"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:241"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -425,23 +425,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "2db455f1-b97c-52e5-a3ad-4fdf9baceb2d"))
+      (tstamps "916b7606-fb7b-5556-9ba7-dcde440b8c23"))
     (comp
       (ref "F2")
       (value "Polyfuse_0.75A")
       (description "Resistor")
-      (footprint "")
+      (footprint "Fuse:Fuse_1206_3216Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Fuse:Fuse_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "EEa7zcraFq")
+          (name "SKiDL Tag") "18I6_6n3BZ")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:220"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:241"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -449,23 +449,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "96731801-75da-592e-af04-9c1b16d77c4d"))
+      (tstamps "ae5bcd78-b8b5-5276-a6de-17ba243747a1"))
     (comp
       (ref "F3")
       (value "Polyfuse_0.75A")
       (description "Resistor")
-      (footprint "")
+      (footprint "Fuse:Fuse_1206_3216Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Fuse:Fuse_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "F6o5DPWUVp")
+          (name "SKiDL Tag") "iPoOFjWXr9")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:220"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:241"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -473,23 +473,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "8e82bbd1-5f02-5805-aec3-11e4808ea84e"))
+      (tstamps "6d74ab83-e8a7-5c3d-a230-6f8ceeb5f417"))
     (comp
       (ref "F4")
       (value "Polyfuse_0.75A")
       (description "Resistor")
-      (footprint "")
+      (footprint "Fuse:Fuse_1206_3216Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Fuse:Fuse_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "Q97yoEaWNE")
+          (name "SKiDL Tag") "qHF4xXK0hD")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:220"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:241"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -497,23 +497,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "af725e10-e68c-5603-a6c3-6b02c42daabf"))
+      (tstamps "03e177b7-4a4a-5f66-aced-a37d819bc96e"))
     (comp
       (ref "F_USB")
       (value "1A_1206")
       (description "Fuse")
-      (footprint "")
+      (footprint "Fuse:Fuse_1206_3216Metric")
       (fields
         (field
           (name "Description") "Fuse")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Fuse:Fuse_1206_3216Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "nEv8yrtchu")
+          (name "SKiDL Tag") "XX0872TTm4")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:119"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:126"))
       (libsource
         (lib "Device")
         (part "Fuse"))
@@ -521,7 +521,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "3b7bffd7-b161-559d-ba54-40d881cc672f"))
+      (tstamps "0f0b3bae-2836-5b80-ab1a-152da3395b91"))
     (comp
       (ref "J1")
       (value "USB_C_Receptacle_USB2.0_14P")
@@ -535,9 +535,9 @@
         (field
           (name "Datasheet") "https://www.usb.org/sites/default/files/documents/usb_type-c.zip")
         (field
-          (name "SKiDL Tag") "FjceKinRNu")
+          (name "SKiDL Tag") "9aVmwGCZtl")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:107"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:112"))
       (libsource
         (lib "Connector")
         (part "USB_C_Receptacle_USB2.0_14P"))
@@ -545,23 +545,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "a3341616-72be-5567-aa5d-a4ff9ace5691"))
+      (tstamps "35f76767-9ff9-507f-a3c7-616e79b230fd"))
     (comp
       (ref "J11")
       (value "K1-M2B_COM-A")
       (description "Generic connector, single row, 01x40, script generated")
-      (footprint "")
+      (footprint "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x40, script generated")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "J3br7RKKq6")
+          (name "SKiDL Tag") "PcQKT4e6xE")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:326"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:359"))
       (libsource
         (lib "Connector")
         (part "Conn_01x40_Pin"))
@@ -569,23 +569,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "2a7c2f60-b32d-5978-aa6c-c498902cabdc"))
+      (tstamps "03baf783-98e4-58e1-9d1e-562177ae65c1"))
     (comp
       (ref "J12")
       (value "ESP32-S3_COM-B_LOGICAL")
       (description "Generic connector, single row, 01x40, script generated")
-      (footprint "")
+      (footprint "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x40, script generated")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "H6IezuS9F3")
+          (name "SKiDL Tag") "ZbHaKNSqY5")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:352"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:386"))
       (libsource
         (lib "Connector")
         (part "Conn_01x40_Pin"))
@@ -593,7 +593,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "eba46d69-51bf-562f-8600-1e0c10180e90"))
+      (tstamps "3412050a-a700-525d-8d8e-0650f93bb47b"))
     (comp
       (ref "J2")
       (value "LED_5V_IN")
@@ -607,9 +607,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "CrJqHCwJq3")
+          (name "SKiDL Tag") "kfwZQpXBKH")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:169"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:185"))
       (libsource
         (lib "Connector")
         (part "Conn_01x02_Pin"))
@@ -617,7 +617,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b26a4c67-6298-5168-8baf-5253df3d446b"))
+      (tstamps "176a8fcf-18f0-51cc-8d90-c41a5bd7907c"))
     (comp
       (ref "J3")
       (value "I2C_PORT_1_3V3")
@@ -631,9 +631,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "0aEGwjOECZ")
+          (name "SKiDL Tag") "Qr6zyVXmJS")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:238"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:262"))
       (libsource
         (lib "Connector")
         (part "Conn_01x04_Pin"))
@@ -641,7 +641,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "d87f258c-ff6e-5aa4-843e-b324afadad09"))
+      (tstamps "4f4fa990-0a6b-5b45-8dec-d74fece7e6cc"))
     (comp
       (ref "J4")
       (value "I2C_PORT_2_3V3")
@@ -655,9 +655,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "IDsWJPOlu4")
+          (name "SKiDL Tag") "hSUZLX3xGW")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:238"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:262"))
       (libsource
         (lib "Connector")
         (part "Conn_01x04_Pin"))
@@ -665,7 +665,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "d25b84c0-f289-5df0-8460-1e67203c6d80"))
+      (tstamps "06cd819f-abfa-517b-902e-40a28f9f672f"))
     (comp
       (ref "J5")
       (value "I2C_PORT_3_5V")
@@ -679,9 +679,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "TmJZMBXX9e")
+          (name "SKiDL Tag") "eN6Ev957ev")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:238"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:262"))
       (libsource
         (lib "Connector")
         (part "Conn_01x04_Pin"))
@@ -689,7 +689,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "47608f0c-d015-53d1-9dcc-40930bc31020"))
+      (tstamps "4e46d6a0-3eaf-5116-8da6-8a0908e165a1"))
     (comp
       (ref "J6")
       (value "I2C_PORT_4_5V")
@@ -703,9 +703,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "QaVnz2MhMx")
+          (name "SKiDL Tag") "Z7J4EWJiHT")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:238"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:262"))
       (libsource
         (lib "Connector")
         (part "Conn_01x04_Pin"))
@@ -713,7 +713,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "2434166b-3481-5006-becc-4882b11ab533"))
+      (tstamps "a1f53e76-38c6-5942-89a3-11be9f16e8eb"))
     (comp
       (ref "J7")
       (value "I2S_MIC_1")
@@ -727,9 +727,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "I5BV1bQyXd")
+          (name "SKiDL Tag") "S8Vw3PsAWc")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:261"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:286"))
       (libsource
         (lib "Connector")
         (part "Conn_01x06_Pin"))
@@ -737,7 +737,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "310a92ee-6eee-5712-9e5b-e5a5b228c8af"))
+      (tstamps "fe731586-bc00-5925-99cf-7c351e83be1d"))
     (comp
       (ref "J8")
       (value "I2S_MIC_2")
@@ -751,9 +751,9 @@
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "IpKSQ2U4x1")
+          (name "SKiDL Tag") "3pER4ArUV2")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:261"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:286"))
       (libsource
         (lib "Connector")
         (part "Conn_01x06_Pin"))
@@ -761,23 +761,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "69a1ab73-6082-55e8-ab4c-3cff6ec54d9a"))
+      (tstamps "df7af53d-b28b-5c20-884f-9a550c044083"))
     (comp
       (ref "J9")
       (value "PDM_MIC_HEADER")
       (description "Generic connector, single row, 01x06, script generated")
-      (footprint "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal")
+      (footprint "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x06, script generated")
         (field
-          (name "Footprint") "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal")
+          (name "Footprint") "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "5mD7OZdFpn")
+          (name "SKiDL Tag") "t7iGZ3kZti")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:317"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:350"))
       (libsource
         (lib "Connector")
         (part "Conn_01x06_Pin"))
@@ -785,23 +785,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "8aeda4eb-ab9e-5a52-8d6d-6d063a90da4c"))
+      (tstamps "700e11bb-132e-5b74-89c1-7cd3c80afda6"))
     (comp
       (ref "JLED1")
       (value "LED_OUT_1")
       (description "Generic connector, single row, 01x03, script generated")
-      (footprint "Connector_Molex:Molex_KK-254_1x03")
+      (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x03, script generated")
         (field
-          (name "Footprint") "Connector_Molex:Molex_KK-254_1x03")
+          (name "Footprint") "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "u85QwLRZH3")
+          (name "SKiDL Tag") "kSKdUWSVJs")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:218"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:239"))
       (libsource
         (lib "Connector")
         (part "Conn_01x03_Pin"))
@@ -809,23 +809,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "080e8574-95ec-50fc-8ad4-5ef3393fb66c"))
+      (tstamps "000f22e2-50d7-55dd-991c-2b670a063d3c"))
     (comp
       (ref "JLED2")
       (value "LED_OUT_2")
       (description "Generic connector, single row, 01x03, script generated")
-      (footprint "Connector_Molex:Molex_KK-254_1x03")
+      (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x03, script generated")
         (field
-          (name "Footprint") "Connector_Molex:Molex_KK-254_1x03")
+          (name "Footprint") "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "ZebG0y0FPl")
+          (name "SKiDL Tag") "hm5GgSVVnp")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:218"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:239"))
       (libsource
         (lib "Connector")
         (part "Conn_01x03_Pin"))
@@ -833,23 +833,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "bec93151-4b07-5ef7-b034-55422205dda7"))
+      (tstamps "d6392fd0-7f1d-5d5d-a565-2c19dd1f1671"))
     (comp
       (ref "JLED3")
       (value "LED_OUT_3")
       (description "Generic connector, single row, 01x03, script generated")
-      (footprint "Connector_Molex:Molex_KK-254_1x03")
+      (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x03, script generated")
         (field
-          (name "Footprint") "Connector_Molex:Molex_KK-254_1x03")
+          (name "Footprint") "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "w4TQiQcjKI")
+          (name "SKiDL Tag") "m2UGlJ5TiX")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:218"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:239"))
       (libsource
         (lib "Connector")
         (part "Conn_01x03_Pin"))
@@ -857,23 +857,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "553cc3fb-63f6-5d16-b6e1-dc17828baa36"))
+      (tstamps "e7666925-7851-5886-993f-c6bd6d77b219"))
     (comp
       (ref "JLED4")
       (value "LED_OUT_4")
       (description "Generic connector, single row, 01x03, script generated")
-      (footprint "Connector_Molex:Molex_KK-254_1x03")
+      (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
       (fields
         (field
           (name "Description") "Generic connector, single row, 01x03, script generated")
         (field
-          (name "Footprint") "Connector_Molex:Molex_KK-254_1x03")
+          (name "Footprint") "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "vg4Ha9oLS7")
+          (name "SKiDL Tag") "0qIY13C7v3")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:218"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:239"))
       (libsource
         (lib "Connector")
         (part "Conn_01x03_Pin"))
@@ -881,23 +881,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "5c581437-f1df-5bbf-ad43-8c875d363aa1"))
+      (tstamps "0b2083cd-cdbd-51d1-8a11-bbb9891fec68"))
     (comp
       (ref "R1")
       (value "5.1k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "XFG0mDiwsm")
+          (name "SKiDL Tag") "2Kv3MQEOFi")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:109"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:114"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -905,23 +905,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b3211eec-7165-5f56-a547-d7e32c85a470"))
+      (tstamps "41520578-c16b-5370-8281-0cca9cb57bae"))
     (comp
       (ref "R2")
       (value "5.1k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "0w8pqc52c9")
+          (name "SKiDL Tag") "Wcj7PO3ifO")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:110"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:116"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -929,23 +929,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "ec21b6e5-75ac-5b51-a76d-51c08c39e0fa"))
+      (tstamps "dd90513a-58b7-581c-87a4-dce12a2edb44"))
     (comp
       (ref "R3")
       (value "10k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "olTATaz6iw")
+          (name "SKiDL Tag") "iozJewNRdE")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:372"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:407"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -953,23 +953,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "0c32ca50-1475-58dc-8b75-0f43b38a9765"))
+      (tstamps "0ed0d495-480a-5ac7-8321-27ebb8e50be1"))
     (comp
       (ref "R4")
       (value "10k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "ZCvd4KTQQW")
+          (name "SKiDL Tag") "0vOeq7cxVT")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:377"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:414"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -977,23 +977,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "1a7df67d-0514-55f7-97b4-286bc1bb8504"))
+      (tstamps "8880d911-a3b7-5133-9c89-b6260c80cc2e"))
     (comp
       (ref "R5")
       (value "10k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "cTLgkBoRak")
+          (name "SKiDL Tag") "UDumJdYCPh")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:397"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:436"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1001,23 +1001,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "629b1cf0-1cfa-5142-93ce-debe17331344"))
+      (tstamps "df7efab9-f5a0-51ca-a773-fc218c91db7d"))
     (comp
       (ref "R6")
       (value "10k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "0AT7G7tAs4")
+          (name "SKiDL Tag") "NpsqHNxr0X")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:398"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:439"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1025,21 +1025,189 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "2270acf4-1ebe-5987-8e97-884f62a34333"))
+      (tstamps "e3a00b91-260a-5cac-a569-df9ce9092cbd"))
     (comp
       (ref "R7")
       (value "0.05R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "3iqdqyFM6F")
+          (name "SKiDL Tag") "vxsZFU0Pp6")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:226"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "86e5651d-f42e-5cbf-823f-2c684a8e6055"))
+    (comp
+      (ref "RLED1")
+      (value "330R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "EvFMo0XtKp")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:245"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "ae4b4e4b-409a-5d33-ac22-59e349a8bf61"))
+    (comp
+      (ref "RLED2")
+      (value "330R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "pmOgw8ytls")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:245"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "3983691f-7ef1-5120-a060-e38bbc41b8a5"))
+    (comp
+      (ref "RLED3")
+      (value "330R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "U_LO4VSKio")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:245"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b2b978dd-f996-515d-992b-de7c4393e71a"))
+    (comp
+      (ref "RLED4")
+      (value "330R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "nLWGJz2gCE")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:245"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "905b3012-1742-5f14-a28e-8743fa4ade19"))
+    (comp
+      (ref "R_BYPASS_CLK")
+      (value "0R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "eWkzVRvwdw")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:307"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b7a77d7c-60e0-561d-a63f-0fb1f97f0c35"))
+    (comp
+      (ref "R_BYPASS_DATA")
+      (value "0R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "_TgdEGChjh")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:309"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "4bc46ba2-ed03-5280-9255-9a489af2b9ad"))
+    (comp
+      (ref "R_FET_GATE")
+      (value "10k")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "CpqOO4jnlM")
         (field
           (name "SKiDL Line") "k1_motherboard_revA.py:207"))
       (libsource
@@ -1049,191 +1217,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "a5eb14c3-0e61-5905-9607-85f1caad0335"))
-    (comp
-      (ref "RLED1")
-      (value "330R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "rgO1HRmOIX")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:222"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "617c2db3-8954-560e-ba45-0998c39eea46"))
-    (comp
-      (ref "RLED2")
-      (value "330R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "63cZSQi1u7")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:222"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "51d8cb43-8a5f-5e3e-8984-3fcb09e463d3"))
-    (comp
-      (ref "RLED3")
-      (value "330R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "s2y9XNFEMu")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:222"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "87b09137-e035-575f-a2bf-7f1852d46cae"))
-    (comp
-      (ref "RLED4")
-      (value "330R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "LFfEpRHFS8")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:222"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "38d70141-b668-5700-b297-a2750d668704"))
-    (comp
-      (ref "R_BYPASS_CLK")
-      (value "0R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "0Rpw1LRZrn")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:282"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "30a63596-ed65-5a12-9328-b6ad2c3d5806"))
-    (comp
-      (ref "R_BYPASS_DATA")
-      (value "0R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "sBcS3Jh_An")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:283"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "f5250965-dfc9-53bd-9afc-f7e5123b93ec"))
-    (comp
-      (ref "R_FET_GATE")
-      (value "10k")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "aF0EnfZeJa")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:190"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "d30d8354-ee39-56ef-b39d-411814d9783b"))
+      (tstamps "a550f52c-218e-50ec-9804-716415728f54"))
     (comp
       (ref "R_LVT_CLK_IN")
       (value "0R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "D0V1WbuezN")
+          (name "SKiDL Tag") "ID1YZ7DcXH")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:295"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:323"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1241,23 +1241,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b67dc3e6-6ecf-56c3-8854-aac104aced62"))
+      (tstamps "bafe560c-834a-5875-b43e-f8eb74e057a3"))
     (comp
       (ref "R_LVT_CLK_OUT")
       (value "0R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "HCSVnSfUby")
+          (name "SKiDL Tag") "8qEiIhfIBo")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:296"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:325"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1265,23 +1265,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "1ac4853f-bf66-5b94-9f6f-c23d9cdffda9"))
+      (tstamps "42f910d2-12b8-5bd4-ba4c-2b99569db57d"))
     (comp
       (ref "R_LVT_DATA_IN")
       (value "0R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "R_Sw0mlP3i")
+          (name "SKiDL Tag") "j59MZj72vr")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:297"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:327"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1289,23 +1289,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "e4b04c07-65a5-55cb-9c4e-c4ccb1a854ad"))
+      (tstamps "7bf89762-8ded-56e0-acf8-3fda4273b7e4"))
     (comp
       (ref "R_LVT_DATA_OUT")
       (value "0R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "1LSGW3C6Wv")
+          (name "SKiDL Tag") "62L0HA8K9U")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:298"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:329"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1313,23 +1313,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "ed796415-ce8e-58bb-a65e-352658e33413"))
+      (tstamps "2833d48d-4781-5d1c-bdb4-46e41121c044"))
     (comp
       (ref "R_PDM_CLK_SER")
       (value "33R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "KTUEiYxTbS")
+          (name "SKiDL Tag") "GH_k28VvlC")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:310"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:342"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1337,23 +1337,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "7cfb8f2d-af92-574a-8644-3cb2f6dda34f"))
+      (tstamps "afef8165-a9d8-5311-b26e-a9dad08dea1f"))
     (comp
       (ref "R_READY_PD")
       (value "100k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "t64NSNB49q")
+          (name "SKiDL Tag") "tcHo4zmYOc")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:93"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:97"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1361,23 +1361,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "203f9cce-9db5-5dca-a715-016ee35cd416"))
+      (tstamps "87892049-b04b-5c3f-92f4-1242794c8e1c"))
     (comp
       (ref "R_SPI_CS_PU")
       (value "10k")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "Vrzo6GH2Ki")
+          (name "SKiDL Tag") "DpwImi_qq2")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:88"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:91"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1385,21 +1385,45 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b5f699c1-1058-587e-b69d-e88e2465c4e4"))
+      (tstamps "2836cb44-37f1-5414-9bc1-954312671b49"))
     (comp
       (ref "R_SPI_MISO_SER")
       (value "33R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "WtjVdAwf1m")
+          (name "SKiDL Tag") "Ojm1jytVpb")
+        (field
+          (name "SKiDL Line") "k1_motherboard_revA.py:84"))
+      (libsource
+        (lib "Device")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "9cb0e44d-fc80-55c6-8d60-068acdc9717d"))
+    (comp
+      (ref "R_SPI_MOSI_SER")
+      (value "33R")
+      (description "Resistor")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
+      (fields
+        (field
+          (name "Description") "Resistor")
+        (field
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+        (field
+          (name "Datasheet") "~")
+        (field
+          (name "SKiDL Tag") "4A_ikjy9TG")
         (field
           (name "SKiDL Line") "k1_motherboard_revA.py:82"))
       (libsource
@@ -1409,45 +1433,21 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "aed4437b-218b-55ea-9024-cd48294d189b"))
-    (comp
-      (ref "R_SPI_MOSI_SER")
-      (value "33R")
-      (description "Resistor")
-      (footprint "")
-      (fields
-        (field
-          (name "Description") "Resistor")
-        (field
-          (name "Footprint"))
-        (field
-          (name "Datasheet") "~")
-        (field
-          (name "SKiDL Tag") "IUtsckYTuF")
-        (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:81"))
-      (libsource
-        (lib "Device")
-        (part "R"))
-      (sheetpath
-        (names "/")
-        (tstamps "/"))
-      (component_classes)
-      (tstamps "b8075e79-9d68-528d-b05d-50994c7c1f18"))
+      (tstamps "def4f554-c711-5f23-8912-1b3b652971de"))
     (comp
       (ref "R_SPI_SCK_SER")
       (value "33R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "k09zfRWW1O")
+          (name "SKiDL Tag") "IftcKqe03O")
         (field
           (name "SKiDL Line") "k1_motherboard_revA.py:80"))
       (libsource
@@ -1457,23 +1457,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "0f466c17-ed25-5963-b02d-a59341f0f377"))
+      (tstamps "62a11233-d3e0-5498-af5e-24eb1539b42e"))
     (comp
       (ref "R_USB_DM_SER")
       (value "27R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "QKtbx777Wv")
+          (name "SKiDL Tag") "GQlM4mfFE6")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:143"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:156"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1481,23 +1481,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b1ece9b1-5033-51af-adc7-3bf431743195"))
+      (tstamps "579b19d4-13f9-5c00-bf99-317ad27565fe"))
     (comp
       (ref "R_USB_DP_SER")
       (value "27R")
       (description "Resistor")
-      (footprint "")
+      (footprint "Resistor_SMD:R_0603_1608Metric")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Resistor_SMD:R_0603_1608Metric")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "wBlPCt6CU_")
+          (name "SKiDL Tag") "sTfga9AhSx")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:142"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:154"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1505,23 +1505,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "ab5b4877-50f2-576a-8e24-eaf1651ac3b9"))
+      (tstamps "92d85c07-8904-5b5a-b825-9400bd6d1b96"))
     (comp
       (ref "SW1")
       (value "Push_Button")
       (description "Resistor")
-      (footprint "")
+      (footprint "Button_Switches_SMD:SW_DIP_SPSTx01_Slide_7.0x5.0mm_W7.0mm_P1.27mm_LowProfile")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Button_Switches_SMD:SW_DIP_SPSTx01_Slide_7.0x5.0mm_W7.0mm_P1.27mm_LowProfile")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "PUWcbQSLRs")
+          (name "SKiDL Tag") "u6s5fzvPDS")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:379"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:417"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1529,23 +1529,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "72999653-b51d-5c31-88ac-44414ecf355e"))
+      (tstamps "65dca9c3-bd6d-59a9-b350-6826e152f1a2"))
     (comp
       (ref "U3")
       (value "Logic_Shifter_74AHCT125")
       (description "Resistor")
-      (footprint "")
+      (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "3dzyQuJ1zb")
+          (name "SKiDL Tag") "SR4Curpe8Y")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:214"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:234"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1553,23 +1553,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "b5475fc8-0cb9-5abb-bed3-0e134b4ee76c"))
+      (tstamps "5ef2119b-57c4-5230-a5fc-643e6765163b"))
     (comp
       (ref "U4")
       (value "24LC256")
       (description "I2C Serial EEPROM, 256Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8")
-      (footprint "")
+      (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
       (fields
         (field
           (name "Description") "I2C Serial EEPROM, 256Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
         (field
           (name "Datasheet") "http://ww1.microchip.com/downloads/en/devicedoc/21203m.pdf")
         (field
-          (name "SKiDL Tag") "nfFS_paXEs")
+          (name "SKiDL Tag") "TBSmgXu6fO")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:250"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:274"))
       (libsource
         (lib "Memory_EEPROM")
         (part "24LC256"))
@@ -1577,23 +1577,23 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "406218d8-a460-5d09-85b4-a197013e4281"))
+      (tstamps "789797fc-32d8-522a-9b5d-5da65a851949"))
     (comp
       (ref "U8")
       (value "Logic_Buffer_SN74AXC2T245")
       (description "Resistor")
-      (footprint "")
+      (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
       (fields
         (field
           (name "Description") "Resistor")
         (field
-          (name "Footprint"))
+          (name "Footprint") "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm")
         (field
           (name "Datasheet") "~")
         (field
-          (name "SKiDL Tag") "jaFe22GD3H")
+          (name "SKiDL Tag") "gyotd9xhmw")
         (field
-          (name "SKiDL Line") "k1_motherboard_revA.py:292"))
+          (name "SKiDL Line") "k1_motherboard_revA.py:319"))
       (libsource
         (lib "Device")
         (part "R"))
@@ -1601,7 +1601,7 @@
         (names "/")
         (tstamps "/"))
       (component_classes)
-      (tstamps "cb60b3e0-3de4-5336-86c6-eaffe345821b")))
+      (tstamps "aa1fb03a-4be8-53e1-b3f6-ed14d43108ac")))
   (nets
     (net
       (code 1)
@@ -2093,7 +2093,7 @@
         (pintype "PASSIVE")))
     (net
       (code 24)
-      (name "LED_DATA1_IN")
+      (name "LED_DATA1_IN1")
       (class "Default")
       (node
         (ref "J12")
@@ -2109,7 +2109,7 @@
         (pintype "PASSIVE")))
     (net
       (code 26)
-      (name "LED_DATA2_IN")
+      (name "LED_DATA2_IN1")
       (class "Default")
       (node
         (ref "J12")
