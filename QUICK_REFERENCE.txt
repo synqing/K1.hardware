@@ -1,0 +1,351 @@
+================================================================================
+IPC STANDARDS LIBRARY - QUICK REFERENCE CARD
+K1 Lightwave Audio-Reactive LED Controller
+================================================================================
+
+TRACE WIDTH FORMULA (IPC-2221A)
+================================================================================
+
+External Layers:  I = 0.048 × ΔT^0.44 × A^0.725
+Internal Layers:  I = 0.024 × ΔT^0.44 × A^0.725
+
+Where: I = Current (A), ΔT = Temp rise (°C), A = Area (mils²)
+Rearranged: A = (I / (k × ΔT^0.44))^(1/0.725)
+Width (mils) = Area / Copper thickness (mils)
+
+TEMPERATURE RISE CONSTANTS (ΔT)
+================================================================================
+Signal Type          | Internal | External | Use Case
+---------------------+----------+----------+---------------------------
+Low-Frequency        |    10°C  |   20°C   | Analog, slow signals
+Digital              |    15°C  |   25°C   | K1 digital logic (DEFAULT)
+Power Distribution   |    20°C  |   30°C   | K1 power rails (DEFAULT)
+High-Speed           |    25°C  |   40°C   | >50 MHz signals
+Mission-Critical     |    15°C  |   20°C   | Safety-critical systems
+
+K1 POWER DOMAINS - RECOMMENDED TRACE WIDTHS
+================================================================================
+
+Domain         | Voltage | Peak Current | Temp Rise | Width (1.5× safety)
+---------------+---------+--------------+-----------+--------------------
+VBUS_USB_5V    |  5.0V   |   1.2A       |   25°C    |    15 mils
+LED_5V         |  5.0V   |   8.0A       |   30°C    |   160 mils ← VERY WIDE!
+3V3_LOGIC      |  3.3V   |   0.8A       |   15°C    |    15 mils
+
+NOTE: LED_5V is very wide because it carries 8A to drive 320 LEDs×4 = 1280 LEDs!
+
+K1 CLEARANCE REQUIREMENTS (IPC-2221A)
+================================================================================
+
+All K1 voltages (3.3V, 5V) in Class 2A environment:
+
+Clearance Type       | 5V Signals | 3.3V Signals
+---------------------+------------+---------------
+Trace-to-Trace       |   4 mils   |   3 mils
+Trace-to-Board Edge  |  15 mils   |  10 mils
+Trace-to-Comp Leads  |  12 mils   |  10 mils
+
+STANDARD TRACE WIDTHS (IPC Manufacturing)
+================================================================================
+
+1, 2, 3, 5, 8, 10, 15, 20, 25, 32, 40, 50, 63, 80, 100, 125+ mils
+
+Round calculated widths UP to nearest standard value.
+
+COPPER THICKNESS CONVERSION
+================================================================================
+
+Weight    | Thickness | Example Use
+----------+-----------+---------------------------------------------
+0.5 oz    |  0.689 mil| Thin traces (not typical)
+1.0 oz    |  1.378 mil| Standard (K1 default)
+2.0 oz    |  2.756 mil| High-current (optional for LED domain)
+
+Using 2oz copper reduces LED_5V trace width from 160 to ~80 mils!
+
+CLEARANCE TABLE - TRACE TO TRACE (ALL VOLTAGES)
+================================================================================
+
+Voltage Class    | Class 1 | Class 2A | Class 2B | Class 3A | Class 3B
+-----------------+---------+---------+---------+---------+---------
+ULTRA_LOW (0-6V) |   3     |    3    |    4    |    5    |    6    |  ← 3.3V
+LOW (7-15V)      |   3     |    4    |    5    |    6    |    8    |  ← 5V
+MEDIUM_LOW       |   4     |    5    |    6    |    8    |   10    |
+MEDIUM           |   6     |    8    |   10    |   12    |   15    |
+MEDIUM_HIGH      |  10     |   12    |   15    |   20    |   25    |
+HIGH (201-500V)  |  15     |   20    |   25    |   30    |   40    |
+
+K1 uses Class 2A (controlled indoor environment, moderate humidity)
+
+PCB CLASS SELECTION
+================================================================================
+
+K1 SELECTED: CLASS 2 (Dedicated Service)
+
+Reason: Audio-reactive LED controller with continuous operation, suitable
+        for consumer electronics with moderate reliability requirements
+
+Class Characteristics:
+┌─────────────┬────────────────────┬──────────┬──────────┐
+│ Class       │ Typical Application │ Repair   │ Testing  │
+├─────────────┼────────────────────┼──────────┼──────────┤
+│ 1 General   │ Consumer gadgets    │ Allowed  │ Visual   │
+│ 2 Dedicated │ Audio, automotive   │ Limited  │ Hi-pot   │ ← K1
+│ 3 High-Rel  │ Medical, military   │ Blocked  │ Extreme  │
+└─────────────┴────────────────────┴──────────┴──────────┘
+
+CLASS 2 REQUIREMENTS (K1)
+================================================================================
+
+Parameter                    | K1 Specification
+-----------------------------+------------------------------------------
+PCB Copper Pattern          | ±0.003 inch tolerance
+Via/Hole Tolerance          | ±0.003 inch
+Min Trace Width/Spacing     | 4 mil / 4 mil (voltage-dependent)
+Copper Plating (via wall)   | ≥0.001 inch (1 mil)
+Solder Mask Thickness       | 0.001-0.002 inch
+Registration (layer align)  | ±0.003 inch
+Annular Ring (via pad)      | 0.008 inch minimum
+Hi-Pot Testing              | 250V, 2 minutes
+Insulation Resistance       | ≥100MΩ @ 500VDC
+Continuity Test             | Required
+Functional Test             | Required
+Burn-In                     | Not required (Class 2)
+
+SOLDER JOINT QUALITY (IPC-A-610 CLASS 2) - ACCEPTANCE CRITERIA
+================================================================================
+
+Criterion        | Acceptable              | Rework                | Reject
+-----------------+------------------------+----------------------+------------------------
+Fillet Shape     | 45° angle, continuous  | Slight irregularity  | Missing/severe deform
+Wetting          | >75% lead coverage     | 50-75% coverage      | <50% coverage
+Solder Volume    | Adequate fill          | Slight variation     | Insufficient
+Voiding          | <10% internal void     | 10-25% voids         | >25% voids
+Pad Coverage     | ≥75% of pad            | 50-75% of pad        | <50% of pad
+Coplanarity      | ≤0.10 inch deviation   | 0.10-0.20 inch       | >0.20 inch
+Lead Bending     | No visible bending     | <0.015 inch offset   | Significant bending
+Solder Bridging  | No bridging            | <0.010" wide, isolated | Shorts/functional fail
+
+COMPONENT PLACEMENT TOLERANCES (CLASS 2)
+================================================================================
+
+Component Type       | X/Y Position | Rotation | Notes
+---------------------+--------------+----------+---------------------------
+Chip (0402-1206)     | ±0.075 inch  | ±3°      | Standard resistors/capacitors
+BGA Columns          | ±0.040 inch  | N/A      | Ball grid array processors
+Connectors           | ±0.040 inch  | ±3°      | Headers, USB connectors
+Fine-pitch devices   | ±0.040 inch  | ±2°      | High-density packages
+
+TEST POINT REQUIREMENTS
+================================================================================
+
+Parameter                    | Specification
+-----------------------------+------------------------------------------
+Diameter (min)              | 25 mils
+Diameter (max)              | 50 mils
+Center-to-center spacing    | 100 mils minimum
+Clearance from component    | 50 mils
+Clearance from pad          | 50 mils
+
+PAD SIZE MINIMUMS (IPC-A-610)
+================================================================================
+
+Package   | Pad Length | Pad Width | Paste Coverage | Notes
+----------+------------+-----------+----------------+--------------------
+0402      |  30 mils   |  30 mils  |      50%       | Small chip
+0603      |  40 mils   |  40 mils  |      50%       | Standard chip
+0805      |  50 mils   |  50 mils  |      50%       | Larger chip
+1206      |  60 mils   |  60 mils  |      50%       | Power resistor
+QFP       |  20 mils   |   8 mils  |      50%       | Fine-pitch IC
+BGA       |   8 mil Ø  |    N/A    |      75%       | Ball grid (higher paste!)
+
+K1 DESIGN RULES SUMMARY
+================================================================================
+
+Rule                        | Value         | Purpose
+----------------------------+---------------+---------------------------
+PCB Class                   | Class 2       | Manufacturing standard
+Copper Weight               | 1 oz/ft²      | Standard thickness
+Minimum Trace Width         | 5 mils        | Voltage-dependent, lower allowed
+Minimum Trace Spacing       | 3-4 mils      | Low voltage allows tighter
+Board Edge Clearance        | 10-15 mils    | Prevents edge damage
+Minimum Via Diameter        | 10 mils       | Manufacturing limit
+Solder Mask Type            | LPI           | Photoimageable (standard)
+Silkscreen                  | White         | Standard color
+Layer Stackup               | 4-layer       | JLCPCB JLC02160H-1LG
+
+K1 MANUFACTURING SPECIFICATIONS
+================================================================================
+
+Board Size:          ~100×100 mm (estimated, depends on mechanical design)
+Layers:              4-layer stackup (signal, ground, power, signal)
+PCB Thickness:       1.6 mm (63 mils)
+Board Material:      FR-4
+Copper Weight:       1 oz/ft² (35 µm)
+Minimum Feature:     4 mil trace / 4 mil space (Class 2 capable)
+Via Process:         Mechanical drilling + copper plating
+Solder Mask:         LPI (green typical)
+Silkscreen:          White legend
+Manufacturing Time:  24-48 hours (JLCPCB standard)
+Cost:               Budget ~$2-5 per board (qty 10+)
+
+ENVIRONMENTAL CLASSIFICATION
+================================================================================
+
+K1 Default: IPC-2221A CLASS 2A
+
+Definition: Controlled manufacturing environment with moderate humidity
+- Altitude: < 2500 meters
+- Humidity: 30-85% RH (non-condensing, typical office)
+- Temperature: 0-50°C operating
+
+For outdoor/harsh use, upgrade to Class 3B:
+- Increases clearance requirements significantly
+- Not recommended for K1 (would require ~200+ mil traces for LED domain)
+
+CURRENT TO TRACE WIDTH SCALING
+================================================================================
+
+Current (mA) | Ext @ 30°C | Rounded | With 1.5× Safety
+-------------+------------+---------+------------------
+100          |   0.25     |   1     |       2
+250          |   0.89     |   1     |       2
+500          |   2.33     |   3     |       5
+1000         |   6.07     |   8     |      10
+2000         |  15.79     |  20     |      25
+5000         |  55.89     |  63     |     100
+8000         |  106.88    | 125     |     160 ← K1 LED domain!
+
+VOLTAGE CLASSIFICATION
+================================================================================
+
+Class            | Voltage Range | K1 Use Cases
+-----------------+---------------+---------------------------
+ULTRA_LOW        | 0-6V          | 3.3V logic, 3.3V I2C/SPI
+LOW              | 7-15V         | 5V USB power, 5V LED output
+MEDIUM_LOW       | 16-30V        | Not used in K1
+MEDIUM           | 31-100V       | Not used in K1
+MEDIUM_HIGH      | 101-200V      | Not used in K1
+HIGH             | 201-500V      | Not used in K1
+
+K1 operates entirely in ULTRA_LOW and LOW classes!
+
+PRACTICAL DESIGN TIPS
+================================================================================
+
+1. LED_5V traces (160 mils) are VERY wide
+   → Option 1: Use 2oz copper to reduce to ~80 mils
+   → Option 2: Route on multiple layers/parallel traces
+   → Option 3: Use wide traces as shown (safe, conservative)
+
+2. Keep VBUS_USB_5V isolated from LED_5V
+   → Different voltage domains (though same voltage!)
+   → Prevent noise coupling into USB supply
+   → Use ground planes and layer separation
+
+3. 3.3V digital signals can use tighter spacing (3 mil)
+   → Lower voltage allows closer traces
+   → Reduces board area requirements
+   → Still meets Class 2A standards
+
+4. Use ground plane for:
+   → Return paths for all signals
+   → Thermal distribution for power components
+   → EMI shielding between signal domains
+   → Improves trace carrying capacity
+
+5. Via sizing for K1:
+   → Standard 10 mil diameter via
+   → 1 mil copper plating (Class 2 minimum)
+   → Stitching vias for ground plane continuity
+
+PYTHON LIBRARY QUICK START
+================================================================================
+
+# Calculate trace width
+from ipc_standards_library import IPC2221A, TemperatureRise
+
+width, area = IPC2221A.calculate_trace_width(
+    current_ma=8000,
+    temp_rise=TemperatureRise.POWER_EXTERNAL,
+    is_external=True,
+    copper_oz=1.0
+)
+width_standard = IPC2221A.round_trace_width(width)
+
+# Get K1 recommendation
+from ipc_standards_library import K1Configuration
+
+width = K1Configuration.get_recommended_trace_width('LED_5V')
+clearances = K1Configuration.get_clearance_for_domain('VBUS_USB_5V')
+
+# Validate design
+from ipc_standards_library import validate_design
+
+valid, message = validate_design(160.0, 4.0, 5.0)
+
+# Generate report
+from ipc_standards_library import IPCReporter
+
+report = IPCReporter.generate_pcb_design_report("K1 Lightwave")
+
+VERIFICATION CHECKLIST
+================================================================================
+
+□ Trace widths meet calculated minimums (with safety factor)
+  □ VBUS_USB_5V:  ≥10 mils (recommended)
+  □ LED_5V:       ≥125 mils (or ≥80 if using 2oz copper)
+  □ 3V3_LOGIC:    ≥5 mils (minimum)
+
+□ Clearances meet IPC standards (Class 2A)
+  □ Trace-to-trace: ≥3-4 mils
+  □ Trace-to-edge:  ≥10-15 mils
+  □ Trace-to-leads: ≥10-12 mils
+
+□ Power domains properly isolated
+  □ VBUS and LED_5V on separate layers/regions
+  □ Dedicated ground return for each domain
+  □ No cross-coupling between USB and LED circuits
+
+□ Via specifications met
+  □ Minimum 10 mil diameter
+  □ ≥1 mil copper plating on walls
+  □ Adequate copper ring around via (8 mil minimum)
+
+□ Solder joint requirements
+  □ Minimum pad sizes per IPC-A-610
+  □ ≥75% paste coverage (≥75% for BGA)
+  □ Solder mask clearance adequate
+
+□ Test points accessible
+  □ 25-50 mil diameter via pads
+  □ 100 mil spacing center-to-center
+  □ 50 mil clearance from components/pads
+
+□ PCB class requirements
+  □ Class 2 electrical testing parameters met
+  □ Hi-pot 250V spec documented
+  □ Insulation resistance ≥100MΩ achievable
+
+REFERENCES
+================================================================================
+
+Standard Documents:
+  - IPC-2221A: Generic Standard on Printed Board Design
+  - IPC-6012: Specification for Printed Circuit Boards
+  - IPC-A-610: Acceptability of Electronic Assemblies
+
+Python Library:
+  - ipc_standards_library.py (1000+ lines, production-ready)
+  - test_ipc_standards.py (51 unit tests, all passing)
+  - IPC_STANDARDS_SPECIFICATION.md (complete technical reference)
+  - USAGE_GUIDE.md (detailed examples and integration guide)
+
+Manufacturers:
+  - JLCPCB: https://jlcpcb.com (K1 primary manufacturer)
+  - IPC: https://www.ipc.org (Standards organization)
+
+Last Updated: 2025-10-24
+Version: 1.0.0 (Production Release)
+
+================================================================================

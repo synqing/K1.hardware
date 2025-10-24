@@ -1,0 +1,62 @@
+================================================================================
+K1 LIGHTWAVE - DESIGN VALIDATION REPORT
+================================================================================
+Board: K1_Lightwave.kicad_pcb
+Date: 2025-10-24
+
+VALIDATION SUMMARY
+--------------------------------------------------------------------------------
+Overall Status: ❌ FAIL
+Total Checks: 9
+Passed: 5
+Failed: 4
+
+DETAILED RESULTS
+--------------------------------------------------------------------------------
+
+✅ Design Rule Check: PASS - All design rules passed
+  • violation_count: 0
+  • report: {
+  "$schema": "https://schemas.kicad.org/drc.v1.json",
+  "coordinate_units": "mm",
+  "date": "2025-10-24T16:11:04+0800",
+  "kicad_version": "9.0.5",
+  "schematic_parity": [],
+  "source": "K1_Lightwave.kicad_pcb",
+  "unconnected_items": [],
+  "violations": []
+}
+
+❌ Layer Stack: ERROR - Board has 2 copper layers (expected 4-layer standard)
+  • layer_count: 2
+  • expected: 4
+
+✅ Assembly Constraints: PASS - Assembly constraints met
+  • min_spacing_mm: 2.0
+
+✅ Manufacturing Constraints: PASS - Manufacturing constraints met
+  • edge_clearance_mm: 0.3
+
+❌ Fiducial Markers: WARNING - Found 0 fiducials (minimum 3 required)
+  • fiducial_count: 0
+  • required: 3
+  • diagonal_placement: Not verified
+
+❌ SPI Signal Integrity (40 MHz): WARNING - SPI routing validation: 0 signals found
+
+❌ USB 2.0 Signal Integrity: WARNING - USB differential pair validation: 2 issues
+
+✅ I2C/I2S Signal Integrity: PASS - Found 0 I2C/I2S signals
+
+✅ Thermal Validation: PASS - T_junction=40.0°C, margin=45.0°C to 85.0°C
+  • ambient_temp_c: 25.0
+  • temperature_rise_c: 15.0
+  • t_junction_c: 40.0
+  • margin_to_max_c: 45.0
+  • max_junction_temp_c: 85.0
+  • total_power_w: 1.0
+  • thermal_via_count: 0
+  • thermal_via_benefit_c: 5.0
+  • passed_10c_margin: True
+
+================================================================================

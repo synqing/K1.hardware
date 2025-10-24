@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-10-24T03:59:05.612766",
+  "netlist": "../../hardware/k1-lightwave/k1_motherboard_revA.net",
+  "status": "success",
+  "steps": [
+    {
+      "name": "Parse Netlist",
+      "status": "success",
+      "summary": {
+        "total_components": 65,
+        "with_footprints": 13,
+        "missing_footprints": 52,
+        "coverage_percent": 20.0,
+        "by_type": {
+          "Capacitor": 6,
+          "Diode": 9,
+          "Resistor": 33,
+          "Unknown": 1,
+          "Connector": 1,
+          "IC": 15
+        }
+      },
+      "total_components": 65
+    },
+    {
+      "name": "Identify Missing Footprints",
+      "status": "success",
+      "missing_count": 52,
+      "missing_refs": [
+        "C3",
+        "C4",
+        "C5",
+        "C_BIN1",
+        "C_BOUT1",
+        "C_INA",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D_ESD_CC1",
+        "D_ESD_CC2",
+        "D_ESD_DM",
+        "D_ESD_DP",
+        "D_IDEAL",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F_USB",
+        "J11",
+        "J12",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "RLED1",
+        "RLED2",
+        "RLED3",
+        "RLED4",
+        "R_BYPASS_CLK",
+        "R_BYPASS_DATA",
+        "R_FET_GATE",
+        "R_LVT_CLK_IN",
+        "R_LVT_CLK_OUT",
+        "R_LVT_DATA_IN",
+        "R_LVT_DATA_OUT",
+        "R_PDM_CLK_SER",
+        "R_READY_PD",
+        "R_SPI_CS_PU",
+        "R_SPI_MISO_SER",
+        "R_SPI_MOSI_SER",
+        "R_SPI_SCK_SER",
+        "R_USB_DM_SER",
+        "R_USB_DP_SER",
+        "SW1",
+        "U3",
+        "U4",
+        "U8"
+      ]
+    },
+    {
+      "name": "Resolve Footprints",
+      "status": "success",
+      "missing_components": 52,
+      "resolved": 52,
+      "resolution_rate": "100.0%"
+    },
+    {
+      "name": "Apply Assignments",
+      "status": "success",
+      "assignments_applied": 52,
+      "output_netlist": "../../hardware/k1-lightwave/k1_motherboard_revA_resolved.net"
+    },
+    {
+      "name": "Export Results",
+      "status": "success",
+      "output_directory": "../../hardware/k1-lightwave/footprint_resolution",
+      "exports": {
+        "json": "../../hardware/k1-lightwave/footprint_resolution/resolution_details.json",
+        "csv": "../../hardware/k1-lightwave/footprint_resolution/unresolved.csv",
+        "report": "../../hardware/k1-lightwave/footprint_resolution/report.txt"
+      }
+    }
+  ]
+}

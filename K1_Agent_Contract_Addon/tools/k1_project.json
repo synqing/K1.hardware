@@ -1,0 +1,133 @@
+{
+  "project": {
+    "name": "K1 Lightwave Rev-A",
+    "units": "mm"
+  },
+  "mechanical": {
+    "outline": {
+      "width": 100.0,
+      "height": 70.0,
+      "corner_radius": 1.5
+    },
+    "mounting_holes": [
+      {
+        "x": 3.0,
+        "y": 3.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      },
+      {
+        "x": 97.0,
+        "y": 3.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      },
+      {
+        "x": 97.0,
+        "y": 67.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      },
+      {
+        "x": 3.0,
+        "y": 67.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      }
+    ],
+    "keepouts": [
+      {
+        "name": "Antenna",
+        "x": 5.0,
+        "y": 5.0,
+        "w": 22.0,
+        "h": 23.0,
+        "layers": [
+          "F.Cu",
+          "B.Cu",
+          "F.Mask",
+          "B.Mask",
+          "F.Paste",
+          "B.Paste"
+        ]
+      }
+    ]
+  },
+  "stackup": {
+    "layers": 4,
+    "thickness_mm": 1.6,
+    "copper_oz": 1.0,
+    "map": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "roles": {
+      "L1": "signals",
+      "L2": "GND plane",
+      "L3": "split power (3V3, LED_5V)",
+      "L4": "signals"
+    }
+  },
+  "io": {
+    "usb": {
+      "ref": "JUSB1",
+      "edge": "south",
+      "offset_mm": 0.0
+    },
+    "led_ports": {
+      "refs": [
+        "JLED1",
+        "JLED2",
+        "JLED3",
+        "JLED4"
+      ],
+      "edge": "north",
+      "margin_mm": 6.0
+    }
+  },
+  "placement_zones": [
+    {
+      "name": "COM_A",
+      "refs": [
+        "U_COMA"
+      ],
+      "x": 20.0,
+      "y": 30.0,
+      "w": 35.0,
+      "h": 30.0,
+      "rotation": 0
+    },
+    {
+      "name": "COM_B",
+      "refs": [
+        "U_COMB"
+      ],
+      "x": 55.0,
+      "y": 15.0,
+      "w": 40.0,
+      "h": 25.0,
+      "rotation": 0
+    }
+  ],
+  "netclasses": {
+    "SPI": {
+      "width_mm": 0.2,
+      "clear_mm": 0.2,
+      "match_mm": 5.0
+    },
+    "USB_FS": {
+      "diff_ohms": 90.0,
+      "width_mm": 0.25,
+      "gap_mm": 0.25
+    }
+  },
+  "rules": {
+    "copper_to_edge_mm": 0.4,
+    "trace_min_mm": 0.15,
+    "space_min_mm": 0.15,
+    "via_drill_min_mm": 0.3,
+    "annular_min_mm": 0.15
+  }
+}

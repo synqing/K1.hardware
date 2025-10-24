@@ -1,0 +1,11 @@
+WARNING: KICAD8_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won't be searched. @ [/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap_external>:999=>/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap>:488]
+WARNING: KICAD6_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won't be searched. @ [/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap_external>:999=>/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap>:488]
+WARNING: KICAD7_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won't be searched. @ [/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap_external>:999=>/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap>:488]
+WARNING: KICAD9_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won't be searched. @ [/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap_external>:999=>/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<frozen importlib._bootstrap>:488]
+WARNING: fp-lib-table file was not found. Component footprints are not available.
+WARNING: fp-lib-table file was not found. Component footprints are not available.
+WARNING: fp-lib-table file was not found. Component footprints are not available.
+WARNING: fp-lib-table file was not found. Component footprints are not available.
+ERROR: Can't open file: Device.
+ @ [/tmp/run_skidl.py:10=>/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<string>:44]
+WARNING: Could not load KiCad schematic library "Device", falling back to backup library. @ [/tmp/run_skidl.py:10=>/Users/spectrasynq/Workspace_Management/Software/K1.hardware/hardware/k1-lightwave/<string>:44]

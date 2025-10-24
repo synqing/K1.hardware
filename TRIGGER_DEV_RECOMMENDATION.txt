@@ -1,0 +1,309 @@
+================================================================================
+TRIGGER.DEV INTEGRATION: EXECUTIVE RECOMMENDATION
+================================================================================
+
+RECOMMENDATION: PILOT (Phase 1 Only) - FreeRouting Workflow
+STATUS: Ready for implementation (low risk, high reversibility)
+ESTIMATED EFFORT: 16-24 hours engineering time
+TIMELINE: 2-3 weeks to Phase 1 completion
+COST: $0 (free tier for initial pilot)
+
+================================================================================
+THE CORE PROBLEM TRIGGER.DEV SOLVES
+================================================================================
+
+FreeRouting auto-router currently times out at 300 seconds (5 minutes) when
+enabled. Trigger.dev removes this constraint via checkpoint/resume, allowing
+complex PCBs to route for 30+ minutes without resource exhaustion.
+
+Caveat: FreeRouting is not currently in CI pipeline. Benefit only realized
+if routing becomes actual bottleneck.
+
+================================================================================
+KEY FINDINGS
+================================================================================
+
+1. LANGUAGE MISMATCH: Surmountable but not elegant
+   - K1 is Python-native (2,614 LOC across 9 MCP servers)
+   - trigger.dev is TypeScript-first
+   - Solution: Python extension (@trigger.dev/python) allows subprocess calls
+   - Implementation: Create Python runner wrappers (100-150 LOC per tool)
+   - Integration burden: Moderate (JSON serialization layer, ~200 LOC overhead)
+
+2. FAILURE PATTERN: Rare, occur at pipeline START
+   - Last 6 CI failures: 5 environment/install issues (no checkpointing helps)
+   - Zero mid-execution timeouts detected (FreeRouting not in CI)
+   - GitHub Actions 3-retry logic adequate for current patterns
+   - Checkpoint/resume feature: VALUABLE IF FreeRouting enabled, OTHERWISE NOT
+
+3. CURRENT PIPELINE TIMING: Short, linear, deterministic
+   - Total runtime: ~4 minutes (SKiDL + KiBot)
+   - GitHub Actions 6-hour timeout limit: Unused headroom
+   - No parallelization opportunities worth trigger.dev overhead
+   - Cost trade-off: Paid tier required (>10 tasks/month)
+
+4. OBSERVABILITY: Nice-to-have, not critical
+   - Current: GitHub Actions logs (post-facto, 30-day retention)
+   - trigger.dev: Real-time dashboard, distributed tracing
+   - Team assessment needed: Is visibility a pain point?
+
+5. OPERATIONAL BURDEN: Moderate learning curve
+   - Team: Python-native engineers (~2 people)
+   - New skills: TypeScript (4-6 hours), trigger.dev SDK (3-4 hours)
+   - Maintenance risk: subprocess bridge fragility, JSON parsing errors
+   - Reversibility: Easy (MCP servers unchanged, GitHub Actions works)
+
+================================================================================
+WHAT TRIGGER.DEV WILL DO
+================================================================================
+
+WILL PROVIDE:
+✅ Unlimited timeout for long-running jobs (FreeRouting: 30+ minutes)
+✅ Checkpoint system to free resources during long operations
+✅ Real-time execution dashboard
+✅ Structured logging & error tracking
+✅ Automatic retry with idempotency
+✅ Task graph execution (future, if parallelization needed)
+
+WILL NOT PROVIDE:
+❌ Faster CI builds for current 4-minute pipeline
+❌ Solution for environment/installation failures (those need code fixes)
+❌ Approval gates (would add friction to release cycle)
+❌ JLCPCB upload automation (API not available)
+
+================================================================================
+PHASED APPROACH
+================================================================================
+
+PHASE 1: FreeRouting Pilot (RECOMMENDED)
+─────────────────────────────────────────
+
+Objective: Test trigger.dev for long-running jobs in isolated context
+
+Scope:
+  1. Create trigger.dev job: freerouting_autoroute() (50 LOC TypeScript)
+  2. Python runner wrapper: freerouting_runner.py (100 LOC)
+  3. Manual HTTP trigger endpoint for testing
+  4. Documentation & runbook (50 LOC)
+
+Deliverables:
+  - /tasks/freerouting.ts (TypeScript task definition)
+  - /tasks/freerouting_runner.py (Python subprocess bridge)
+  - /docs/FREEROUTING_TRIGGER.md (runbook)
+
+Success Criteria:
+  - Routes test boards (10-15 minute runtime)
+  - Completes without timeout
+  - Checkpoints & resumes successfully
+  - Team can troubleshoot failures
+
+Effort: 16-24 hours (2-3 weeks)
+Cost: $0 (free tier)
+Risk: LOW (isolated, no production changes)
+Reversibility: Easy (delete trigger.dev job, MCP server unchanged)
+
+Timeline:
+  - Week 1: Setup trigger.dev account, read SDK docs, create skeleton
+  - Week 2: Implement runners, test locally
+  - Week 3: Cloud testing, documentation, team review
+
+─────────────────────────────────────────
+
+PHASE 2: Approval Gate Integration (IF Phase 1 successful)
+──────────────────────────────────────────────────────────
+
+Conditional on: Phase 1 positive metrics + team request
+
+Objective: Automate design validation before fabrication upload
+
+Scope:
+  1. DRC/ERC JSON parser (validate no critical violations)
+  2. Approval workflow (email + 1-click approval, database state)
+  3. Optional JLCPCB integration (if API becomes available)
+
+Effort: 30-40 hours additional (2-3 weeks)
+Cost: $20-50/month (paid tier)
+Risk: MODERATE (changes approval process, introduces new bottleneck)
+
+Decision Gate: Only proceed if Phase 1 metrics justify it
+
+─────────────────────────────────────────
+
+PHASE 3: Full Orchestration Refactor (DEFER)
+─────────────────────────────────────────────
+
+Conditional on: Phase 2 success + team strong request
+
+Objective: Replace GitHub Actions with trigger.dev task graph
+
+Scope: Complete refactor (120-160 hours)
+Risk: HIGH (replaces proven system)
+Cost: $200-500/month (many tasks)
+
+Decision: Only pursue if operational benefits justify cost + learning curve
+
+Status: NOT RECOMMENDED unless clear pain points emerge
+
+================================================================================
+WHAT NOT TO DO
+================================================================================
+
+DON'T: Full TypeScript rewrite of MCP servers
+→ Massive effort (500-1000 LOC per server), low ROI
+→ Keep Python servers, wrap with TypeScript bridge
+
+DON'T: Replace GitHub Actions immediately
+→ Current system works; trigger.dev overhead >benefit for 4-min pipeline
+→ Keep GitHub Actions as primary, use trigger.dev for specific tasks
+
+DON'T: Build approval gates in Phase 1
+→ Separate concern; pilot FreeRouting first
+→ Approval gates should be conditional (Phase 2)
+
+DON'T: Assume checkpoint/resume solves all failures
+→ Current failures are environment issues (need code fixes, not checkpoints)
+→ Only valuable if FreeRouting times out (not currently in CI)
+
+================================================================================
+COST-BENEFIT ANALYSIS
+================================================================================
+
+5-Year Total Cost of Ownership:
+
+Status Quo (GitHub Actions only):
+  - Engineer time: $0
+  - Infrastructure: $0
+  - Total: $0 (but no FreeRouting support)
+
+Phase 1 Pilot (FreeRouting only):
+  - Engineer time: 20 hours × $100/hr = $2,000
+  - Infrastructure: $0 (free tier)
+  - Total: $2,000
+  - ROI: Breakeven if FreeRouting runs 4+ times/month
+
+Full Integration (Phases 1+2):
+  - Engineer time: 60 hours × $100/hr = $6,000
+  - Infrastructure: $50/month × 60 months = $3,000
+  - Total: $9,000
+  - ROI: Only if observability + parallelization valued highly
+
+Recommendation: Phase 1 pilot is cost-effective ($2K sunk cost for knowledge).
+Full integration requires cost justification (observability + time savings).
+
+================================================================================
+RISKS & MITIGATIONS
+================================================================================
+
+Risk 1: Python-TypeScript Bridge Fragility
+  Impact: HIGH | Probability: MEDIUM
+  Mitigation: Strict schema validation, unit tests for serialization,
+              fallback to plain text error messages
+
+Risk 2: Vendor Lock-In
+  Impact: MEDIUM | Probability: LOW
+  Mitigation: Keep GitHub Actions as fallback, document task definitions,
+              archive execution history monthly
+
+Risk 3: Subprocess Timeout in Cloud Environment
+  Impact: HIGH | Probability: MEDIUM
+  Mitigation: Test with worst-case board complexity, monitor cloud resources,
+              fallback to local FreeRouting
+
+Risk 4: Approval Gate Slows Release
+  Impact: MEDIUM | Probability: HIGH
+  Mitigation: Make approval optional, set 2-hour SLA, single-click approval
+
+================================================================================
+GO/NO-GO DECISION CHECKLIST
+================================================================================
+
+Before starting Phase 1, verify:
+
+[ ] Team has capacity for 16-24 hours in next 2-3 weeks
+[ ] Someone willing to learn TypeScript basics (4-6 hours)
+[ ] FreeRouting routing is actual or anticipated bottleneck
+[ ] Team agrees to post-pilot review (4-6 weeks)
+[ ] Reversibility acceptable (willing to delete trigger.dev if fails)
+[ ] GitHub Actions as fallback understood (no rip-and-replace)
+
+If all checked: Proceed with Phase 1
+If any unchecked: Defer, revisit in 1 month
+
+================================================================================
+ALTERNATIVE APPROACHES (If trigger.dev too risky)
+================================================================================
+
+Option A: Improve GitHub Actions (Cost: $0, Effort: 8-12 hours)
+  ✓ Add matrix builds for parallel tasks
+  ✓ Cache KiCad/KiBot installations
+  ✓ Set step timeouts for tools
+  → Faster feedback without new vendor
+
+Option B: Add Monitoring (Cost: $0-50/month, Effort: 4-6 hours)
+  ✓ Grafana Cloud free tier
+  ✓ GitHub Actions log export
+  → Better observability without architecture change
+
+Option C: Document Manual Process (Cost: $0, Effort: 2-3 hours)
+  ✓ Write runbook for local FreeRouting
+  ✓ Document workaround if timeout hits
+  → Low-tech solution to timeout problem
+
+Status Quo: Keep GitHub Actions as-is (Cost: $0)
+  ✓ Proven system
+  ✓ No learning curve
+  → Works today, but FreeRouting timeout unresolved
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+If proceeding with Phase 1:
+
+1. [ ] Create trigger.dev account (free tier)
+2. [ ] Assign owner (~20 hours over 2-3 weeks)
+3. [ ] Read SDK basics (trigger.dev docs, ~5 pages)
+4. [ ] Create project skeleton (trigger new)
+5. [ ] Implement freerouting_runner.py (100 LOC)
+6. [ ] Implement tasks/freerouting.ts (50 LOC)
+7. [ ] Test locally with dev server
+8. [ ] Deploy to free cloud tier
+9. [ ] Test with sample DSN file
+10. [ ] Document runbook & troubleshooting
+11. [ ] Team review & sign-off
+12. [ ] Schedule post-pilot evaluation (4-6 weeks)
+
+If deferring:
+
+1. [ ] Document trigger.dev analysis (share this memo)
+2. [ ] Track FreeRouting timeout incidents if any
+3. [ ] Collect build time metrics (establish baseline)
+4. [ ] Revisit in 1 month with updated data
+
+================================================================================
+STAKEHOLDER SIGN-OFF
+================================================================================
+
+Engineering Lead:
+  Action: Decide Phase 1 scope (full FreeRouting, or minimal pilot?)
+  Timeline: Decision needed before week 1 starts
+
+Hardware Team:
+  Action: Confirm FreeRouting is anticipated bottleneck
+  Timeline: Feedback needed before starting Phase 1
+
+DevOps/CI Maintainer:
+  Action: Plan GitHub Actions improvements (low-effort alternative)
+  Timeline: Implement in parallel with Phase 1 if desired
+
+================================================================================
+
+FINAL VERDICT: PILOT RECOMMENDED
+Trigger.dev is low-risk, high-reversibility addition to K1 workflow.
+Phase 1 FreeRouting pilot: Go ahead if team has capacity.
+Full integration: Defer until Phase 1 metrics justify it.
+
+================================================================================
+Document prepared: 2025-10-24
+Analysis confidence: HIGH (80%+ code examination)
+Recommendation confidence: MEDIUM-HIGH (depends on team's FreeRouting needs)

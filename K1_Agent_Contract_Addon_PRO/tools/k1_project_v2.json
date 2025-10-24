@@ -1,0 +1,257 @@
+{
+  "project": {
+    "name": "K1 Lightwave Rev-A",
+    "units": "mm",
+    "origin": [
+      0.0,
+      0.0
+    ]
+  },
+  "mechanical": {
+    "outline": {
+      "width": 100.0,
+      "height": 70.0,
+      "corner_radius": 1.5
+    },
+    "mounting_holes": [
+      {
+        "x": 3.0,
+        "y": 3.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      },
+      {
+        "x": 97.0,
+        "y": 3.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      },
+      {
+        "x": 97.0,
+        "y": 67.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      },
+      {
+        "x": 3.0,
+        "y": 67.0,
+        "diameter": 3.2,
+        "keepout": 6.0
+      }
+    ],
+    "keepouts": [
+      {
+        "name": "Antenna",
+        "x": 5.0,
+        "y": 5.0,
+        "w": 22.0,
+        "h": 23.0,
+        "layers": [
+          "F.Cu",
+          "B.Cu",
+          "F.Mask",
+          "B.Mask",
+          "F.Paste",
+          "B.Paste"
+        ]
+      }
+    ],
+    "edge_via_ring": {
+      "enabled": true,
+      "pitch_mm": 3.0,
+      "inset_mm": 0.8,
+      "via": {
+        "drill_mm": 0.3,
+        "dia_mm": 0.6
+      }
+    }
+  },
+  "stackup": {
+    "layers": 4,
+    "thickness_mm": 1.6,
+    "copper_oz": 1.0,
+    "map": [
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu"
+    ],
+    "roles": {
+      "L1": "signals",
+      "L2": "GND plane",
+      "L3": "power (3V3 & LED_5V)",
+      "L4": "signals"
+    },
+    "impedance": {
+      "single_ended_ohm": 50.0,
+      "diff_ohm": 90.0
+    }
+  },
+  "power_nets": {
+    "gnd": "GND",
+    "logic_3v3": "3V3",
+    "led_5v": "LED_5V",
+    "vbus": "VBUS"
+  },
+  "io": {
+    "usb": {
+      "ref": "JUSB1",
+      "edge": "south",
+      "offset_mm": 0.0
+    },
+    "led_ports": {
+      "refs": [
+        "JLED1",
+        "JLED2",
+        "JLED3",
+        "JLED4"
+      ],
+      "edge": "north",
+      "margin_mm": 6.0
+    }
+  },
+  "placement_zones": [
+    {
+      "name": "COM_A",
+      "refs": [
+        "U_COMA"
+      ],
+      "x": 18.0,
+      "y": 30.0,
+      "w": 38.0,
+      "h": 30.0,
+      "rotation": 0
+    },
+    {
+      "name": "COM_B",
+      "refs": [
+        "U_COMB"
+      ],
+      "x": 58.0,
+      "y": 18.0,
+      "w": 38.0,
+      "h": 26.0,
+      "rotation": 0
+    }
+  ],
+  "routing": {
+    "spi": {
+      "nets": {
+        "sck": "SPI_SCK",
+        "mosi": "SPI_MOSI",
+        "miso": "SPI_MISO",
+        "cs": "SPI_CS"
+      },
+      "guard": {
+        "enabled": true,
+        "offset_mm": 1.2,
+        "pitch_mm": 2.0,
+        "via": {
+          "drill_mm": 0.3,
+          "dia_mm": 0.6
+        }
+      }
+    },
+    "netclasses": {
+      "SPI": {
+        "width_mm": 0.2,
+        "clear_mm": 0.2,
+        "nets": [
+          "SPI_SCK",
+          "SPI_MOSI",
+          "SPI_MISO",
+          "SPI_CS"
+        ]
+      },
+      "USB_FS": {
+        "width_mm": 0.25,
+        "clear_mm": 0.2,
+        "diff_gap_mm": 0.25,
+        "nets": [
+          "USB_D+",
+          "USB_D-"
+        ]
+      }
+    }
+  },
+  "planes": {
+    "gnd": {
+      "layer": "In1.Cu",
+      "expand_mm": -0.2
+    },
+    "power_islands": [
+      {
+        "net": "3V3",
+        "layer": "In2.Cu",
+        "rect": {
+          "x": 5.0,
+          "y": 35.0,
+          "w": 45.0,
+          "h": 28.0
+        }
+      },
+      {
+        "net": "LED_5V",
+        "layer": "In2.Cu",
+        "rect": {
+          "x": 50.0,
+          "y": 5.0,
+          "w": 45.0,
+          "h": 28.0
+        }
+      }
+    ]
+  },
+  "decoupling": {
+    "max_distance_mm": 2.5,
+    "power_pin_keywords": [
+      "VDD",
+      "VCC",
+      "3V3",
+      "1V8",
+      "VIN",
+      "AVDD"
+    ],
+    "cap_ident": {
+      "by_ref_prefix": "C",
+      "require_gnd": true
+    }
+  },
+  "thermal": {
+    "hot_parts": [
+      {
+        "refs": [
+          "U_LDO1",
+          "U_REG1"
+        ],
+        "via_grid": {
+          "pitch_mm": 1.2,
+          "rows": 2,
+          "cols": 3,
+          "via": {
+            "drill_mm": 0.3,
+            "dia_mm": 0.6
+          }
+        }
+      }
+    ]
+  },
+  "dfm": {
+    "copper_to_edge_mm": 0.4,
+    "trace_min_mm": 0.15,
+    "space_min_mm": 0.15,
+    "via_drill_min_mm": 0.3,
+    "annular_min_mm": 0.15
+  },
+  "testpoints": {
+    "nets": [
+      "SPI_SCK",
+      "SPI_MOSI",
+      "SPI_MISO",
+      "SPI_CS",
+      "3V3",
+      "GND"
+    ],
+    "footprint": "TestPoint:TestPoint_Pad_D1.00mm"
+  }
+}

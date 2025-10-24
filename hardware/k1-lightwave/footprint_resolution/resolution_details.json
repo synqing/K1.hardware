@@ -1,0 +1,1566 @@
+{
+  "components": {
+    "C3": {
+      "value": "1u",
+      "description": "Unpolarized capacitor",
+      "library": "Device",
+      "part": "C",
+      "type": "Capacitor",
+      "current_footprint": ""
+    },
+    "C4": {
+      "value": "12p",
+      "description": "Unpolarized capacitor",
+      "library": "Device",
+      "part": "C",
+      "type": "Capacitor",
+      "current_footprint": ""
+    },
+    "C5": {
+      "value": "12p",
+      "description": "Unpolarized capacitor",
+      "library": "Device",
+      "part": "C",
+      "type": "Capacitor",
+      "current_footprint": ""
+    },
+    "C_BIN1": {
+      "value": "10u",
+      "description": "Unpolarized capacitor",
+      "library": "Device",
+      "part": "C",
+      "type": "Capacitor",
+      "current_footprint": ""
+    },
+    "C_BOUT1": {
+      "value": "10u",
+      "description": "Unpolarized capacitor",
+      "library": "Device",
+      "part": "C",
+      "type": "Capacitor",
+      "current_footprint": ""
+    },
+    "C_INA": {
+      "value": "100n",
+      "description": "Unpolarized capacitor",
+      "library": "Device",
+      "part": "C",
+      "type": "Capacitor",
+      "current_footprint": ""
+    },
+    "D1": {
+      "value": "TVS5V",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D2": {
+      "value": "TVS5V",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D3": {
+      "value": "TVS5V",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D4": {
+      "value": "TVS5V",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D_ESD_CC1": {
+      "value": "SMF05CA",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D_ESD_CC2": {
+      "value": "SMF05CA",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D_ESD_DM": {
+      "value": "SMAJ5.0A",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D_ESD_DP": {
+      "value": "SMAJ5.0A",
+      "description": "Bidirectional transient-voltage-suppression diode",
+      "library": "Device",
+      "part": "D_TVS",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "D_IDEAL": {
+      "value": "Schottky",
+      "description": "Diode",
+      "library": "Device",
+      "part": "D",
+      "type": "Diode",
+      "current_footprint": ""
+    },
+    "F1": {
+      "value": "Polyfuse_0.75A",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "F2": {
+      "value": "Polyfuse_0.75A",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "F3": {
+      "value": "Polyfuse_0.75A",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "F4": {
+      "value": "Polyfuse_0.75A",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "F_USB": {
+      "value": "1A_1206",
+      "description": "Fuse",
+      "library": "Device",
+      "part": "Fuse",
+      "type": "Unknown",
+      "current_footprint": ""
+    },
+    "J1": {
+      "value": "USB_C_Receptacle_USB2.0_14P",
+      "description": "USB 2.0-only 14P Type-C Receptacle connector",
+      "library": "Connector",
+      "part": "USB_C_Receptacle_USB2.0_14P",
+      "type": "Connector",
+      "current_footprint": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+    },
+    "J11": {
+      "value": "K1-M2B_COM-A",
+      "description": "Generic connector, single row, 01x40, script generated",
+      "library": "Connector",
+      "part": "Conn_01x40_Pin",
+      "type": "IC",
+      "current_footprint": ""
+    },
+    "J12": {
+      "value": "ESP32-S3_COM-B_LOGICAL",
+      "description": "Generic connector, single row, 01x40, script generated",
+      "library": "Connector",
+      "part": "Conn_01x40_Pin",
+      "type": "IC",
+      "current_footprint": ""
+    },
+    "J2": {
+      "value": "LED_5V_IN",
+      "description": "Generic connector, single row, 01x02, script generated",
+      "library": "Connector",
+      "part": "Conn_01x02_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_Molex:Molex_MicroFit_3.0_1x02"
+    },
+    "J3": {
+      "value": "I2C_PORT_1_3V3",
+      "description": "Generic connector, single row, 01x04, script generated",
+      "library": "Connector",
+      "part": "Conn_01x04_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    },
+    "J4": {
+      "value": "I2C_PORT_2_3V3",
+      "description": "Generic connector, single row, 01x04, script generated",
+      "library": "Connector",
+      "part": "Conn_01x04_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    },
+    "J5": {
+      "value": "I2C_PORT_3_5V",
+      "description": "Generic connector, single row, 01x04, script generated",
+      "library": "Connector",
+      "part": "Conn_01x04_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    },
+    "J6": {
+      "value": "I2C_PORT_4_5V",
+      "description": "Generic connector, single row, 01x04, script generated",
+      "library": "Connector",
+      "part": "Conn_01x04_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    },
+    "J7": {
+      "value": "I2S_MIC_1",
+      "description": "Generic connector, single row, 01x06, script generated",
+      "library": "Connector",
+      "part": "Conn_01x06_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+    },
+    "J8": {
+      "value": "I2S_MIC_2",
+      "description": "Generic connector, single row, 01x06, script generated",
+      "library": "Connector",
+      "part": "Conn_01x06_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+    },
+    "J9": {
+      "value": "PDM_MIC_HEADER",
+      "description": "Generic connector, single row, 01x06, script generated",
+      "library": "Connector",
+      "part": "Conn_01x06_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+    },
+    "JLED1": {
+      "value": "LED_OUT_1",
+      "description": "Generic connector, single row, 01x03, script generated",
+      "library": "Connector",
+      "part": "Conn_01x03_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_Molex:Molex_KK-254_1x03"
+    },
+    "JLED2": {
+      "value": "LED_OUT_2",
+      "description": "Generic connector, single row, 01x03, script generated",
+      "library": "Connector",
+      "part": "Conn_01x03_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_Molex:Molex_KK-254_1x03"
+    },
+    "JLED3": {
+      "value": "LED_OUT_3",
+      "description": "Generic connector, single row, 01x03, script generated",
+      "library": "Connector",
+      "part": "Conn_01x03_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_Molex:Molex_KK-254_1x03"
+    },
+    "JLED4": {
+      "value": "LED_OUT_4",
+      "description": "Generic connector, single row, 01x03, script generated",
+      "library": "Connector",
+      "part": "Conn_01x03_Pin",
+      "type": "IC",
+      "current_footprint": "Connector_Molex:Molex_KK-254_1x03"
+    },
+    "R1": {
+      "value": "5.1k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R2": {
+      "value": "5.1k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R3": {
+      "value": "10k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R4": {
+      "value": "10k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R5": {
+      "value": "10k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R6": {
+      "value": "10k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R7": {
+      "value": "0.05R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "RLED1": {
+      "value": "330R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "RLED2": {
+      "value": "330R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "RLED3": {
+      "value": "330R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "RLED4": {
+      "value": "330R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_BYPASS_CLK": {
+      "value": "0R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_BYPASS_DATA": {
+      "value": "0R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_FET_GATE": {
+      "value": "10k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_LVT_CLK_IN": {
+      "value": "0R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_LVT_CLK_OUT": {
+      "value": "0R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_LVT_DATA_IN": {
+      "value": "0R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_LVT_DATA_OUT": {
+      "value": "0R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_PDM_CLK_SER": {
+      "value": "33R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_READY_PD": {
+      "value": "100k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_SPI_CS_PU": {
+      "value": "10k",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_SPI_MISO_SER": {
+      "value": "33R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_SPI_MOSI_SER": {
+      "value": "33R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_SPI_SCK_SER": {
+      "value": "33R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_USB_DM_SER": {
+      "value": "27R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "R_USB_DP_SER": {
+      "value": "27R",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "SW1": {
+      "value": "Push_Button",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "U3": {
+      "value": "Logic_Shifter_74AHCT125",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    },
+    "U4": {
+      "value": "24LC256",
+      "description": "I2C Serial EEPROM, 256Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8",
+      "library": "Memory_EEPROM",
+      "part": "24LC256",
+      "type": "IC",
+      "current_footprint": ""
+    },
+    "U8": {
+      "value": "Logic_Buffer_SN74AXC2T245",
+      "description": "Resistor",
+      "library": "Device",
+      "part": "R",
+      "type": "Resistor",
+      "current_footprint": ""
+    }
+  },
+  "resolution": {
+    "C3": [
+      {
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Capacitor"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "C4": [
+      {
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Capacitor"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "C5": [
+      {
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Capacitor"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "C_BIN1": [
+      {
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Capacitor"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "C_BOUT1": [
+      {
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Capacitor"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "C_INA": [
+      {
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Capacitor"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "D1": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D2": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D3": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D4": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D_ESD_CC1": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D_ESD_CC2": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D_ESD_DM": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D_ESD_DP": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323_HandSoldering",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Diode_SMD:D_SOD-323F",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Diode"
+      }
+    ],
+    "D_IDEAL": [
+      {
+        "footprint": "Diode_SMD:D_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Diode"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "F1": [
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_2x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "F2": [
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_2x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "F3": [
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_2x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "F4": [
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_2x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "F_USB": [
+      {
+        "footprint": "Fuse.pretty:Fuseholder_Littelfuse_445_030_series_5x30mm",
+        "source": "kicad_lib",
+        "confidence": 0.7,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Fuse.pretty"
+      },
+      {
+        "footprint": "Fuse.pretty:Fuseholder_Clip-5x20mm_Schurter_OG_Lateral_P15.00x5.00mm_D1.3mm_Horizontal",
+        "source": "kicad_lib",
+        "confidence": 0.7,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Fuse.pretty"
+      },
+      {
+        "footprint": "Fuse.pretty:Fuse_0805_2012Metric",
+        "source": "kicad_lib",
+        "confidence": 0.7,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Fuse.pretty"
+      }
+    ],
+    "J11": [
+      {
+        "footprint": "Connector_USB:USB_C_Receptacle_Horizontal_GCT_USB4125-GF",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Connector"
+      },
+      {
+        "footprint": "Connector_USB:USB_Micro-B_Wuerth_65100516121",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Connector"
+      },
+      {
+        "footprint": "Connector_JST:JST_PH_B2B-PH-K_02x2.00mm_Straight",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Connector"
+      }
+    ],
+    "J12": [
+      {
+        "footprint": "Connector_USB:USB_C_Receptacle_Horizontal_GCT_USB4125-GF",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Connector"
+      },
+      {
+        "footprint": "Connector_USB:USB_Micro-B_Wuerth_65100516121",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for Connector"
+      },
+      {
+        "footprint": "Connector_JST:JST_PH_B2B-PH-K_02x2.00mm_Straight",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for Connector"
+      }
+    ],
+    "R1": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R2": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R3": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R4": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R5": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R6": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R7": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "RLED1": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "RLED2": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "RLED3": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "RLED4": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_BYPASS_CLK": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_BYPASS_DATA": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_FET_GATE": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_LVT_CLK_IN": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_LVT_CLK_OUT": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_LVT_DATA_IN": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_LVT_DATA_OUT": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_PDM_CLK_SER": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_READY_PD": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_SPI_CS_PU": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_SPI_MISO_SER": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_SPI_MOSI_SER": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_SPI_SCK_SER": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_USB_DM_SER": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "R_USB_DP_SER": [
+      {
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for Resistor"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      },
+      {
+        "footprint": "LED_SMD.pretty:LED_0603_1608Metric",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/LED_SMD.pretty"
+      }
+    ],
+    "SW1": [
+      {
+        "footprint": "Resistor_SMD.pretty:R_0201_0603Metric_Pad0.64x0.40mm_HandSolder",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_5x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      },
+      {
+        "footprint": "Resistor_SMD.pretty:R_Array_Convex_2x0603",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Resistor_SMD.pretty"
+      }
+    ],
+    "U3": [
+      {
+        "footprint": "Package_SON:LQFP-32_7x7mm_P0.8mm",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for MCU"
+      },
+      {
+        "footprint": "Sensor_Current.pretty:Allegro_QFN-12-10-1EP_3x3mm_P0.5mm",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Sensor_Current.pretty"
+      },
+      {
+        "footprint": "Oscillator.pretty:Oscillator_SMD_SiT_PQFN-4Pin_2.5x2.0mm",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Oscillator.pretty"
+      }
+    ],
+    "U4": [
+      {
+        "footprint": "Package_SON:LQFP-32_7x7mm_P0.8mm",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for MCU"
+      },
+      {
+        "footprint": "Package_BGA:ESP32-S3_QFN56",
+        "source": "pattern",
+        "confidence": 0.85,
+        "notes": "Pattern-based suggestion for MCU"
+      },
+      {
+        "footprint": "Package_DFN_QFN:QFN-48_7x7mm_P0.5mm",
+        "source": "pattern",
+        "confidence": 0.7,
+        "notes": "Pattern-based suggestion for MCU"
+      }
+    ],
+    "U8": [
+      {
+        "footprint": "Package_SON:LQFP-32_7x7mm_P0.8mm",
+        "source": "pattern",
+        "confidence": 1.0,
+        "notes": "Pattern-based suggestion for MCU"
+      },
+      {
+        "footprint": "Sensor_Current.pretty:Allegro_QFN-12-10-1EP_3x3mm_P0.5mm",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Sensor_Current.pretty"
+      },
+      {
+        "footprint": "Oscillator.pretty:Oscillator_SMD_SiT_PQFN-4Pin_2.5x2.0mm",
+        "source": "kicad_lib",
+        "confidence": 0.8999999999999999,
+        "notes": "Local KiCad library: /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/Oscillator.pretty"
+      }
+    ]
+  }
+}
