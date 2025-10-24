@@ -1,45 +1,2237 @@
-(kicad_pcb (version 20231009) (generator "K1-Gen")
-  (general (thickness 1.6))
-  (paper "A4")
-  (layers
-    (0 "F.Cu" signal) (31 "B.Cu" signal)
-    (36 "B.SilkS" user) (37 "F.SilkS" user)
-    (38 "B.Mask" user) (39 "F.Mask" user)
-    (44 "Edge.Cuts" user)
-  )
-  (setup (stackup (layer "F.Cu") (layer "B.Cu")))
-  (gr_rect (start 10 10) (end 110 70) (layer "Edge.Cuts") (width 0.1))
+(kicad_pcb
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(general
+		(thickness 1.6)
+		(legacy_teardrops no)
+	)
+	(paper "A4")
+	(layers
+		(0 "F.Cu" signal)
+		(2 "B.Cu" signal)
+		(5 "F.SilkS" user "F.Silkscreen")
+		(7 "B.SilkS" user "B.Silkscreen")
+		(1 "F.Mask" user)
+		(3 "B.Mask" user)
+		(25 "Edge.Cuts" user)
+		(27 "Margin" user)
+		(31 "F.CrtYd" user "F.Courtyard")
+		(29 "B.CrtYd" user "B.Courtyard")
+	)
+	(setup
+		(stackup
+			(layer "F.Cu"
+				(type "copper")
+				(thickness 0.035)
+			)
+			(layer "B.Cu"
+				(type "copper")
+				(thickness 0.035)
+			)
+			(copper_finish "None")
+			(dielectric_constraints no)
+		)
+		(pad_to_mask_clearance 0)
+		(allow_soldermask_bridges_in_footprints no)
+		(tenting front back)
+		(pcbplotparams
+			(layerselection 0x00000000_00000000_55555555_5755f5ff)
+			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
+			(disableapertmacros no)
+			(usegerberextensions no)
+			(usegerberattributes yes)
+			(usegerberadvancedattributes yes)
+			(creategerberjobfile yes)
+			(dashed_line_dash_ratio 12.000000)
+			(dashed_line_gap_ratio 3.000000)
+			(svgprecision 4)
+			(plotframeref no)
+			(mode 1)
+			(useauxorigin no)
+			(hpglpennumber 1)
+			(hpglpenspeed 20)
+			(hpglpendiameter 15.000000)
+			(pdf_front_fp_property_popups yes)
+			(pdf_back_fp_property_popups yes)
+			(pdf_metadata yes)
+			(pdf_single_document no)
+			(dxfpolygonmode yes)
+			(dxfimperialunits yes)
+			(dxfusepcbnewfont yes)
+			(psnegative no)
+			(psa4output no)
+			(plot_black_and_white yes)
+			(sketchpadsonfab no)
+			(plotpadnumbers no)
+			(hidednponfab no)
+			(sketchdnponfab yes)
+			(crossoutdnponfab yes)
+			(subtractmaskfromsilk no)
+			(outputformat 1)
+			(mirror no)
+			(drillshape 1)
+			(scaleselection 1)
+			(outputdirectory "")
+		)
+	)
+	(net 0 "")
+	(gr_rect
+		(start 10 10)
+		(end 110 70)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "cf83137b-c0ca-43d0-ad07-128c439dc37a")
+	)
+	(embedded_fonts no)
+  (footprint "Capacitor_SMD:C_0603_1608Metric"
+    (at 5.00 5.00 0)
+    (descr "C_0603_1608Metric")
+    (tags "C3")
+    (layer "F.Cu")
+    (uuid "D4879299-19A7-44E9-B92E-E6FF1C3F787C")
+    (property "Reference" "C3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "1u"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "63bf7160-e7a7-4b6d-9849-6669b600f8cf")))
 
-  (net_class "Default" "Default rules"
-    (clearance 0.20) (trace_width 0.25)
-    (via_dia 0.80) (via_drill 0.40)
-    (uvia_dia 0.30) (uvia_drill 0.10)
-  )
-  (net_class "LED_POWER" "High-current LED 5V"
-    (clearance 0.50) (trace_width 2.00)
-    (via_dia 1.60) (via_drill 0.80)
-    (add_net "LED_5V")
-  )
-  (net_class "VBUS" "USB 5V controller domain"
-    (clearance 0.25) (trace_width 0.80)
-    (via_dia 1.20) (via_drill 0.60)
-    (add_net "VBUS_USB_5V")
-  )
-  (net_class "LED_DATA" "WS2812/SK6812 data"
-    (clearance 0.20) (trace_width 0.30)
-    (via_dia 0.80) (via_drill 0.40)
-    (add_net "LED_DATA1_IN") (add_net "LED_DATA2_IN")
-    (add_net "LED_DATA3_IN") (add_net "LED_DATA4_IN")
-  )
-  (net_class "I2C" "I2C buses"
-    (clearance 0.20) (trace_width 0.30)
-    (via_dia 0.80) (via_drill 0.40)
-    (add_net "SDA") (add_net "SCL")
-  )
-  (net_class "USB" "USB D+/D-"
-    (clearance 0.20) (trace_width 0.25)
-    (diff_pair_width 0.15) (diff_pair_gap 0.15)
-    (via_dia 0.80) (via_drill 0.40)
-    (add_net "USB_D+") (add_net "USB_D-")
-  )
+  (footprint "Capacitor_SMD:C_0603_1608Metric"
+    (at 15.00 5.00 0)
+    (descr "C_0603_1608Metric")
+    (tags "C4")
+    (layer "F.Cu")
+    (uuid "6B8B2CB0-E7EA-4637-BD49-0366D42B8D82")
+    (property "Reference" "C4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "12p"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "79ce36ae-44d1-4dcc-814a-e788ec48fd89")))
+
+  (footprint "Capacitor_SMD:C_0603_1608Metric"
+    (at 25.00 5.00 0)
+    (descr "C_0603_1608Metric")
+    (tags "C5")
+    (layer "F.Cu")
+    (uuid "1525A4CE-D4BB-4782-A106-641E392C41E3")
+    (property "Reference" "C5"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "12p"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "d9ae840e-56c0-42b0-89bc-3d5bc7045dcf")))
+
+  (footprint "Capacitor_SMD:C_1206_3216Metric"
+    (at 35.00 5.00 0)
+    (descr "C_1206_3216Metric")
+    (tags "C_BIN1")
+    (layer "F.Cu")
+    (uuid "40AE2D73-D92D-49B5-93CB-2B97219759EF")
+    (property "Reference" "C_BIN1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10u"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "ce1ae847-0389-4332-b116-05eb058a4d2e")))
+
+  (footprint "Capacitor_SMD:C_1206_3216Metric"
+    (at 45.00 5.00 0)
+    (descr "C_1206_3216Metric")
+    (tags "C_BOUT1")
+    (layer "F.Cu")
+    (uuid "BD27FE8F-2DBC-45F0-AB5E-729E2D5B9A06")
+    (property "Reference" "C_BOUT1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10u"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "6917db49-d7b6-4ad4-8116-5179a23788de")))
+
+  (footprint "Capacitor_SMD:C_0603_1608Metric"
+    (at 55.00 5.00 0)
+    (descr "C_0603_1608Metric")
+    (tags "C_INA")
+    (layer "F.Cu")
+    (uuid "23FF47DF-EE8D-4621-8AB4-D5F43B65E509")
+    (property "Reference" "C_INA"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "100n"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "4b901f5b-b3d6-4a35-8241-b8e2c1929e0a")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 65.00 5.00 0)
+    (descr "D_SOD-323")
+    (tags "D1")
+    (layer "F.Cu")
+    (uuid "E9508907-F153-4217-9E8C-E652718118AA")
+    (property "Reference" "D1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "TVS5V"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "33d0e9b7-3ad3-4853-8755-9027192d3999")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 75.00 5.00 0)
+    (descr "D_SOD-323")
+    (tags "D2")
+    (layer "F.Cu")
+    (uuid "D2C3E5EF-52ED-4CC8-8026-B38D56A1C7D1")
+    (property "Reference" "D2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "TVS5V"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "c8c4d597-7318-4a9e-a047-2ed9a523772c")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 5.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D3")
+    (layer "F.Cu")
+    (uuid "FB2B8E90-73EB-49BE-A858-933F0455D288")
+    (property "Reference" "D3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "TVS5V"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "7c7093de-f237-49dd-b2bd-5e8e8b3b88b8")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 15.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D4")
+    (layer "F.Cu")
+    (uuid "3639C950-9655-4337-8EC9-7CE9177DC1BD")
+    (property "Reference" "D4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "TVS5V"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "24e2e6a9-fc5a-4aaf-8aa1-66781a6f7d14")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 25.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D_ESD_CC1")
+    (layer "F.Cu")
+    (uuid "00765170-8CFA-4F61-91F0-CAFE4AEB2935")
+    (property "Reference" "D_ESD_CC1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "SMF05CA"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "79d8f30c-2d0e-4b66-807c-af2d6f8818ab")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 35.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D_ESD_CC2")
+    (layer "F.Cu")
+    (uuid "D2D7B6BE-0EB4-458C-928C-41DD7C5F1B55")
+    (property "Reference" "D_ESD_CC2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "SMF05CA"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "0ea517aa-25b3-4a1f-912c-c709710651cf")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 45.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D_ESD_DM")
+    (layer "F.Cu")
+    (uuid "796C88B3-0057-47FE-BFE6-B5AF83FA0038")
+    (property "Reference" "D_ESD_DM"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "SMAJ5.0A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "fde72819-d503-4057-a272-0b9f9c87b37d")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 55.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D_ESD_DP")
+    (layer "F.Cu")
+    (uuid "D52DF751-EE45-4129-A939-3AD6CF467994")
+    (property "Reference" "D_ESD_DP"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "SMAJ5.0A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "d46ddba3-b5c6-438d-9cdf-00b7af8ce528")))
+
+  (footprint "Diode_SMD:D_SOD-323"
+    (at 65.00 15.00 0)
+    (descr "D_SOD-323")
+    (tags "D_IDEAL")
+    (layer "F.Cu")
+    (uuid "7FD99158-F4E3-4922-976B-22454818B70B")
+    (property "Reference" "D_IDEAL"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Schottky"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Diode_SMD:D_SOD-323"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "1d114c9d-4e5d-4bd3-88d7-80ce7c3ad22a")))
+
+  (footprint "Fuse:Fuse_1206_3216Metric"
+    (at 75.00 15.00 0)
+    (descr "Fuse_1206_3216Metric")
+    (tags "F1")
+    (layer "F.Cu")
+    (uuid "78B5AF20-2842-4544-9C86-0DB159EE875C")
+    (property "Reference" "F1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Polyfuse_0.75A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Fuse:Fuse_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "65ceb35a-a864-45f7-a490-7004156073a6")))
+
+  (footprint "Fuse:Fuse_1206_3216Metric"
+    (at 5.00 25.00 0)
+    (descr "Fuse_1206_3216Metric")
+    (tags "F2")
+    (layer "F.Cu")
+    (uuid "E3CA67E1-58CE-4747-BC5E-DF0BCC8C7E2B")
+    (property "Reference" "F2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Polyfuse_0.75A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Fuse:Fuse_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "1d82de91-68c6-4cb8-ae95-da74e2ba5131")))
+
+  (footprint "Fuse:Fuse_1206_3216Metric"
+    (at 15.00 25.00 0)
+    (descr "Fuse_1206_3216Metric")
+    (tags "F3")
+    (layer "F.Cu")
+    (uuid "4721DEC5-095E-484D-B650-7579FA12A8BA")
+    (property "Reference" "F3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Polyfuse_0.75A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Fuse:Fuse_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "3dcca537-6546-4e5d-9e01-a42f86e46493")))
+
+  (footprint "Fuse:Fuse_1206_3216Metric"
+    (at 25.00 25.00 0)
+    (descr "Fuse_1206_3216Metric")
+    (tags "F4")
+    (layer "F.Cu")
+    (uuid "F00ED718-E670-46E1-9969-0FB36BC77A7F")
+    (property "Reference" "F4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Polyfuse_0.75A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Fuse:Fuse_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "15390b99-e1af-4ce4-9fc0-51dee7d8291c")))
+
+  (footprint "Fuse:Fuse_1206_3216Metric"
+    (at 35.00 25.00 0)
+    (descr "Fuse_1206_3216Metric")
+    (tags "F_USB")
+    (layer "F.Cu")
+    (uuid "D5798F30-4952-4F1F-98AB-CB2E3BE3DEC0")
+    (property "Reference" "F_USB"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "1A_1206"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Fuse:Fuse_1206_3216Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "0cda1aff-87ee-4847-9ffa-a4eae6b76d42")))
+
+  (footprint "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+    (at 45.00 25.00 0)
+    (descr "USB_C_Receptacle_HRO_TYPE-C-31-M-12")
+    (tags "J1")
+    (layer "F.Cu")
+    (uuid "1D152B1B-78E7-421B-BBA0-6A241123B083")
+    (property "Reference" "J1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "USB_C_Receptacle_USB2.0_14P"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "6cf4597d-96d3-4c4d-9303-2980f33eabf0")))
+
+  (footprint "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical"
+    (at 55.00 25.00 0)
+    (descr "PinHeader_1x40_P2.54mm_Vertical")
+    (tags "J11")
+    (layer "F.Cu")
+    (uuid "926AA5BC-EE6F-4064-A79D-9645BBC9E0DB")
+    (property "Reference" "J11"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "K1-M2B_COM-A"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "d6b82f35-fb24-4de8-846f-9561f6fe3f7a")))
+
+  (footprint "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical"
+    (at 65.00 25.00 0)
+    (descr "PinHeader_1x40_P2.54mm_Vertical")
+    (tags "J12")
+    (layer "F.Cu")
+    (uuid "5852CC5D-8145-4A58-AEF0-126F49E209F8")
+    (property "Reference" "J12"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "ESP32-S3_COM-B_LOGICAL"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x40_P2.54mm_Vertical"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "610739df-1c0d-4d2b-acfe-807aab4ef83f")))
+
+  (footprint "Connector_Molex:Molex_MicroFit_3.0_1x02"
+    (at 75.00 25.00 0)
+    (descr "Molex_MicroFit_3.0_1x02")
+    (tags "J2")
+    (layer "F.Cu")
+    (uuid "AE8509CA-B1E4-4083-A7D4-FDEC0585D442")
+    (property "Reference" "J2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "LED_5V_IN"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_Molex:Molex_MicroFit_3.0_1x02"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "a33dc723-64f5-450f-a2c0-30a75d89b31b")))
+
+  (footprint "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    (at 5.00 35.00 0)
+    (descr "JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
+    (tags "J3")
+    (layer "F.Cu")
+    (uuid "5E83DEF9-9443-4D9E-806D-4B51EAA9318C")
+    (property "Reference" "J3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "I2C_PORT_1_3V3"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "bff6b6b9-c566-4825-8325-7b02f41c2cd4")))
+
+  (footprint "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    (at 15.00 35.00 0)
+    (descr "JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
+    (tags "J4")
+    (layer "F.Cu")
+    (uuid "8F03C5D2-6903-4755-A2A2-2B770CD6BEE1")
+    (property "Reference" "J4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "I2C_PORT_2_3V3"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "1a66a1c0-2515-483a-86e3-c470b7826313")))
+
+  (footprint "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    (at 25.00 35.00 0)
+    (descr "JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
+    (tags "J5")
+    (layer "F.Cu")
+    (uuid "6CBCC59A-5768-479A-8D25-D7CFA65A1042")
+    (property "Reference" "J5"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "I2C_PORT_3_5V"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "f07d5f84-b206-4605-921c-db8246ffb2e7")))
+
+  (footprint "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+    (at 35.00 35.00 0)
+    (descr "JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
+    (tags "J6")
+    (layer "F.Cu")
+    (uuid "E5307295-01A4-4E98-89D6-75A12B969DA9")
+    (property "Reference" "J6"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "I2C_PORT_4_5V"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "173316e4-8b2e-475f-9378-09cf37660c96")))
+
+  (footprint "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+    (at 45.00 35.00 0)
+    (descr "JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal")
+    (tags "J7")
+    (layer "F.Cu")
+    (uuid "7A97EB1B-F494-480E-8ECC-6179F6D2BB9A")
+    (property "Reference" "J7"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "I2S_MIC_1"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "19af4c33-c577-401c-b078-bf6494442a22")))
+
+  (footprint "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+    (at 55.00 35.00 0)
+    (descr "JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal")
+    (tags "J8")
+    (layer "F.Cu")
+    (uuid "E1D8DA0B-4B32-4010-B5A7-A27A316689C9")
+    (property "Reference" "J8"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "I2S_MIC_2"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "a1b3c52a-e28d-467a-ab83-7b0a5ca501f8")))
+
+  (footprint "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal"
+    (at 65.00 35.00 0)
+    (descr "JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal")
+    (tags "J9")
+    (layer "F.Cu")
+    (uuid "6AACB39E-EA94-4C14-B6E8-C471D99A0E14")
+    (property "Reference" "J9"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "PDM_MIC_HEADER"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "3e423a01-15a9-4e4d-96f7-fa3a7d4c4fbc")))
+
+  (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+    (at 75.00 35.00 0)
+    (descr "Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
+    (tags "JLED1")
+    (layer "F.Cu")
+    (uuid "82FA949D-265F-4E1C-B5FD-0B43DD259856")
+    (property "Reference" "JLED1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "LED_OUT_1"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "d507b1ee-1dad-4bfa-a66d-1f2dd8bc93d2")))
+
+  (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+    (at 5.00 45.00 0)
+    (descr "Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
+    (tags "JLED2")
+    (layer "F.Cu")
+    (uuid "FBC39A24-0E97-4B57-824E-5AA354417877")
+    (property "Reference" "JLED2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "LED_OUT_2"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "16f8c12e-c540-40d2-ba8b-83494d321893")))
+
+  (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+    (at 15.00 45.00 0)
+    (descr "Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
+    (tags "JLED3")
+    (layer "F.Cu")
+    (uuid "B562B5D0-8A23-48AF-B191-E066659A200C")
+    (property "Reference" "JLED3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "LED_OUT_3"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "6f2c5a0a-12a3-4312-8b83-3cbf377aff70")))
+
+  (footprint "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+    (at 25.00 45.00 0)
+    (descr "Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical")
+    (tags "JLED4")
+    (layer "F.Cu")
+    (uuid "09319B72-6C47-4E07-B3DA-57A2711BAE93")
+    (property "Reference" "JLED4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "LED_OUT_4"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "d6c93b6f-c9e4-447c-ba0f-5ceeba6fcfd3")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 35.00 45.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R1")
+    (layer "F.Cu")
+    (uuid "0A8AFED7-F04E-482E-A400-5A9DA691C46D")
+    (property "Reference" "R1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "5.1k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "5bf0cc7e-1a61-4aaa-ab34-d69035acc367")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 45.00 45.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R2")
+    (layer "F.Cu")
+    (uuid "9B3BE380-C1DF-4E0A-8FA7-4D8894EF63D8")
+    (property "Reference" "R2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "5.1k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "4c77cd07-db30-4429-b9b8-7604b12d326c")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 55.00 45.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R3")
+    (layer "F.Cu")
+    (uuid "D9AA4520-285E-46F6-87A5-5A2AA6BC485B")
+    (property "Reference" "R3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "3c2cc086-3dc4-47e9-95f1-f3844ab9a068")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 65.00 45.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R4")
+    (layer "F.Cu")
+    (uuid "2F6DB846-BBFF-45C0-8FE9-BBEA82C19388")
+    (property "Reference" "R4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "ec737ed6-8767-457f-95b9-6ed21b5b0030")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 75.00 45.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R5")
+    (layer "F.Cu")
+    (uuid "3FC80DEF-E3BC-4B99-8857-327E3D8D9FAB")
+    (property "Reference" "R5"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "28f10d13-ddc0-4cab-bf31-b1e32e7dee50")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 5.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R6")
+    (layer "F.Cu")
+    (uuid "81BD89E6-853F-40C1-9EAA-49EB9F373011")
+    (property "Reference" "R6"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "8bf3c78a-3a1c-4bdd-9e5a-9636d789e7a2")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 15.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R7")
+    (layer "F.Cu")
+    (uuid "2BF34B2E-93E0-496E-B555-FE2481BF9D4B")
+    (property "Reference" "R7"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0.05R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "6d9b9adb-b7fa-4d39-8cfb-3ffce1db87b3")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 25.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "RLED1")
+    (layer "F.Cu")
+    (uuid "D35504F5-ED95-403E-89E4-9EF93A9EBFA1")
+    (property "Reference" "RLED1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "330R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "76b04ae0-8cc0-4c37-9af2-3396a97c8d91")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 35.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "RLED2")
+    (layer "F.Cu")
+    (uuid "115432E8-A75B-4DF3-AA9E-330288761941")
+    (property "Reference" "RLED2"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "330R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "247a6c1e-6578-4997-9072-fa9a129f01d3")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 45.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "RLED3")
+    (layer "F.Cu")
+    (uuid "41CD7432-D600-433B-90AB-115876229301")
+    (property "Reference" "RLED3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "330R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "473299a3-b1a6-4871-be7e-82d9e4ac321a")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 55.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "RLED4")
+    (layer "F.Cu")
+    (uuid "282D99E7-6037-484A-9537-DEFCCA5E5B33")
+    (property "Reference" "RLED4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "330R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "61124533-c330-43d5-90d0-b5305f5686d0")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 65.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_BYPASS_CLK")
+    (layer "F.Cu")
+    (uuid "3D90B5D4-78A6-416E-8D08-0ADB7D025AB5")
+    (property "Reference" "R_BYPASS_CLK"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "765b3f62-bb13-488c-9fcc-3058bdcc1168")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 75.00 55.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_BYPASS_DATA")
+    (layer "F.Cu")
+    (uuid "94CE94F1-B722-4BB0-94D1-8E0BB227C36F")
+    (property "Reference" "R_BYPASS_DATA"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "1bd19171-b89c-41f3-a781-0150cf4c8408")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 5.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_FET_GATE")
+    (layer "F.Cu")
+    (uuid "5252D938-3F64-4EA1-ADDF-F7F37E83A8EA")
+    (property "Reference" "R_FET_GATE"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "47e6af45-f7b4-45bb-bead-68414209105a")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 15.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_LVT_CLK_IN")
+    (layer "F.Cu")
+    (uuid "974A9AE7-8E25-4F9C-9E75-B4DCE798027B")
+    (property "Reference" "R_LVT_CLK_IN"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "2dd2094e-c320-412c-acd9-a6eab464f98c")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 25.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_LVT_CLK_OUT")
+    (layer "F.Cu")
+    (uuid "4A67BBAA-A355-44E7-9033-D8AEF80C89F8")
+    (property "Reference" "R_LVT_CLK_OUT"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "51f87b86-e2f4-48f9-84df-2fddc2de7005")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 35.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_LVT_DATA_IN")
+    (layer "F.Cu")
+    (uuid "F779AA45-98ED-416D-A1F9-B856AF44CBAB")
+    (property "Reference" "R_LVT_DATA_IN"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "b0b1893c-3f76-401b-87d1-23668e2aed67")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 45.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_LVT_DATA_OUT")
+    (layer "F.Cu")
+    (uuid "B67FF47A-E119-4292-9A8F-20F702C2DAFD")
+    (property "Reference" "R_LVT_DATA_OUT"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "0R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "162a12e5-de84-4f4f-a050-ad09b31b69f5")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 55.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_PDM_CLK_SER")
+    (layer "F.Cu")
+    (uuid "159ABE17-8B8D-4565-898E-662FD32A2187")
+    (property "Reference" "R_PDM_CLK_SER"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "33R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "fcb023e1-654b-44f2-97f2-f4626f7d377a")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 65.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_READY_PD")
+    (layer "F.Cu")
+    (uuid "8402F5EF-7EC7-4870-B36E-29469878EC99")
+    (property "Reference" "R_READY_PD"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "100k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "a016c683-51e3-41c2-b9be-d1b9655422a1")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 75.00 65.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_SPI_CS_PU")
+    (layer "F.Cu")
+    (uuid "90678265-58F9-4760-9F1D-8B96B78E93A1")
+    (property "Reference" "R_SPI_CS_PU"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "10k"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "caded606-d2f1-4326-87cf-e44bb20bf878")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 5.00 75.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_SPI_MISO_SER")
+    (layer "F.Cu")
+    (uuid "529AC3AF-C76F-4C68-AADA-9B705502D9FB")
+    (property "Reference" "R_SPI_MISO_SER"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "33R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "479b5d87-f42d-4a06-9164-61ddc548ab02")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 15.00 75.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_SPI_MOSI_SER")
+    (layer "F.Cu")
+    (uuid "0C8CA00B-0570-4110-B30D-A0F93DE2DC58")
+    (property "Reference" "R_SPI_MOSI_SER"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "33R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "f8b171cd-3317-4a90-b18a-3ad852ebe487")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 25.00 75.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_SPI_SCK_SER")
+    (layer "F.Cu")
+    (uuid "007B29F3-D12C-445A-B0D4-92B2FC5FC6AD")
+    (property "Reference" "R_SPI_SCK_SER"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "33R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "a185044b-f38d-498e-aa50-393c6f6a4a4d")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 35.00 75.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_USB_DM_SER")
+    (layer "F.Cu")
+    (uuid "E0194917-30DB-443E-B56E-169D0781256C")
+    (property "Reference" "R_USB_DM_SER"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "27R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "10c13976-f575-4d09-a0b6-27bef80c5abb")))
+
+  (footprint "Resistor_SMD:R_0603_1608Metric"
+    (at 45.00 75.00 0)
+    (descr "R_0603_1608Metric")
+    (tags "R_USB_DP_SER")
+    (layer "F.Cu")
+    (uuid "07972C36-5CC1-45D3-827C-C2A05D231357")
+    (property "Reference" "R_USB_DP_SER"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "27R"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "8feab304-53d0-4c23-90bb-5a7ce7982e30")))
+
+  (footprint "Button_Switches_SMD:SW_DIP_SPSTx01_Slide_7.0x5.0mm_W7.0mm_P1.27mm_LowProfile"
+    (at 55.00 75.00 0)
+    (descr "SW_DIP_SPSTx01_Slide_7.0x5.0mm_W7.0mm_P1.27mm_LowProfile")
+    (tags "SW1")
+    (layer "F.Cu")
+    (uuid "DB477BE4-994B-4D8B-90B1-BD1FACA05FAD")
+    (property "Reference" "SW1"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Push_Button"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Button_Switches_SMD:SW_DIP_SPSTx01_Slide_7.0x5.0mm_W7.0mm_P1.27mm_LowProfile"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "581bb540-75f6-4756-9b4e-0e88a9156d45")))
+
+  (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    (at 65.00 75.00 0)
+    (descr "SOIC-8_3.9x4.9mm_P1.27mm")
+    (tags "U3")
+    (layer "F.Cu")
+    (uuid "377434EE-19B5-49AA-BA8D-B20AE1FF609E")
+    (property "Reference" "U3"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Logic_Shifter_74AHCT125"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "388ca9aa-4d75-4565-91ed-14ef66759b77")))
+
+  (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    (at 75.00 75.00 0)
+    (descr "SOIC-8_3.9x4.9mm_P1.27mm")
+    (tags "U4")
+    (layer "F.Cu")
+    (uuid "563B70A9-837B-4A69-AA55-019CC040FD68")
+    (property "Reference" "U4"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "24LC256"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "c4103e3f-e840-4566-9746-3d388a20e22e")))
+
+  (footprint "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    (at 5.00 85.00 0)
+    (descr "SOIC-8_3.9x4.9mm_P1.27mm")
+    (tags "U8")
+    (layer "F.Cu")
+    (uuid "80DEFA2C-FEF6-4D0F-AFF1-F0E89250B2BE")
+    (property "Reference" "U8"
+      (at 0 -1.75 0)
+      (layer "F.SilkS" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Value" "Logic_Buffer_SN74AXC2T245"
+      (at 0 1.75 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1 1)
+          (thickness 0.15))))
+    (property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+      (at 0 0 0)
+      (layer "F.Fab" hide)
+      (effects
+        (font
+          (size 1.27 1.27)
+          (thickness 0.15))))
+    (pad "1" smd rect
+      (at 0 0 0)
+      (size 0.5 0.5)
+      (layers "F.Cu" "F.Paste" "F.Mask")
+      (uuid "27f7fe7a-f237-482b-80af-493d66ae4edd")))
+
+
 )
