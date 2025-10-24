@@ -1,0 +1,211 @@
+{
+  "project": {
+    "name": "K1 Lightwave Rev-A",
+    "description": "ESP32-S3 addressable LED controller with SPI/USB, audio",
+    "units": "mm",
+    "version": "revA"
+  },
+  "mechanical": {
+    "outline": {
+      "width": 100.0,
+      "height": 70.0,
+      "corner_radius": 1.5
+    },
+    "mounting_holes": [
+      {"x": 3.0, "y": 3.0, "diameter": 3.2, "keepout": 6.0},
+      {"x": 97.0, "y": 3.0, "diameter": 3.2, "keepout": 6.0},
+      {"x": 97.0, "y": 67.0, "diameter": 3.2, "keepout": 6.0},
+      {"x": 3.0, "y": 67.0, "diameter": 3.2, "keepout": 6.0}
+    ],
+    "keepouts": [
+      {
+        "name": "Antenna",
+        "description": "Antenna exclusion zone (no copper/mask/paste)",
+        "x": 5.0,
+        "y": 5.0,
+        "w": 22.0,
+        "h": 23.0,
+        "layers": ["F.Cu", "B.Cu", "F.Mask", "B.Mask", "F.Paste", "B.Paste"]
+      }
+    ]
+  },
+  "stackup": {
+    "layers": 4,
+    "thickness_mm": 1.6,
+    "copper_oz": 1.0,
+    "finish": "HASL",
+    "map": ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"],
+    "roles": {
+      "L1": "signals",
+      "L2": "GND plane (ground distribution)",
+      "L3": "split power (3V3, LED_5V, GND)",
+      "L4": "signals"
+    },
+    "impedance": {
+      "se_target_ohm": 50.0,
+      "diff_target_ohm": 90.0
+    }
+  },
+  "io": {
+    "usb": {
+      "ref": "JUSB1",
+      "description": "USB-C connector (bottom/south edge)",
+      "edge": "south",
+      "offset_mm": 0.0
+    },
+    "led_ports": {
+      "refs": ["JLED1", "JLED2", "JLED3", "JLED4"],
+      "description": "4x addressable LED output connectors (top/north edge, spread evenly)",
+      "edge": "north",
+      "margin_mm": 6.0
+    }
+  },
+  "placement_zones": [
+    {
+      "name": "COM_A",
+      "description": "COM-A (audio codec/DSP) placement zone",
+      "refs": ["U_COMA"],
+      "x": 20.0,
+      "y": 30.0,
+      "w": 35.0,
+      "h": 30.0,
+      "rotation": 0
+    },
+    {
+      "name": "COM_B",
+      "description": "COM-B (renderer/power) placement zone",
+      "refs": ["U_COMB"],
+      "x": 55.0,
+      "y": 15.0,
+      "w": 40.0,
+      "h": 25.0,
+      "rotation": 0
+    }
+  ],
+  "netclasses": {
+    "Default": {
+      "description": "Standard traces and vias",
+      "width_mm": 0.25,
+      "clearance_mm": 0.20,
+      "via_drill_mm": 0.3,
+      "via_annular_mm": 0.15
+    },
+    "SPI": {
+      "description": "SPI bus (20-40 MHz: SCK, MOSI, MISO, CS)",
+      "width_mm": 0.2,
+      "clearance_mm": 0.2,
+      "via_drill_mm": 0.3,
+      "match_mm": 5.0,
+      "notes": "Length match DQ to SCK ±5mm; series 22-47Ω at source"
+    },
+    "USB_FS": {
+      "description": "USB Full-Speed differential pair (DP/DM)",
+      "width_mm": 0.25,
+      "gap_mm": 0.25,
+      "diff_impedance_ohm": 90.0,
+      "via_drill_mm": 0.3,
+      "notes": "90Ω ±10% differential; ESD protection <10mm from connector"
+    },
+    "Power": {
+      "description": "Power distribution (3V3, 5V, GND)",
+      "width_mm": 0.5,
+      "clearance_mm": 0.25,
+      "via_drill_mm": 0.35
+    }
+  },
+  "rules": {
+    "design_rules": {
+      "copper_to_edge_mm": 0.4,
+      "trace_min_mm": 0.15,
+      "space_min_mm": 0.15,
+      "via_drill_min_mm": 0.3,
+      "annular_min_mm": 0.15,
+      "aspect_ratio_max": 10
+    },
+    "thermal": {
+      "ambient_temp_c": 25,
+      "max_junction_temp_c": 85,
+      "target_theta_ja_k_w": 80,
+      "decap_placement_max_mm": 3.0,
+      "via_array_min_count": 9,
+      "via_spacing_mm": 1.0
+    },
+    "fiducials": {
+      "required_count": 3,
+      "diameter_mm": 2.0,
+      "pad_diameter_mm": 3.0
+    }
+  },
+  "dfm": {
+    "profile": "jlc_standard",
+    "manufacturer": "JLCPCB",
+    "capabilities": {
+      "trace_space_min_mm": 0.15,
+      "via_drill_min_mm": 0.3,
+      "aspect_ratio_max": 10
+    },
+    "jlc_standard": {
+      "trace_width_min_mm": 0.15,
+      "trace_space_min_mm": 0.15,
+      "via_drill_min_mm": 0.3,
+      "via_annular_min_mm": 0.15,
+      "copper_to_edge_min_mm": 0.4,
+      "mask_clearance_mm": 0.2,
+      "silk_text_width_min_mm": 0.254
+    },
+    "jlc_advanced": {
+      "trace_width_min_mm": 0.1,
+      "trace_space_min_mm": 0.1,
+      "via_drill_min_mm": 0.25,
+      "via_annular_min_mm": 0.1,
+      "copper_to_edge_min_mm": 0.3
+    }
+  },
+  "constraints": {
+    "spi": {
+      "enabled": true,
+      "frequency_mhz": 40,
+      "length_match_tolerance_mm": 5.0,
+      "series_resistor_ohm": [22, 47],
+      "notes": "SCK is reference; DQ traces matched to SCK ±5mm"
+    },
+    "usb": {
+      "enabled": false,
+      "usb_version": "1.1",
+      "impedance_diff_ohm": 90,
+      "impedance_tolerance_percent": 10,
+      "esd_distance_max_mm": 10,
+      "series_resistor_ohm": [22, 33],
+      "notes": "Optional future feature"
+    },
+    "antenna": {
+      "enabled": false,
+      "keepout_x_mm": 5.0,
+      "keepout_y_mm": 5.0,
+      "keepout_w_mm": 22.0,
+      "keepout_h_mm": 23.0,
+      "notes": "Antenna exclusion zone (no copper/mask/paste)"
+    }
+  },
+  "routing": {
+    "freerouting": {
+      "enabled": true,
+      "jar_path": "tools/freerouting.jar",
+      "timeout_s": 1800,
+      "max_retries": 1
+    }
+  },
+  "exports": {
+    "output_dir": "fabpack_out",
+    "formats": ["gerbers", "drill", "ipc2581", "odb"],
+    "include_step": false
+  },
+  "metadata": {
+    "created_by": "K1 Expert PCB Design Agent + Contract Addon",
+    "created_date": "2025-10-24",
+    "last_updated": "2025-10-24",
+    "kicad_version": "9.0",
+    "board_file": "hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb",
+    "notes": "This is the unified Design Contract. Edit this file to change board dimensions, placement zones, connector locations, stackup, DFM profile, and constraints. Both the K1_ContractedPlace plugin and the agent orchestrator read this file."
+  }
+}
