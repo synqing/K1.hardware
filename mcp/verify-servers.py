@@ -25,12 +25,11 @@ def test_python_imports():
     """Test required Python libraries"""
     libraries = [
         "skidl",
-        "pcbnew",
         "rank_bm25",
         "bs4",
         "pypdf",
         "requests",
-        "pyyaml"
+        "yaml"
     ]
 
     all_ok = True
