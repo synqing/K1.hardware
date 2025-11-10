@@ -69,10 +69,10 @@ def sample_thermal_params():
 
 
 class TestDRCRules:
-    """Test DRC rules definition"""
+    """Tests for the DRCRules class."""
 
     def test_default_rules(self):
-        """Test default DRC rules match JLCPCB standards"""
+        """Verify that the default DRC rules match JLCPCB standards."""
         rules = DRCRules()
 
         assert rules.trace_width_min == 0.1016  # 4 mil
@@ -82,7 +82,7 @@ class TestDRCRules:
         assert rules.copper_to_edge_min == 0.3  # mm
 
     def test_to_dict(self):
-        """Test rule conversion to dictionary"""
+        """Verify that the DRC rules can be correctly converted to a dictionary."""
         rules = DRCRules()
         rules_dict = rules.to_dict()
 
@@ -93,11 +93,11 @@ class TestDRCRules:
 
 
 class TestDRCValidator:
-    """Test DRC validation functionality"""
+    """Tests for the DRCValidator class."""
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_init(self, mock_load, mock_board_path, mock_board):
-        """Test DRC validator initialization"""
+        """Verify that the DRCValidator is initialized correctly."""
         mock_load.return_value = mock_board
 
         validator = DRCValidator(mock_board_path)
@@ -109,7 +109,7 @@ class TestDRCValidator:
     @patch('design_validation.pcbnew.LoadBoard')
     @patch('design_validation.subprocess.run')
     def test_run_kicad_drc_success(self, mock_run, mock_load, mock_board_path, mock_board):
-        """Test successful DRC execution"""
+        """Verify that a successful DRC execution is handled correctly."""
         mock_load.return_value = mock_board
 
         # Mock successful DRC with zero violations
@@ -132,7 +132,7 @@ class TestDRCValidator:
     @patch('design_validation.pcbnew.LoadBoard')
     @patch('design_validation.subprocess.run')
     def test_run_kicad_drc_with_violations(self, mock_run, mock_load, mock_board_path, mock_board):
-        """Test DRC execution with violations"""
+        """Verify that DRC execution with violations is handled correctly."""
         mock_load.return_value = mock_board
 
         # Mock DRC with violations
@@ -151,7 +151,7 @@ class TestDRCValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_verify_constraints_pass(self, mock_load, mock_board_path, mock_board):
-        """Test constraint verification with passing DRC"""
+        """Verify that a passing DRC result is correctly interpreted."""
         mock_load.return_value = mock_board
 
         validator = DRCValidator(mock_board_path)
@@ -167,7 +167,7 @@ class TestDRCValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_verify_constraints_fail(self, mock_load, mock_board_path, mock_board):
-        """Test constraint verification with failing DRC"""
+        """Verify that a failing DRC result is correctly interpreted."""
         mock_load.return_value = mock_board
 
         validator = DRCValidator(mock_board_path)
@@ -182,11 +182,11 @@ class TestDRCValidator:
 
 
 class TestDFMValidator:
-    """Test Design for Manufacturing validation"""
+    """Tests for the Design for Manufacturing (DFM) validator."""
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_init(self, mock_load, mock_board_path, mock_board):
-        """Test DFM validator initialization"""
+        """Verify that the DFMValidator is initialized correctly."""
         mock_load.return_value = mock_board
 
         validator = DFMValidator(mock_board_path)
@@ -196,7 +196,7 @@ class TestDFMValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_layer_stack_pass(self, mock_load, mock_board_path, mock_board):
-        """Test layer stack validation with 4 layers"""
+        """Verify that a correct 4-layer stackup passes validation."""
         mock_board.GetCopperLayerCount.return_value = 4
         mock_load.return_value = mock_board
 
@@ -209,7 +209,7 @@ class TestDFMValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_layer_stack_fail(self, mock_load, mock_board_path, mock_board):
-        """Test layer stack validation with wrong layer count"""
+        """Verify that an incorrect layer stackup fails validation."""
         mock_board.GetCopperLayerCount.return_value = 2
         mock_load.return_value = mock_board
 
@@ -222,7 +222,7 @@ class TestDFMValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_fiducials_sufficient(self, mock_load, mock_board_path, mock_board):
-        """Test fiducial validation with 3+ fiducials"""
+        """Verify that a board with sufficient fiducials passes validation."""
         # Create mock fiducial footprints
         fid1 = MagicMock()
         fid1.GetReference.return_value = "FID1"
@@ -248,7 +248,7 @@ class TestDFMValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_fiducials_insufficient(self, mock_load, mock_board_path, mock_board):
-        """Test fiducial validation with <3 fiducials"""
+        """Verify that a board with insufficient fiducials fails validation."""
         fid1 = MagicMock()
         fid1.GetReference.return_value = "FID1"
         fid1.GetPosition.return_value = pcbnew.VECTOR2I(0, 0)
@@ -265,11 +265,11 @@ class TestDFMValidator:
 
 
 class TestSignalIntegrityValidator:
-    """Test signal integrity validation"""
+    """Tests for the Signal Integrity (SI) validator."""
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_init(self, mock_load, mock_board_path, mock_board):
-        """Test SI validator initialization"""
+        """Verify that the SignalIntegrityValidator is initialized correctly."""
         mock_load.return_value = mock_board
 
         validator = SignalIntegrityValidator(mock_board_path)
@@ -278,7 +278,7 @@ class TestSignalIntegrityValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_spi_routing(self, mock_load, mock_board_path, mock_board):
-        """Test SPI routing validation"""
+        """Verify that the SPI routing validation runs without errors."""
         # Create mock SPI nets
         mock_net_info = MagicMock()
         mock_sck_net = MagicMock()
@@ -301,7 +301,7 @@ class TestSignalIntegrityValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_usb_routing(self, mock_load, mock_board_path, mock_board):
-        """Test USB routing validation"""
+        """Verify that the USB routing validation runs without errors."""
         mock_load.return_value = mock_board
 
         validator = SignalIntegrityValidator(mock_board_path)
@@ -313,7 +313,7 @@ class TestSignalIntegrityValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_i2c_i2s_routing(self, mock_load, mock_board_path, mock_board):
-        """Test I2C/I2S routing validation"""
+        """Verify that the I2C/I2S routing validation runs without errors."""
         mock_load.return_value = mock_board
 
         validator = SignalIntegrityValidator(mock_board_path)
@@ -324,10 +324,10 @@ class TestSignalIntegrityValidator:
 
 
 class TestThermalValidator:
-    """Test thermal validation and calculations"""
+    """Tests for the thermal validator and its calculations."""
 
     def test_thermal_parameters_defaults(self, sample_thermal_params):
-        """Test thermal parameter defaults"""
+        """Verify that the default thermal parameters are set correctly."""
         params = sample_thermal_params
 
         assert params.ambient_temp_c == 25.0
@@ -338,7 +338,7 @@ class TestThermalValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_calculate_temperature_rise(self, mock_load, mock_board_path, mock_board, sample_thermal_params):
-        """Test temperature rise calculation"""
+        """Verify that the temperature rise is calculated correctly."""
         mock_load.return_value = mock_board
 
         validator = ThermalValidator(mock_board_path, sample_thermal_params)
@@ -349,7 +349,7 @@ class TestThermalValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_calculate_via_effectiveness(self, mock_load, mock_board_path, mock_board, sample_thermal_params):
-        """Test thermal via effectiveness calculation"""
+        """Verify that the thermal via effectiveness is calculated correctly."""
         mock_load.return_value = mock_board
 
         validator = ThermalValidator(mock_board_path, sample_thermal_params)
@@ -360,7 +360,7 @@ class TestThermalValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_thermal_design_pass(self, mock_load, mock_board_path, mock_board, sample_thermal_params):
-        """Test thermal design validation with good margin"""
+        """Verify that a good thermal design passes validation."""
         mock_board.GetTracks.return_value = []
         mock_load.return_value = mock_board
 
@@ -375,7 +375,7 @@ class TestThermalValidator:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_validate_thermal_design_marginal(self, mock_load, mock_board_path, mock_board):
-        """Test thermal design validation with marginal conditions"""
+        """Verify that a marginal thermal design is correctly evaluated."""
         mock_board.GetTracks.return_value = []
         mock_load.return_value = mock_board
 
@@ -399,11 +399,11 @@ class TestThermalValidator:
 
 
 class TestDesignValidation:
-    """Test comprehensive design validation suite"""
+    """Tests for the comprehensive design validation suite."""
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_init(self, mock_load, mock_board_path, mock_board):
-        """Test design validation initialization"""
+        """Verify that the DesignValidation class is initialized correctly."""
         mock_load.return_value = mock_board
 
         validator = DesignValidation(mock_board_path)
@@ -416,7 +416,7 @@ class TestDesignValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_init_with_output_dir(self, mock_load, mock_board_path, mock_board, tmp_path):
-        """Test initialization with custom output directory"""
+        """Verify initialization with a custom output directory."""
         mock_load.return_value = mock_board
         output_dir = tmp_path / "output"
 
@@ -427,7 +427,7 @@ class TestDesignValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_run_all_validations(self, mock_load, mock_board_path, mock_board):
-        """Test running all validations"""
+        """Verify that all validation checks are run."""
         mock_board.GetCopperLayerCount.return_value = 4
         mock_board.GetTracks.return_value = []
         mock_board.GetFootprints.return_value = []
@@ -447,7 +447,7 @@ class TestDesignValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_manufacturing_readiness_check(self, mock_load, mock_board_path, mock_board):
-        """Test manufacturing readiness checklist"""
+        """Verify the manufacturing readiness checklist."""
         mock_load.return_value = mock_board
 
         validator = DesignValidation(mock_board_path)
@@ -467,7 +467,7 @@ class TestDesignValidation:
     @patch('design_validation.pcbnew.LoadBoard')
     @patch('design_validation.pcbnew.PLOT_CONTROLLER')
     def test_export_manufacturing_files(self, mock_plot_controller, mock_load, mock_board_path, mock_board):
-        """Test manufacturing file export"""
+        """Verify that manufacturing files are exported correctly."""
         mock_load.return_value = mock_board
 
         # Mock plot controller
@@ -484,7 +484,7 @@ class TestDesignValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_generate_validation_report(self, mock_load, mock_board_path, mock_board):
-        """Test validation report generation"""
+        """Verify that the validation report is generated correctly."""
         mock_load.return_value = mock_board
 
         validator = DesignValidation(mock_board_path)
@@ -501,7 +501,7 @@ class TestDesignValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_execute_full_pipeline(self, mock_load, mock_board_path, mock_board):
-        """Test full validation pipeline execution"""
+        """Verify that the full validation pipeline executes successfully."""
         mock_board.GetCopperLayerCount.return_value = 4
         mock_board.GetTracks.return_value = []
         mock_board.GetFootprints.return_value = []
@@ -520,11 +520,11 @@ class TestDesignValidation:
 
 
 class TestK1SpecificValidation:
-    """Test K1 Lightwave specific validation scenarios"""
+    """Tests for K1 Lightwave-specific validation scenarios."""
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_k1_thermal_specifications(self, mock_load, mock_board_path, mock_board):
-        """Test K1-specific thermal specifications"""
+        """Verify that the K1's thermal specifications are met."""
         mock_board.GetTracks.return_value = []
         mock_load.return_value = mock_board
 
@@ -551,7 +551,7 @@ class TestK1SpecificValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_k1_layer_stack_4layer(self, mock_load, mock_board_path, mock_board):
-        """Test K1 4-layer stack configuration"""
+        """Verify that the K1 board has the correct 4-layer stackup."""
         mock_board.GetCopperLayerCount.return_value = 4
         mock_load.return_value = mock_board
 
@@ -564,7 +564,7 @@ class TestK1SpecificValidation:
 
     @patch('design_validation.pcbnew.LoadBoard')
     def test_k1_expected_results(self, mock_load, mock_board_path, mock_board):
-        """Test K1 expected validation results"""
+        """Verify that the K1 board passes all expected validation checks."""
         mock_board.GetCopperLayerCount.return_value = 4
         mock_board.GetTracks.return_value = []
         mock_board.GetFootprints.return_value = []

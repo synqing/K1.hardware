@@ -35,19 +35,24 @@ from dfm import checker as dfm_checker
 
 class OrchestratorError(Exception):
     """Raised when orchestrator encounters a fatal error."""
-    pass
 
 
 class Phase:
     """Context manager for tracking phase execution."""
 
     def __init__(self, phase_num, description):
+        """Initializes a new phase.
+        Args:
+            phase_num (int): The number of the phase.
+            description (str): A description of the phase.
+        """
         self.phase_num = phase_num
         self.description = description
         self.start_time = None
         self.end_time = None
 
     def __enter__(self):
+        """Starts the phase and prints a header."""
         self.start_time = datetime.now()
         print(f"\n{'=' * 70}")
         print(f"PHASE {self.phase_num}: {self.description}")
@@ -55,6 +60,7 @@ class Phase:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """Ends the phase and prints a summary."""
         self.end_time = datetime.now()
         elapsed = (self.end_time - self.start_time).total_seconds()
         if exc_type is None:

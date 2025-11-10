@@ -20,7 +20,6 @@ from pathlib import Path
 
 class KiCadCLIError(Exception):
     """Raised when a kicad-cli command fails."""
-    pass
 
 
 def _run_cmd(args, description=""):

@@ -14,7 +14,16 @@ from design_preparation import DesignPreparation
 
 
 def test_k1_design_preparation():
-    """Test Phase 1 on K1 Lightwave board"""
+    """Tests the full design preparation pipeline on the K1 Lightwave board.
+
+    This function serves as an integration test for the `DesignPreparation`
+    class, running all the steps on the actual K1 Lightwave project files. It
+    prints a detailed report of the process and its results.
+
+    Returns:
+        True if the design preparation pipeline completes successfully, False
+        otherwise.
+    """
 
     # Setup logging
     logging.basicConfig(

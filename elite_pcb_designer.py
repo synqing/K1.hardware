@@ -17,7 +17,7 @@ from typing import List, Optional
 
 # Phase status enumerations
 class PhaseStatus(Enum):
-    """Phase execution status"""
+    """Enumeration for the execution status of a design phase."""
     PENDING = "pending"
     IN_PROGRESS = "in_progress"
     PASSED = "passed"
@@ -26,7 +26,16 @@ class PhaseStatus(Enum):
 
 @dataclass
 class PhaseResult:
-    """Result from a phase execution"""
+    """Holds the results from a single phase of the PCB design process.
+
+    Attributes:
+        phase_name: The name of the phase.
+        status: The execution status of the phase.
+        duration: The time taken for the phase to complete, in seconds.
+        component_count: The number of components processed in the phase.
+        message: A summary message of the phase's outcome.
+        errors: A list of any errors that occurred during the phase.
+    """
     phase_name: str
     status: PhaseStatus
     duration: float
@@ -47,12 +56,33 @@ except ImportError as e:
 
 @dataclass
 class ElitePCBConfig:
+    """Configuration settings for the Elite PCB Designer.
+
+    Attributes:
+        netlist_path: The file path to the KiCad netlist (.net).
+        board_path: The file path to the KiCad PCB file (.kicad_pcb).
+        output_dir: The directory where all output files will be saved.
+        verbose: A flag for enabling verbose logging.
+    """
     netlist_path: str
     board_path: str
     output_dir: str = "k1_design_output"
     verbose: bool = False
 
 def setup_logging(verbose=False, log_file=None):
+    """Configures the logging for the application.
+
+    This function sets up a logger that can write to both the console and a
+    log file, with a verbosity level controlled by the `verbose` parameter.
+
+    Args:
+        verbose: If True, the logging level is set to DEBUG; otherwise, it is
+                 set to INFO.
+        log_file: The optional path to a file where logs should be saved.
+
+    Returns:
+        The configured logger instance.
+    """
     level = logging.DEBUG if verbose else logging.INFO
     formatter = logging.Formatter('[%(asctime)s] %(levelname)s: %(message)s', datefmt='%H:%M:%S')
 
@@ -76,7 +106,33 @@ def setup_logging(verbose=False, log_file=None):
     return logger
 
 class ElitePCBDesigner:
+    """Orchestrates the entire PCB design process from netlist to manufacturing.
+
+    This class manages the four main phases of the PCB design workflow:
+    1.  **Design Preparation**: Loads the netlist and prepares the design.
+    2.  **Component Placement**: Intelligently places components on the board.
+    3.  **Automated Routing**: Routes the electrical connections.
+    4.  **Design Validation**: Verifies the design and generates manufacturing files.
+
+    It can operate in a real mode, using the actual design modules, or in a
+    simulation mode if the modules are not available.
+
+    Attributes:
+        config (ElitePCBConfig): The configuration settings for the design process.
+        logger (logging.Logger): A logger for recording operational messages.
+        start_time (float): The timestamp when the process started.
+        end_time (float): The timestamp when the process finished.
+        all_results (dict): A dictionary to store detailed results from each phase.
+        phase_results (dict): A dictionary to track the success or failure of each phase.
+        overall_success (bool): A flag indicating the overall success of the process.
+    """
     def __init__(self, config):
+        """Initializes the ElitePCBDesigner.
+
+        Args:
+            config: An `ElitePCBConfig` object containing the configuration
+                    settings for the design process.
+        """
         self.config = config
         os.makedirs(config.output_dir, exist_ok=True)
 
@@ -89,6 +145,14 @@ class ElitePCBDesigner:
         self.overall_success = True  # Track if all phases passed
 
     def execute(self):
+        """Executes the full PCB design pipeline.
+
+        This method runs each of the four design phases in sequence, records
+        the results, and generates a final summary and manufacturing files.
+
+        Returns:
+            True if all phases complete successfully, False otherwise.
+        """
         self.logger.info("\n")
         self.logger.info("╔════════════════════════════════════════════════════════════╗")
         self.logger.info("║   ELITE PCB DESIGNER AGENT - K1 LIGHTWAVE                 ║")
@@ -134,7 +198,14 @@ class ElitePCBDesigner:
         return self.overall_success
 
     def _execute_phase_1(self):
-        """Phase 1: Design Preparation"""
+        """Executes the design preparation phase.
+
+        This method runs the `DesignPreparation` module to load the netlist,
+        assign footprints, and perform initial design validation.
+
+        Returns:
+            True if the phase completes successfully, False otherwise.
+        """
         self.logger.info("=" * 60)
         self.logger.info("PHASE 1: DESIGN PREPARATION")
         self.logger.info("=" * 60)
@@ -195,7 +266,14 @@ class ElitePCBDesigner:
             return False
 
     def _execute_phase_2(self):
-        """Phase 2: Component Placement"""
+        """Executes the component placement phase.
+
+        This method runs the `ComponentPlacement` module to intelligently
+        position components on the PCB.
+
+        Returns:
+            True if the phase completes successfully, False otherwise.
+        """
         self.logger.info("=" * 60)
         self.logger.info("PHASE 2: COMPONENT PLACEMENT")
         self.logger.info("=" * 60)
@@ -252,7 +330,14 @@ class ElitePCBDesigner:
             return False
 
     def _execute_phase_3(self):
-        """Phase 3: Automated Routing"""
+        """Executes the automated routing phase.
+
+        This method runs the `AutomatedRouting` module to route the electrical
+        connections between components.
+
+        Returns:
+            True if the phase completes successfully, False otherwise.
+        """
         self.logger.info("=" * 60)
         self.logger.info("PHASE 3: AUTOMATED ROUTING")
         self.logger.info("=" * 60)
@@ -307,7 +392,14 @@ class ElitePCBDesigner:
             return False
 
     def _execute_phase_4(self):
-        """Phase 4: Design Validation"""
+        """Executes the design validation phase.
+
+        This method runs the `DesignValidation` module to perform final checks
+        on the design and generate manufacturing files.
+
+        Returns:
+            True if the phase completes successfully, False otherwise.
+        """
         self.logger.info("=" * 60)
         self.logger.info("PHASE 4: DESIGN VALIDATION")
         self.logger.info("=" * 60)
@@ -364,7 +456,12 @@ class ElitePCBDesigner:
             return False
 
     def _save_results(self):
-        """Save all results to JSON"""
+        """Saves a master report and all manufacturing files.
+
+        This method generates a comprehensive JSON report of the entire design
+        process and creates a set of mock manufacturing files, including
+        Gerbers, a drill file, and a Bill of Materials (BOM).
+        """
         elapsed = self.end_time - self.start_time
 
         report = {
@@ -441,6 +538,7 @@ class ElitePCBDesigner:
         self.logger.info(f"✓ Manufacturing files: {mfg_dir}/ (8 Gerber + 1 drill + 1 BOM)")
 
     def _print_summary(self):
+        """Prints a summary of the design process to the console."""
         elapsed = self.end_time - self.start_time
         self.logger.info("=" * 60)
 
@@ -499,6 +597,12 @@ class ElitePCBDesigner:
         self.logger.info("\n")
 
     def _count_components(self):
+        """Counts the number of components in the netlist file.
+
+        Returns:
+            The number of components found, or a default value of 52 if the
+            file cannot be read.
+        """
         try:
             with open(self.config.netlist_path, 'r') as f:
                 return f.read().count('(comp')

@@ -42,7 +42,15 @@ class ValidationSeverity(Enum):
 
 @dataclass
 class ValidationResult:
-    """Result of a validation check"""
+    """Represents the outcome of a single validation check.
+
+    Attributes:
+        check_name: The name of the validation check performed.
+        severity: The severity level of the result (e.g., PASS, WARNING, ERROR).
+        passed: A boolean indicating whether the check passed.
+        message: A human-readable summary of the validation result.
+        details: A dictionary containing detailed information about the check.
+    """
     check_name: str
     severity: ValidationSeverity
     passed: bool
@@ -56,7 +64,22 @@ class ValidationResult:
 
 @dataclass
 class DRCRules:
-    """Design Rule Check constraints (JLCPCB standard 4-layer)"""
+    """Defines the Design Rule Check (DRC) constraints for the PCB.
+
+    This class centralizes the DRC rules, which are based on the JLCPCB
+    standard for 4-layer boards. All dimensions are in millimeters unless
+    otherwise specified.
+
+    Attributes:
+        trace_width_min: The minimum allowed trace width.
+        trace_width_max: The maximum allowed trace width.
+        trace_spacing_min: The minimum allowed spacing between traces.
+        pad_to_trace_min: The minimum allowed spacing from a pad to a trace.
+        via_drill_min: The minimum allowed via drill diameter.
+        via_pad_size_min: The minimum allowed via pad diameter.
+        annular_ring_min: The minimum allowed annular ring width.
+        copper_to_edge_min: The minimum allowed distance from copper to the board edge.
+    """
     # All dimensions in mm unless specified
     trace_width_min: float = 0.1016  # 4 mil
     trace_width_max: float = 2.54    # 100 mil
@@ -68,7 +91,11 @@ class DRCRules:
     copper_to_edge_min: float = 0.3   # mm (JLCPCB safety margin)
 
     def to_dict(self) -> dict:
-        """Convert rules to dictionary"""
+        """Converts the DRC rules to a dictionary.
+
+        Returns:
+            A dictionary representation of the DRC rules.
+        """
         return {
             'trace_width': ('min', 4, 'mil', f'{self.trace_width_min}mm'),
             'trace_width_max': ('max', 100, 'mil', f'{self.trace_width_max}mm'),
@@ -82,13 +109,23 @@ class DRCRules:
 
 
 class DRCValidator:
-    """Design Rule Check validation using KiCad DRC engine"""
+    """Performs Design Rule Checks (DRC) using the KiCad DRC engine.
+
+    This class provides methods to execute KiCad's DRC tool, parse the results,
+    and verify the design against a set of predefined electrical and physical
+    constraints.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        board (pcbnew.BOARD): The `pcbnew` board object.
+        rules (DRCRules): The set of DRC rules to be applied.
+    """
 
     def __init__(self, board_path: Path):
-        """Initialize DRC validator
+        """Initializes the DRCValidator.
 
         Args:
-            board_path: Path to .kicad_pcb file
+            board_path: The file path to the .kicad_pcb file to be validated.
         """
         self.board_path = Path(board_path)
         if not self.board_path.exists():
@@ -98,10 +135,15 @@ class DRCValidator:
         self.rules = DRCRules()
 
     def run_kicad_drc(self) -> tuple[int, str]:
-        """Execute KiCad DRC command line tool
+        """Executes the KiCad DRC command-line tool.
+
+        This method attempts to use the `kicad-cli` tool to perform a DRC and
+        generate a JSON report. If `kicad-cli` is not available, it falls back
+        to a simpler Python-based DRC.
 
         Returns:
-            Tuple of (error_count, report_text)
+            A tuple containing the number of DRC errors found and the full
+            text of the DRC report.
         """
         try:
             # Use kicad-cli for DRC if available (KiCad 7+)
@@ -136,10 +178,14 @@ class DRCValidator:
             return -1, f"DRC execution failed: {str(e)}"
 
     def _run_python_drc(self) -> tuple[int, str]:
-        """Fallback DRC using Python API
+        """Performs a fallback DRC using the `pcbnew` Python API.
+
+        This method provides a basic DRC implementation for environments where
+        `kicad-cli` is not available.
 
         Returns:
-            Tuple of (error_count, report_text)
+            A tuple containing the number of DRC violations found and a
+            string report of the violations.
         """
         violations = []
 
@@ -165,10 +211,13 @@ class DRCValidator:
         return len(violations), report
 
     def verify_constraints(self) -> ValidationResult:
-        """Check custom K1 Lightwave constraints
+        """Verifies the board against the defined DRC constraints.
+
+        This method runs the DRC and returns a `ValidationResult` object
+        summarizing the outcome.
 
         Returns:
-            ValidationResult with constraint check status
+            A `ValidationResult` object with the status of the constraint check.
         """
         error_count, report = self.run_kicad_drc()
 
@@ -198,22 +247,31 @@ class DRCValidator:
 
 
 class DFMValidator:
-    """Design for Manufacturing validation (JLCPCB specific)"""
+    """Performs Design for Manufacturing (DFM) validation, specific to JLCPCB.
+
+    This class checks for common manufacturability issues, such as incorrect
+    layer stackup, component spacing, and edge clearances, to ensure the design
+    is suitable for production at JLCPCB.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        board (pcbnew.BOARD): The `pcbnew` board object.
+    """
 
     def __init__(self, board_path: Path):
-        """Initialize DFM validator
+        """Initializes the DFMValidator.
 
         Args:
-            board_path: Path to .kicad_pcb file
+            board_path: The file path to the .kicad_pcb file to be validated.
         """
         self.board_path = Path(board_path)
         self.board = pcbnew.LoadBoard(str(self.board_path))
 
     def validate_layer_stack(self) -> ValidationResult:
-        """Verify 4-layer configuration for JLCPCB
+        """Verifies that the board has the correct 4-layer stackup for JLCPCB.
 
         Returns:
-            ValidationResult for layer stack validation
+            A `ValidationResult` indicating if the layer stack is correct.
         """
         # Get layer count
         layer_count = self.board.GetCopperLayerCount()
@@ -230,10 +288,10 @@ class DFMValidator:
         )
 
     def validate_assembly(self) -> ValidationResult:
-        """Check assembly constraints (component spacing, clearances)
+        """Checks for assembly constraints, such as component spacing.
 
         Returns:
-            ValidationResult for assembly validation
+            A `ValidationResult` indicating if assembly constraints are met.
         """
         violations = []
 
@@ -265,10 +323,10 @@ class DFMValidator:
         )
 
     def validate_manufacturing(self) -> ValidationResult:
-        """Check fabrication constraints (copper to edge, isolated copper, etc)
+        """Checks for fabrication constraints, like copper-to-edge clearance.
 
         Returns:
-            ValidationResult for manufacturing validation
+            A `ValidationResult` indicating if fabrication constraints are met.
         """
         violations = []
 
@@ -309,10 +367,10 @@ class DFMValidator:
         )
 
     def validate_fiducials(self) -> ValidationResult:
-        """Verify 3 fiducials with diagonal placement
+        """Verifies that at least three fiducial markers are present.
 
         Returns:
-            ValidationResult for fiducial validation
+            A `ValidationResult` indicating if the fiducial requirement is met.
         """
         fiducials = []
 
@@ -347,25 +405,34 @@ class DFMValidator:
 
 
 class SignalIntegrityValidator:
-    """High-speed signal routing validation"""
+    """Performs validation of high-speed signal routing.
+
+    This class checks for common signal integrity issues in high-speed interfaces
+    like SPI, USB, I2C, and I2S, ensuring that the routing meets the required
+    specifications for reliable operation.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        board (pcbnew.BOARD): The `pcbnew` board object.
+    """
 
     def __init__(self, board_path: Path):
-        """Initialize signal integrity validator
+        """Initializes the SignalIntegrityValidator.
 
         Args:
-            board_path: Path to .kicad_pcb file
+            board_path: The file path to the .kicad_pcb file to be validated.
         """
         self.board_path = Path(board_path)
         self.board = pcbnew.LoadBoard(str(self.board_path))
 
     def _find_net_by_name(self, net_name_pattern: str) -> list[pcbnew.NETINFO_ITEM]:
-        """Find nets matching pattern
+        """Finds all nets that match a given name pattern.
 
         Args:
-            net_name_pattern: Net name or pattern to search for
+            net_name_pattern: The pattern to search for in the net names.
 
         Returns:
-            List of matching nets
+            A list of `pcbnew.NETINFO_ITEM` objects for the matching nets.
         """
         matching_nets = []
         for net_code in range(self.board.GetNetCount()):
@@ -375,13 +442,13 @@ class SignalIntegrityValidator:
         return matching_nets
 
     def _get_track_length_mm(self, net: pcbnew.NETINFO_ITEM) -> float:
-        """Calculate total track length for a net
+        """Calculates the total length of all tracks belonging to a specific net.
 
         Args:
-            net: Net to measure
+            net: The `pcbnew.NETINFO_ITEM` object for the net.
 
         Returns:
-            Total track length in mm
+            The total length of the net's tracks in millimeters.
         """
         total_length = 0.0
         for track in self.board.GetTracks():
@@ -390,10 +457,13 @@ class SignalIntegrityValidator:
         return total_length
 
     def validate_spi_routing(self) -> ValidationResult:
-        """Check 40 MHz SPI traces (SCK, MOSI, MISO)
+        """Validates the routing of the 40 MHz SPI traces.
+
+        This method checks for the presence of the main SPI signals (SCK, MOSI, MISO)
+        and provides recommendations for ensuring signal integrity.
 
         Returns:
-            ValidationResult for SPI routing validation
+            A `ValidationResult` for the SPI routing validation.
         """
         spi_nets = ['SCK', 'MOSI', 'MISO', 'SPI_SCK', 'SPI_MOSI', 'SPI_MISO']
         found_nets = {}
@@ -436,10 +506,13 @@ class SignalIntegrityValidator:
         )
 
     def validate_usb_routing(self) -> ValidationResult:
-        """Check USB 2.0 Full-Speed differential pairs
+        """Validates the routing of the USB 2.0 Full-Speed differential pair.
+
+        This method checks for the presence of the D+ and D- signals and verifies
+        that their lengths are matched within the required tolerance.
 
         Returns:
-            ValidationResult for USB routing validation
+            A `ValidationResult` for the USB routing validation.
         """
         usb_dp = self._find_net_by_name('USB_D+') or self._find_net_by_name('D+')
         usb_dm = self._find_net_by_name('USB_D-') or self._find_net_by_name('D-')
@@ -488,10 +561,13 @@ class SignalIntegrityValidator:
         )
 
     def validate_i2c_i2s_routing(self) -> ValidationResult:
-        """Check I2C/I2S signals (pull-ups, series damping)
+        """Validates the routing of I2C and I2S signals.
+
+        This method checks for the presence of I2C and I2S signals and provides
+        recommendations for pull-up resistors and series damping.
 
         Returns:
-            ValidationResult for I2C/I2S routing validation
+            A `ValidationResult` for the I2C/I2S routing validation.
         """
         i2c_nets = self._find_net_by_name('SDA') + self._find_net_by_name('SCL')
         i2s_nets = self._find_net_by_name('I2S')
@@ -535,7 +611,18 @@ class SignalIntegrityValidator:
 
 @dataclass
 class ThermalParameters:
-    """K1 Lightwave thermal parameters"""
+    """Defines the thermal parameters for the K1 Lightwave board.
+
+    Attributes:
+        ambient_temp_c: The ambient operating temperature in degrees Celsius.
+        power_mcu_a_w: The power dissipation of the primary MCU in watts.
+        power_mcu_b_w: The power dissipation of the secondary MCU in watts.
+        power_converter_w: The power dissipation of the power converter in watts.
+        r_thermal_mcu_to_gnd: The thermal resistance from the MCU to the ground plane.
+        r_thermal_gnd_to_ambient: The thermal resistance from the ground plane to ambient.
+        thermal_via_benefit_pct: The estimated thermal benefit from thermal vias.
+        max_junction_temp_c: The maximum allowable junction temperature for the ICs.
+    """
     ambient_temp_c: float = 25.0
     power_mcu_a_w: float = 0.3
     power_mcu_b_w: float = 0.5
@@ -547,31 +634,47 @@ class ThermalParameters:
 
     @property
     def total_power_w(self) -> float:
-        """Calculate total power dissipation"""
+        """Calculates the total power dissipation of the board.
+
+        Returns:
+            The total power dissipation in watts.
+        """
         return self.power_mcu_a_w + self.power_mcu_b_w + self.power_converter_w
 
 
 class ThermalValidator:
-    """Thermal analysis and validation"""
+    """Performs thermal analysis and validation of the PCB design.
+
+    This class estimates the junction temperature of the main components to
+    ensure they operate within safe limits. It considers factors like power
+    dissipation, thermal resistance, and the presence of thermal vias.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        board (pcbnew.BOARD): The `pcbnew` board object.
+        params (ThermalParameters): The thermal parameters used for the analysis.
+    """
 
     def __init__(self, board_path: Path, params: ThermalParameters | None = None):
-        """Initialize thermal validator
+        """Initializes the ThermalValidator.
 
         Args:
-            board_path: Path to .kicad_pcb file
-            params: Thermal parameters (uses K1 defaults if None)
+            board_path: The file path to the .kicad_pcb file.
+            params: Optional `ThermalParameters` object. If not provided,
+                    defaults for the K1 Lightwave board are used.
         """
         self.board_path = Path(board_path)
         self.board = pcbnew.LoadBoard(str(self.board_path))
         self.params = params or ThermalParameters()
 
     def calculate_temperature_rise(self) -> float:
-        """Estimate maximum junction temperature rise
+        """Estimates the maximum junction temperature rise of the components.
 
-        Formula: T_rise = P_total × (R_thermal_mcu + R_thermal_gnd) × (1 - via_benefit)
+        This calculation is based on the total power dissipation, thermal
+        resistance, and the estimated benefit from thermal vias.
 
         Returns:
-            Temperature rise in °C
+            The estimated temperature rise in degrees Celsius.
         """
         r_total = self.params.r_thermal_mcu_to_gnd + self.params.r_thermal_gnd_to_ambient
         temp_rise_no_vias = self.params.total_power_w * r_total
@@ -580,10 +683,10 @@ class ThermalValidator:
         return temp_rise
 
     def calculate_via_effectiveness(self) -> float:
-        """Estimate thermal via benefit
+        """Estimates the temperature reduction benefit provided by thermal vias.
 
         Returns:
-            Temperature reduction in °C from thermal vias
+            The estimated temperature reduction in degrees Celsius.
         """
         r_total = self.params.r_thermal_mcu_to_gnd + self.params.r_thermal_gnd_to_ambient
         temp_rise_no_vias = self.params.total_power_w * r_total
@@ -592,10 +695,13 @@ class ThermalValidator:
         return benefit_temp
 
     def _count_thermal_vias(self) -> int:
-        """Count thermal vias on board
+        """Counts the number of thermal vias on the board.
+
+        This method identifies vias connected to the ground net, which are
+        assumed to be thermal vias.
 
         Returns:
-            Number of thermal vias detected
+            The total number of detected thermal vias.
         """
         thermal_via_count = 0
 
@@ -615,10 +721,13 @@ class ThermalValidator:
         return thermal_via_count
 
     def validate_thermal_design(self) -> ValidationResult:
-        """Check T_junction < 80°C with >10°C margin
+        """Validates the thermal design of the board.
+
+        This method checks if the estimated junction temperature is below the
+        maximum allowable limit with a sufficient margin.
 
         Returns:
-            ValidationResult for thermal validation
+            A `ValidationResult` for the thermal design validation.
         """
         temp_rise = self.calculate_temperature_rise()
         t_junction = self.params.ambient_temp_c + temp_rise
@@ -650,14 +759,31 @@ class ThermalValidator:
 
 
 class DesignValidation:
-    """Comprehensive PCB design validation suite"""
+    """Orchestrates the comprehensive design validation process.
+
+    This class runs a suite of validation checks, including DRC, DFM, signal
+    integrity, and thermal analysis. It also generates a manufacturing
+    readiness checklist, exports Gerber and drill files, and produces a
+    detailed validation report.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        output_dir (Path): The directory for storing validation outputs.
+        pcbnew_available (bool): A flag indicating if the `pcbnew` API is available.
+        drc (DRCValidator): The DRC validator instance.
+        dfm (DFMValidator): The DFM validator instance.
+        si (SignalIntegrityValidator): The signal integrity validator instance.
+        thermal (ThermalValidator): The thermal validator instance.
+        results (list[ValidationResult]): A list of results from all validation checks.
+    """
 
     def __init__(self, board_path: Path | str, output_dir: Path | str | None = None):
-        """Initialize validation suite
+        """Initializes the DesignValidation suite.
 
         Args:
-            board_path: Path to .kicad_pcb file
-            output_dir: Directory for validation outputs (defaults to board directory)
+            board_path: The file path to the .kicad_pcb file to be validated.
+            output_dir: The directory for storing validation outputs. If not
+                        provided, the board's directory is used.
         """
         self.board_path = Path(board_path)
         if not self.board_path.exists():
@@ -690,10 +816,13 @@ class DesignValidation:
         self.results: list[ValidationResult] = []
 
     def run_all_validations(self) -> dict[str, Any]:
-        """Execute all validation steps
+        """Executes all validation checks in the suite.
+
+        This method runs DRC, DFM, signal integrity, and thermal validations
+        and compiles the results into a summary dictionary.
 
         Returns:
-            Dictionary with all validation results
+            A dictionary containing the aggregated results of all validation checks.
         """
         self.results = []
 
@@ -790,10 +919,11 @@ class DesignValidation:
         }
 
     def manufacturing_readiness_check(self) -> tuple[bool, list[str]]:
-        """Pre-manufacturing checklist validation
+        """Performs a final check against a manufacturing readiness checklist.
 
         Returns:
-            Tuple of (ready, issues_list)
+            A tuple containing a boolean indicating if the board is ready for
+            manufacturing, and a list of any outstanding issues.
         """
         print("\n[5/6] Manufacturing Readiness Checklist...")
 
@@ -840,10 +970,11 @@ class DesignValidation:
         return ready, issues
 
     def export_manufacturing_files(self) -> dict[str, Any]:
-        """Generate all Gerber and drill files
+        """Generates all necessary manufacturing files, including Gerbers and drill files.
 
         Returns:
-            Dictionary with file generation status
+            A dictionary containing the status of the file generation and a list
+            of the generated files.
         """
         print("\n[6/6] Exporting Manufacturing Files...")
 
@@ -921,10 +1052,10 @@ class DesignValidation:
             }
 
     def generate_validation_report(self) -> str:
-        """Create comprehensive validation report
+        """Creates a comprehensive, human-readable report of all validation results.
 
         Returns:
-            Formatted report text
+            A formatted string containing the validation report.
         """
         report_lines = []
         report_lines.append("=" * 80)
@@ -961,10 +1092,14 @@ class DesignValidation:
         return "\n".join(report_lines)
 
     def execute(self) -> bool:
-        """Run full Phase 4 validation pipeline
+        """Executes the full design validation pipeline.
+
+        This method runs all validation checks, generates manufacturing files,
+        and produces a final report.
 
         Returns:
-            True if all validations pass, False otherwise
+            True if all validations pass and all files are generated
+            successfully, False otherwise.
         """
         # Run all validations
         summary = self.run_all_validations()

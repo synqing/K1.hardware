@@ -19,12 +19,23 @@ class DFMCheck:
     """Single DFM check result."""
 
     def __init__(self, rule: str, message: str, status: str = "PASS", severity: str = "INFO"):
+        """Initializes a new DFM check.
+        Args:
+            rule (str): The name of the rule being checked.
+            message (str): A description of the check.
+            status (str): The status of the check (PASS or FAIL).
+            severity (str): The severity of the check (INFO, WARNING, or ERROR).
+        """
         self.rule = rule
         self.message = message
         self.status = status  # PASS or FAIL
         self.severity = severity  # INFO, WARNING, ERROR
 
     def to_dict(self) -> Dict[str, Any]:
+        """Converts the DFM check to a dictionary.
+        Returns:
+            Dict[str, Any]: A dictionary representation of the DFM check.
+        """
         return {
             "rule": self.rule,
             "message": self.message,

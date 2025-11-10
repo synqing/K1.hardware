@@ -19,7 +19,6 @@ from pathlib import Path
 
 class FreeRoutingError(Exception):
     """Raised when FreeRouting operation fails."""
-    pass
 
 
 def route(jar_path, dsn_file, ses_output, timeout_s=1800, max_retries=1):
