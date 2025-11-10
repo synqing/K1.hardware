@@ -1,0 +1,6 @@
+M48
+FORMAT=2:4 / absolute / inches / dia
+TOOL=T01C0.015
+T01
+X10000Y10000
+M30

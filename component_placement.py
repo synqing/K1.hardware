@@ -167,6 +167,9 @@ class ComponentPlacement:
                          If not provided, the original board file will be overwritten.
         """
         self.board_path = Path(board_path)
+        if not self.board_path.exists():
+            raise RuntimeError(f"Board file not found: {self.board_path}")
+
         if output_path:
             output_path = Path(output_path)
             # If directory path provided, auto-correct to use board filename in directory
@@ -214,7 +217,7 @@ class ComponentPlacement:
             # Fallback: Create dummy components for simulation
             logging.info("Generating simulated component inventory (52 components)")
             dummy_refs = [
-                "C3", "C4", "C5", "C_BIN1", "C_BOUT1", "C_INA",
+                "C3", "C4", "C5", "C_BIN1", "C_BOUT1", "C_INA", "J1", "U1", "U3",
                 "D1", "D2", "D3", "D4", "D_ESD_CC1", "D_ESD_CC2",
                 "D_ESD_DM", "D_ESD_DP", "D_IDEAL",
                 "F1", "F2", "F3", "F4", "F_USB",
@@ -226,7 +229,7 @@ class ComponentPlacement:
                 "R_PDM_CLK_SER", "R_READY_PD", "R_SPI_CS_PU",
                 "R_SPI_MISO_SER", "R_SPI_MOSI_SER", "R_SPI_SCK_SER",
                 "R_USB_DM_SER", "R_USB_DP_SER",
-                "SW1", "U3", "U4", "U8"
+                "SW1", "U4", "U8"
             ]
             for ref in dummy_refs:
                 self.components[ref] = ComponentInfo(
