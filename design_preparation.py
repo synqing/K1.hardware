@@ -42,8 +42,21 @@ class FootprintAssignment:
 
 class DesignPreparation:
     """
-    Phase 1: Design Preparation
-    Load netlist, assign footprints, validate design
+    Handles the initial design preparation phase for a PCB project.
+
+    This class automates loading a KiCad netlist into a PCB file, assigning
+    component footprints based on predefined rules, documenting necessary IC
+    replacements, validating net connectivity, and running Electrical Rule
+    Checks (ERC). It is designed to prepare a raw schematic and netlist for
+    the component placement phase.
+
+    Attributes:
+        netlist_path (Path): The file path to the KiCad netlist (.net).
+        board_path (Path): The file path to the KiCad PCB file (.kicad_pcb).
+        output_path (Path): The destination file path for the modified PCB file.
+        kicad_cli (str): The command-line executable for KiCad.
+        logger (logging.Logger): A logger for recording operational messages.
+        results (Dict[str, any]): A dictionary to store the outcomes of the preparation steps.
     """
 
     # Footprint mapping rules for K1 Lightwave
@@ -158,14 +171,14 @@ class DesignPreparation:
         output_path: Optional[Path] = None,
         kicad_cli: str = '/opt/homebrew/bin/kicad-cli'
     ):
-        """
-        Initialize Design Preparation
+        """Initializes the DesignPreparation class.
 
         Args:
-            netlist_path: Path to KiCad netlist (.net)
-            board_path: Path to KiCad PCB file (.kicad_pcb)
-            output_path: Optional output path (defaults to board_path)
-            kicad_cli: Path to kicad-cli executable
+            netlist_path: The file path to the KiCad netlist (.net).
+            board_path: The file path to the KiCad PCB file (.kicad_pcb).
+            output_path: The optional destination path for the modified PCB file.
+                         If not provided, the original board file will be overwritten.
+            kicad_cli: The path to the KiCad command-line interface executable.
         """
         self.netlist_path = Path(netlist_path)
         self.board_path = Path(board_path)
@@ -196,14 +209,15 @@ class DesignPreparation:
         }
 
     def load_netlist(self) -> bool:
-        """
-        Import netlist into KiCad board
+        """Imports a netlist into a KiCad board file.
 
-        Parses netlist, applies footprint rules, and populates board with footprints
-        using KiCad Python API (pcbnew)
+        This method reads component information from the netlist file, matches
+        each component to a predefined footprint, and adds the footprints to the
+        KiCad board file. It requires the `pcbnew` Python API to be available.
 
         Returns:
-            True if successful
+            True if the netlist is loaded and at least one component is added
+            successfully, False otherwise.
         """
         self.logger.info(f"Loading netlist: {self.netlist_path}")
 
@@ -337,14 +351,15 @@ class DesignPreparation:
             return False
 
     def assign_footprints(self) -> Dict[str, str]:
-        """
-        Assign missing footprints to Device library components
+        """Assigns footprints to components that are missing them.
 
-        Reads netlist, matches components by reference pattern,
-        generates footprint assignments.
+        This method reads the netlist to identify components without an assigned
+        footprint. It then attempts to match these components against a set of
+        predefined rules to determine the correct footprint.
 
         Returns:
-            Dictionary of {component_ref: footprint}
+            A dictionary where keys are component references and values are the
+            assigned footprint names.
         """
         self.logger.info("Analyzing footprint assignments...")
 
@@ -407,11 +422,15 @@ class DesignPreparation:
             return {}
 
     def replace_ic_placeholders(self) -> Dict[str, Dict]:
-        """
-        Document IC replacements needed
+        """Documents the necessary integrated circuit (IC) replacements.
+
+        This method logs the ICs that are currently using placeholder symbols
+        in the schematic and need to be replaced with the correct components.
+        It serves as a reminder for manual corrections in the schematic.
 
         Returns:
-            Dictionary of IC replacement specifications
+            A dictionary detailing the required IC replacements, including the
+            current placeholder, the target component, and the correct footprint.
         """
         self.logger.info("Analyzing IC placeholder replacements...")
 
@@ -435,16 +454,14 @@ class DesignPreparation:
         return self.IC_REPLACEMENTS
 
     def validate_nets(self) -> Tuple[bool, str]:
-        """
-        Validate all nets are properly connected
+        """Validates the electrical connectivity of nets in the design.
 
-        Checks for:
-        - Floating pins
-        - Unconnected nets
-        - Net integrity
+        This method checks for common net-related issues, such as floating pins
+        and unconnected nets, by analyzing the netlist file.
 
         Returns:
-            (success, message)
+            A tuple containing a boolean indicating if the nets are valid and a
+            string message summarizing the validation results.
         """
         self.logger.info("Validating net connectivity...")
 
@@ -502,17 +519,15 @@ class DesignPreparation:
             return False, error
 
     def run_erc(self) -> Tuple[bool, str]:
-        """
-        Run Electrical Rule Check
+        """Runs the Electrical Rule Check (ERC) on the schematic.
 
-        Uses: kicad-cli erc
-
-        Acceptance criteria:
-        - Errors: 0 (must pass)
-        - Warnings: <= 100 (acceptable for placeholders)
+        This method uses the `kicad-cli` tool to perform an ERC on the schematic
+        file associated with the netlist. It checks for electrical errors and
+        warnings based on KiCad's rules.
 
         Returns:
-            (success, message)
+            A tuple containing a boolean indicating if the ERC passed and a
+            string message summarizing the results.
         """
         self.logger.info("Running Electrical Rule Check (ERC)...")
 
@@ -606,11 +621,14 @@ class DesignPreparation:
             return False, error
 
     def execute(self) -> bool:
-        """
-        Run full Phase 1 pipeline
+        """Executes the full design preparation pipeline.
+
+        This method runs all the steps in the design preparation phase in the
+        correct order: loading the netlist, assigning footprints, documenting
+        IC replacements, validating nets, and running the ERC.
 
         Returns:
-            True if all steps successful
+            True if all steps in the pipeline complete successfully, False otherwise.
         """
         self.logger.info("="*60)
         self.logger.info("PHASE 1: DESIGN PREPARATION")
@@ -682,11 +700,10 @@ class DesignPreparation:
         return overall_success
 
     def save_report(self, report_path: Path) -> None:
-        """
-        Save detailed report to JSON
+        """Saves a detailed report of the design preparation results to a JSON file.
 
         Args:
-            report_path: Path to save report
+            report_path: The path to the file where the report will be saved.
         """
         with open(report_path, 'w') as f:
             json.dump(self.results, f, indent=2)

@@ -62,7 +62,23 @@ class RoutingStatus(Enum):
 
 @dataclass
 class TraceSpecification:
-    """Specifications for trace routing"""
+    """Defines the routing specifications for a single electrical trace.
+
+    Attributes:
+        net_name: The name of the net this trace belongs to.
+        net_type: The functional type of the net (e.g., POWER, HIGH_SPEED).
+        width_mil: The width of the trace in mils.
+        width_mm: The width of the trace in millimeters.
+        clearance_mil: The clearance around the trace in mils.
+        clearance_mm: The clearance around the trace in millimeters.
+        max_length_mm: The maximum allowed length of the trace in millimeters.
+        length_match_tolerance_mm: The length matching tolerance for differential pairs.
+        series_damping_ohm: The value of a series damping resistor, if required.
+        differential_pair: A flag indicating if this is part of a differential pair.
+        differential_spacing_mil: The required spacing for a differential pair in mils.
+        impedance_target_ohm: The target impedance for the trace.
+        layer_constraint: The specific layer the trace should be routed on.
+    """
     net_name: str
     net_type: NetType
     width_mil: float
@@ -90,7 +106,14 @@ class TraceSpecification:
 
 @dataclass
 class ViaSpecification:
-    """Specifications for via placement"""
+    """Specifies the properties of a via.
+
+    Attributes:
+        diameter_mm: The full diameter of the via pad in millimeters.
+        drill_mm: The diameter of the drill hole in millimeters.
+        via_type: The type of via (e.g., "through", "blind", "buried").
+        thermal_relief: A flag indicating if thermal relief should be applied.
+    """
     diameter_mm: float
     drill_mm: float
     via_type: str = "through"  # through, blind, buried, thermal
@@ -107,7 +130,19 @@ class ViaSpecification:
 
 @dataclass
 class CopperZone:
-    """Copper zone/plane specification"""
+    """Defines a copper pour or zone on a specific layer.
+
+    Attributes:
+        name: The unique name of the copper zone.
+        net_name: The name of the net this zone is connected to.
+        layer: The layer on which the zone is placed.
+        priority: The priority of the zone fill.
+        clearance_mm: The clearance between the zone and other copper features.
+        min_width_mm: The minimum width of any part of the filled zone.
+        thermal_relief: A flag for applying thermal relief to pads.
+        fill_mode: The fill pattern (e.g., "solid", "hatch").
+        hatch_spacing_mm: The spacing for hatched fill patterns.
+    """
     name: str
     net_name: str
     layer: str
@@ -121,7 +156,17 @@ class CopperZone:
 
 @dataclass
 class ThermalViaArray:
-    """Thermal via array for component cooling"""
+    """Defines an array of thermal vias for heat dissipation under a component.
+
+    Attributes:
+        component_ref: The reference designator of the component.
+        center_x_mm: The x-coordinate of the center of the via array.
+        center_y_mm: The y-coordinate of the center of the via array.
+        num_vias: The total number of vias in the array.
+        grid_spacing_mm: The spacing between vias in the grid.
+        via_spec: The `ViaSpecification` for the thermal vias.
+        pattern: The layout pattern of the vias (e.g., "grid", "circle").
+    """
     component_ref: str
     center_x_mm: float
     center_y_mm: float
@@ -133,7 +178,19 @@ class ThermalViaArray:
 
 @dataclass
 class RoutingResult:
-    """Result of routing operation"""
+    """Summarizes the results of the automated routing process.
+
+    Attributes:
+        status: The final status of the routing operation.
+        nets_routed: The number of nets that were successfully routed.
+        nets_total: The total number of nets in the design.
+        vias_placed: The total number of vias placed on the board.
+        routing_time_sec: The total time taken for routing, in seconds.
+        drc_violations: The number of Design Rule Check violations found.
+        messages: A list of informational messages from the routing process.
+        warnings: A list of warnings generated during routing.
+        errors: A list of errors that occurred during routing.
+    """
     status: RoutingStatus
     nets_routed: int
     nets_total: int
@@ -160,7 +217,13 @@ class RoutingResult:
 # =============================================================================
 
 class K1RoutingConfiguration:
-    """K1 Lightwave specific routing rules and specifications"""
+    """Provides a centralized configuration for all routing rules and specifications.
+
+    This class contains all the design-specific constraints for the K1 Lightwave
+    board, including trace widths, clearances, via sizes, copper zones, and
+    thermal via arrays. It is intended to be a single source of truth for the
+    automated routing process.
+    """
 
     # Power nets with current requirements
     POWER_NETS = {
@@ -395,7 +458,15 @@ class K1RoutingConfiguration:
 
     @classmethod
     def get_all_critical_nets(cls) -> Dict[str, TraceSpecification]:
-        """Get all critical nets that need manual routing"""
+        """Retrieves a consolidated dictionary of all critical nets.
+
+        This method combines the power, SPI, USB, and I2C/I2S net specifications
+        into a single dictionary for easy access.
+
+        Returns:
+            A dictionary where keys are net names and values are their
+            `TraceSpecification` objects.
+        """
         all_nets = {}
         all_nets.update(cls.POWER_NETS)
         all_nets.update(cls.SPI_NETS)
@@ -409,16 +480,37 @@ class K1RoutingConfiguration:
 # =============================================================================
 
 class CriticalNetRouter:
-    """Manual routing for power and high-speed signals"""
+    """Handles the manual routing of critical nets, such as power and high-speed signals.
+
+    This class is responsible for loading the KiCad board and applying specific
+    routing strategies to nets that require careful handling to ensure signal
+    integrity and power delivery.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        logger (logging.Logger): A logger for recording operational messages.
+        board (pcbnew.BOARD): The `pcbnew` board object.
+        routed_nets (List[str]): A list of nets that have been successfully routed.
+    """
 
     def __init__(self, board_path: str, logger: Optional[logging.Logger] = None):
+        """Initializes the CriticalNetRouter.
+
+        Args:
+            board_path: The file path to the KiCad .kicad_pcb file.
+            logger: An optional logger instance.
+        """
         self.board_path = Path(board_path)
         self.logger = logger or logging.getLogger(__name__)
         self.board = None
         self.routed_nets = []
 
     def load_board(self) -> bool:
-        """Load KiCad board"""
+        """Loads the KiCad board file using the `pcbnew` API.
+
+        Returns:
+            True if the board is loaded successfully, False otherwise.
+        """
         try:
             import pcbnew
             self.board = pcbnew.LoadBoard(str(self.board_path))
@@ -429,11 +521,14 @@ class CriticalNetRouter:
             return False
 
     def route_power_nets(self) -> Dict[str, Any]:
-        """
-        Route power distribution nets: VBUS, 3V3, LED_5V, GND
+        """Routes the main power distribution nets.
+
+        This method applies specific trace widths and clearances for the power
+        nets, as defined in the `K1RoutingConfiguration`.
 
         Returns:
-            Dictionary with routing results
+            A dictionary containing the results of the power net routing,
+            including which nets were routed and the overall status.
         """
         self.logger.info("=" * 60)
         self.logger.info("ROUTING POWER NETS")
@@ -464,11 +559,13 @@ class CriticalNetRouter:
         return results
 
     def route_spi_signals(self) -> Dict[str, Any]:
-        """
-        Route SPI clock and data signals with series damping
+        """Routes the high-speed SPI (Serial Peripheral Interface) signals.
+
+        This method handles the routing of SPI clock and data lines, including
+        any requirements for series damping resistors to maintain signal integrity.
 
         Returns:
-            Dictionary with routing results
+            A dictionary containing the results of the SPI signal routing.
         """
         self.logger.info("=" * 60)
         self.logger.info("ROUTING SPI SIGNALS (40 MHz)")
@@ -499,11 +596,14 @@ class CriticalNetRouter:
         return results
 
     def route_usb_signals(self) -> Dict[str, Any]:
-        """
-        Route USB differential pair (D+/D-)
+        """Routes the USB (Universal Serial Bus) differential pair.
+
+        This method ensures that the USB D+ and D- signals are routed as a
+        length-matched differential pair with the correct spacing to meet
+        USB 2.0 specifications.
 
         Returns:
-            Dictionary with routing results
+            A dictionary containing the results of the USB signal routing.
         """
         self.logger.info("=" * 60)
         self.logger.info("ROUTING USB DIFFERENTIAL PAIR")
@@ -533,11 +633,10 @@ class CriticalNetRouter:
         return results
 
     def route_i2c_i2s(self) -> Dict[str, Any]:
-        """
-        Route I2C and I2S signals
+        """Routes the I2C (Inter-Integrated Circuit) and I2S (Integrated Interchip Sound) signals.
 
         Returns:
-            Dictionary with routing results
+            A dictionary containing the results of the I2C/I2S signal routing.
         """
         self.logger.info("=" * 60)
         self.logger.info("ROUTING I2C/I2S SIGNALS")
@@ -571,7 +670,20 @@ class CriticalNetRouter:
 # =============================================================================
 
 class FreeRoutingIntegration:
-    """FreeRouting auto-router integration"""
+    """Manages the integration with the FreeRouting external autorouter.
+
+    This class handles exporting the KiCad board to the Specctra DSN format,
+    configuring and running the FreeRouting JAR, and importing the resulting
+    SES session file back into the KiCad board.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        work_dir (Path): The directory for storing intermediate routing files.
+        freerouting_jar (Path): The file path to the FreeRouting executable JAR.
+        logger (logging.Logger): A logger for recording operational messages.
+        dsn_file (Path): The path to the exported DSN file.
+        ses_file (Path): The path to the imported SES session file.
+    """
 
     def __init__(
         self,
@@ -580,6 +692,14 @@ class FreeRoutingIntegration:
         freerouting_jar: Optional[str] = None,
         logger: Optional[logging.Logger] = None
     ):
+        """Initializes the FreeRoutingIntegration class.
+
+        Args:
+            board_path: The file path to the KiCad .kicad_pcb file.
+            work_dir: The directory for storing intermediate routing files.
+            freerouting_jar: The file path to the FreeRouting executable JAR.
+            logger: An optional logger instance.
+        """
         self.board_path = Path(board_path)
         self.work_dir = Path(work_dir) if work_dir else self.board_path.parent / "build" / "routing"
         self.freerouting_jar = Path(freerouting_jar) if freerouting_jar else None
@@ -592,7 +712,14 @@ class FreeRoutingIntegration:
         self.work_dir.mkdir(parents=True, exist_ok=True)
 
     def find_freerouting_jar(self) -> bool:
-        """Locate FreeRouting JAR file"""
+        """Locates the FreeRouting JAR file on the local system.
+
+        This method searches for the FreeRouting JAR in common installation
+        directories and updates the `freerouting_jar` attribute if found.
+
+        Returns:
+            True if the FreeRouting JAR is found, False otherwise.
+        """
         if self.freerouting_jar and self.freerouting_jar.exists():
             self.logger.info(f"Using FreeRouting: {self.freerouting_jar}")
             return True
@@ -616,11 +743,12 @@ class FreeRoutingIntegration:
         return False
 
     def export_to_dsn(self) -> bool:
-        """
-        Export board to Specctra DSN format
+        """Exports the KiCad board to the Specctra DSN file format.
+
+        This DSN file is used as the input for the FreeRouting autorouter.
 
         Returns:
-            True if export successful
+            True if the DSN file is exported successfully, False otherwise.
         """
         self.logger.info("=" * 60)
         self.logger.info("EXPORTING TO SPECCTRA DSN")
@@ -653,11 +781,10 @@ class FreeRoutingIntegration:
             return False
 
     def configure_freerouting(self) -> Dict[str, Any]:
-        """
-        Configure FreeRouting parameters for K1 board
+        """Configures the parameters for the FreeRouting autorouter.
 
         Returns:
-            Configuration dictionary
+            A dictionary of configuration parameters for FreeRouting.
         """
         config = {
             "threads": 4,
@@ -675,14 +802,13 @@ class FreeRoutingIntegration:
         return config
 
     def run_freerouting(self, timeout: int = 900) -> bool:
-        """
-        Execute FreeRouting auto-router
+        """Executes the FreeRouting autorouter as a subprocess.
 
         Args:
-            timeout: Maximum routing time in seconds (default 15 minutes)
+            timeout: The maximum time in seconds to allow for routing.
 
         Returns:
-            True if routing successful
+            True if the autorouter completes successfully, False otherwise.
         """
         self.logger.info("=" * 60)
         self.logger.info("RUNNING FREEROUTING AUTO-ROUTER")
@@ -752,11 +878,10 @@ class FreeRoutingIntegration:
             return False
 
     def import_routing_results(self) -> bool:
-        """
-        Import FreeRouting SES results back into KiCad board
+        """Imports the routing results from the SES file back into the KiCad board.
 
         Returns:
-            True if import successful
+            True if the import is successful, False otherwise.
         """
         self.logger.info("=" * 60)
         self.logger.info("IMPORTING ROUTING RESULTS")
@@ -790,11 +915,14 @@ class FreeRoutingIntegration:
             return False
 
     def verify_routing(self) -> Tuple[bool, str]:
-        """
-        Validate routing quality and completion
+        """Validates the quality and completeness of the routing.
+
+        This method checks for unrouted segments, minimum trace widths, clearances,
+        and other routing-related issues.
 
         Returns:
-            (success, message) tuple
+            A tuple containing a boolean indicating if the routing is valid, and
+            a string message summarizing the verification results.
         """
         self.logger.info("=" * 60)
         self.logger.info("VERIFYING ROUTING")
@@ -819,7 +947,22 @@ class FreeRoutingIntegration:
 # =============================================================================
 
 class AutomatedRouting:
-    """Complete Phase 3 routing pipeline orchestrator"""
+    """Orchestrates the entire automated PCB routing pipeline.
+
+    This class coordinates the various stages of the routing process, including
+    critical net routing, autorouting with FreeRouting, copper zone creation,
+    thermal via placement, and post-routing validation.
+
+    Attributes:
+        board_path (Path): The file path to the KiCad PCB file.
+        kicad_path (str): The path to the KiCad installation directory.
+        freerouting_jar (str): The file path to the FreeRouting executable JAR.
+        work_dir (Path): The directory for storing intermediate routing files.
+        logger (logging.Logger): A logger for recording operational messages.
+        critical_router (CriticalNetRouter): An instance for routing critical nets.
+        freerouting (FreeRoutingIntegration): An instance for autorouter integration.
+        result (RoutingResult): An object to store the final routing results.
+    """
 
     def __init__(
         self,
@@ -829,6 +972,15 @@ class AutomatedRouting:
         work_dir: Optional[str] = None,
         logger: Optional[logging.Logger] = None
     ):
+        """Initializes the AutomatedRouting orchestrator.
+
+        Args:
+            board_path: The file path to the KiCad .kicad_pcb file.
+            kicad_path: The path to the KiCad installation directory.
+            freerouting_jar: The file path to the FreeRouting executable JAR.
+            work_dir: The directory for storing intermediate routing files.
+            logger: An optional logger instance.
+        """
         self.board_path = Path(board_path)
         self.kicad_path = kicad_path
         self.freerouting_jar = freerouting_jar
@@ -869,11 +1021,13 @@ class AutomatedRouting:
         )
 
     def route_critical_nets(self) -> Dict[str, Any]:
-        """
-        Step 1: Route power and high-speed nets manually
+        """Routes the critical power and high-speed nets.
+
+        This is the first step in the routing pipeline, where nets requiring
+        manual control are routed before the autorouter is run.
 
         Returns:
-            Dictionary with routing results
+            A dictionary summarizing the results of the critical net routing.
         """
         self.logger.info("\n" + "=" * 70)
         self.logger.info("PHASE 3: AUTOMATED ROUTING - STEP 1: CRITICAL NETS")
@@ -909,11 +1063,10 @@ class AutomatedRouting:
         return results
 
     def export_for_autorouting(self) -> bool:
-        """
-        Step 2: Export to DSN for FreeRouting
+        """Exports the board to the DSN format required by FreeRouting.
 
         Returns:
-            True if export successful
+            True if the export is successful, False otherwise.
         """
         self.logger.info("\n" + "=" * 70)
         self.logger.info("PHASE 3: AUTOMATED ROUTING - STEP 2: EXPORT TO DSN")
@@ -928,11 +1081,10 @@ class AutomatedRouting:
         return success
 
     def run_autorouter(self) -> bool:
-        """
-        Step 3: Execute FreeRouting
+        """Executes the FreeRouting autorouter.
 
         Returns:
-            True if routing successful
+            True if the autorouting process completes successfully, False otherwise.
         """
         self.logger.info("\n" + "=" * 70)
         self.logger.info("PHASE 3: AUTOMATED ROUTING - STEP 3: AUTO-ROUTE")
@@ -961,11 +1113,10 @@ class AutomatedRouting:
         return success
 
     def create_copper_zones(self) -> Dict[str, Any]:
-        """
-        Step 4: Create GND/power planes and pour
+        """Creates and pours the copper zones for power and ground planes.
 
         Returns:
-            Dictionary with zone creation results
+            A dictionary summarizing the results of the copper zone creation.
         """
         self.logger.info("\n" + "=" * 70)
         self.logger.info("PHASE 3: AUTOMATED ROUTING - STEP 4: COPPER ZONES")
@@ -995,11 +1146,10 @@ class AutomatedRouting:
         return results
 
     def place_thermal_vias(self) -> Dict[str, Any]:
-        """
-        Step 5: Add thermal vias under high-power components
+        """Places thermal vias under high-power components for heat dissipation.
 
         Returns:
-            Dictionary with via placement results
+            A dictionary summarizing the results of the thermal via placement.
         """
         self.logger.info("\n" + "=" * 70)
         self.logger.info("PHASE 3: AUTOMATED ROUTING - STEP 5: THERMAL VIAS")
@@ -1032,11 +1182,11 @@ class AutomatedRouting:
         return results
 
     def validate_routing(self) -> Tuple[bool, List[str]]:
-        """
-        Step 6: Verify all constraints met
+        """Validates the final routed board against all design constraints.
 
         Returns:
-            (success, violations) tuple
+            A tuple containing a boolean indicating if the validation passed,
+            and a list of any violation messages.
         """
         self.logger.info("\n" + "=" * 70)
         self.logger.info("PHASE 3: AUTOMATED ROUTING - STEP 6: VALIDATION")
@@ -1062,11 +1212,13 @@ class AutomatedRouting:
         return len(violations) == 0, violations
 
     def execute(self) -> bool:
-        """
-        Run full Phase 3 pipeline
+        """Executes the full automated routing pipeline.
+
+        This method runs all the routing and post-routing steps in the correct
+        sequence to produce a fully routed PCB.
 
         Returns:
-            True if all steps successful
+            True if the entire pipeline completes successfully, False otherwise.
         """
         self.logger.info("\n" + "=" * 80)
         self.logger.info("ELITE PCB DESIGNER AGENT - PHASE 3: AUTOMATED ROUTING")

@@ -28,12 +28,24 @@ except ImportError as e:
 
 @dataclass
 class Point:
-    """2D point in mm"""
+    """Represents a 2D point in millimeters.
+
+    Attributes:
+        x: The x-coordinate of the point.
+        y: The y-coordinate of the point.
+    """
     x: float
     y: float
 
     def distance_to(self, other: 'Point') -> float:
-        """Calculate Euclidean distance to another point"""
+        """Calculates the Euclidean distance to another point.
+
+        Args:
+            other: The other point to which the distance is calculated.
+
+        Returns:
+            The distance between the two points in millimeters.
+        """
         return math.sqrt((self.x - other.x)**2 + (self.y - other.y)**2)
 
     def __add__(self, other: 'Point') -> 'Point':
@@ -45,7 +57,17 @@ class Point:
 
 @dataclass
 class ComponentInfo:
-    """Component placement information"""
+    """Stores placement and metadata for a single component.
+
+    Attributes:
+        reference: The component's reference designator (e.g., "R1", "U1").
+        footprint: The name of the component's footprint.
+        position: The (x, y) coordinates of the component's center.
+        rotation: The component's rotation in degrees.
+        placed: A flag indicating whether the component has been placed.
+        thermal_zone: The name of the thermal zone the component belongs to.
+        cluster: The functional group the component is a part of.
+    """
     reference: str
     footprint: str
     position: Optional[Point] = None
@@ -57,7 +79,17 @@ class ComponentInfo:
 
 @dataclass
 class K1ThermalZone:
-    """Represents a thermal zone on the K1 board"""
+    """Defines a thermal zone on the PCB for managing heat-sensitive components.
+
+    Attributes:
+        name: The unique name of the thermal zone.
+        center: The center point of the zone.
+        radius: The radius of the zone in millimeters.
+        priority: The placement priority for this zone (1 is highest).
+        max_temp_rise: The maximum allowable temperature rise in degrees Celsius.
+        power_dissipation: The estimated power dissipation within the zone in milliwatts.
+        components: A list of components placed within this zone.
+    """
     name: str
     center: Point
     radius: float  # mm
@@ -67,24 +99,54 @@ class K1ThermalZone:
     components: List[ComponentInfo] = field(default_factory=list)
 
     def contains_point(self, point: Point) -> bool:
-        """Check if point is within thermal zone"""
+        """Checks if a given point is inside the thermal zone.
+
+        Args:
+            point: The point to check.
+
+        Returns:
+            True if the point is within the zone's radius, False otherwise.
+        """
         return self.center.distance_to(point) <= self.radius
 
     def add_component(self, comp: ComponentInfo) -> None:
-        """Add component to this thermal zone"""
+        """Adds a component to the thermal zone.
+
+        Args:
+            comp: The component to add.
+        """
         self.components.append(comp)
         comp.thermal_zone = self.name
 
 
 class ComponentPlacement:
-    """
-    Intelligent component placement engine for K1 Lightwave board.
+    """Orchestrates the automated placement of components on a PCB.
 
-    Implements multi-phase placement algorithm:
-    - Phase 2A: Fixed components (board edge connectors)
-    - Phase 2B: Primary components (MCUs, power)
-    - Phase 2C: Supporting components (passives)
-    - Phase 2D: Remaining components
+    This class implements a multi-phase placement strategy to intelligently
+    position components based on thermal zones, functional clusters, and
+    manufacturing constraints. It is designed to handle the placement process
+    for the K1 Lightwave board, but can be adapted for other designs.
+
+    The placement process is divided into four main phases:
+    1.  **Fixed Components**: Placement of connectors and other components with
+        fixed positions.
+    2.  **Primary Components**: Placement of core components like MCUs and power
+        modules within their designated thermal zones.
+    3.  **Supporting Components**: Placement of passives and other components
+        that support the primary components.
+    4.  **Remaining Components**: Placement of all other components in the
+        remaining available space.
+
+    Attributes:
+        board_path (Path): The file path to the input KiCad PCB file.
+        output_path (Path): The destination file path for the modified PCB file.
+        pcbnew_available (bool): A flag indicating if the `pcbnew` API is available.
+        board (pcbnew.BOARD): The `pcbnew` board object.
+        components (Dict[str, ComponentInfo]): A dictionary of all components on the board.
+        thermal_zones (List[K1ThermalZone]): A list of defined thermal zones.
+        clusters (Dict[str, List[ComponentInfo]]): A dictionary of component functional clusters.
+        placement_results (Dict[str, Point]): A dictionary of final component placements.
+        violations (List[str]): A list of any placement violations found.
     """
 
     # K1 Board dimensions (mm)
@@ -97,12 +159,12 @@ class ComponentPlacement:
     MIN_EDGE_DISTANCE = 2.0  # mm from board edge
 
     def __init__(self, board_path: str, output_path: Optional[str] = None):
-        """
-        Initialize component placement engine.
+        """Initializes the ComponentPlacement engine.
 
         Args:
-            board_path: Path to KiCad .kicad_pcb file
-            output_path: Optional output path for modified board
+            board_path: The file path to the KiCad .kicad_pcb file.
+            output_path: The optional destination path for the modified board file.
+                         If not provided, the original board file will be overwritten.
         """
         self.board_path = Path(board_path)
         if output_path:
@@ -141,7 +203,13 @@ class ComponentPlacement:
         self._load_components()
 
     def _load_components(self) -> None:
-        """Load all components from board"""
+        """Loads all components from the KiCad board file.
+
+        This method populates the `self.components` dictionary with `ComponentInfo`
+        objects for each component found on the board. If the `pcbnew` API is not
+        available, it falls back to creating a dummy set of components for
+        simulation purposes.
+        """
         if not self.pcbnew_available or self.board is None:
             # Fallback: Create dummy components for simulation
             logging.info("Generating simulated component inventory (52 components)")
@@ -192,11 +260,14 @@ class ComponentPlacement:
             self.components[ref] = comp
 
     def define_thermal_zones(self) -> List[K1ThermalZone]:
-        """
-        Define K1 Lightwave thermal zones.
+        """Defines the thermal zones for the K1 Lightwave board.
+
+        This method creates a list of `K1ThermalZone` objects, each representing
+        a specific area on the PCB where heat-generating components should be
+        placed.
 
         Returns:
-            List of thermal zones with priorities
+            A list of `K1ThermalZone` objects.
         """
         self.thermal_zones = [
             K1ThermalZone(
@@ -236,11 +307,14 @@ class ComponentPlacement:
         return self.thermal_zones
 
     def cluster_components(self) -> Dict[str, List[ComponentInfo]]:
-        """
-        Group components by functional clusters.
+        """Groups components into functional clusters.
+
+        This method categorizes components based on their function (e.g., power,
+        USB interface, decoupling) to facilitate logical placement.
 
         Returns:
-            Dictionary of cluster names to component lists
+            A dictionary where keys are cluster names and values are lists of
+            `ComponentInfo` objects belonging to that cluster.
         """
         self.clusters = {
             'power': [],
@@ -307,11 +381,15 @@ class ComponentPlacement:
         return self.clusters
 
     def place_fixed_components(self) -> Dict[str, Point]:
-        """
-        Phase 2A: Place fixed components at board edges.
+        """Places components with fixed positions, such as connectors.
+
+        This is the first phase of the placement process, where components
+        that must be in specific locations (e.g., along the board edges)
+        are positioned.
 
         Returns:
-            Dictionary of reference to position
+            A dictionary of the placed components, where keys are component
+            references and values are their `Point` positions.
         """
         placements = {}
 
@@ -370,11 +448,15 @@ class ComponentPlacement:
         return placements
 
     def place_primary_components(self) -> Dict[str, Point]:
-        """
-        Phase 2B: Place primary components in thermal zones.
+        """Places the primary components within their designated thermal zones.
+
+        This is the second phase of placement, focusing on positioning the main
+        integrated circuits (e.g., MCUs, power management ICs) in thermally
+        managed areas.
 
         Returns:
-            Dictionary of reference to position
+            A dictionary of the placed components, where keys are component
+            references and values are their `Point` positions.
         """
         placements = {}
 
@@ -452,11 +534,15 @@ class ComponentPlacement:
         return placements
 
     def place_supporting_components(self) -> Dict[str, Point]:
-        """
-        Phase 2C: Place supporting components along signal paths.
+        """Places supporting components, such as passives, along signal paths.
+
+        This third phase of placement positions components like resistors,
+        capacitors, and diodes in close proximity to the primary components
+        they support.
 
         Returns:
-            Dictionary of reference to position
+            A dictionary of the placed components, where keys are component
+            references and values are their `Point` positions.
         """
         placements = {}
 
@@ -511,11 +597,14 @@ class ComponentPlacement:
         return placements
 
     def place_remaining_components(self) -> Dict[str, Point]:
-        """
-        Phase 2D: Place remaining components in available space.
+        """Places all remaining components in the available board space.
+
+        This final placement phase uses a grid-based approach to position any
+        components that have not yet been placed.
 
         Returns:
-            Dictionary of reference to position
+            A dictionary of the placed components, where keys are component
+            references and values are their `Point` positions.
         """
         placements = {}
 
@@ -548,11 +637,14 @@ class ComponentPlacement:
         return placements
 
     def verify_spacing(self) -> Tuple[bool, List[str]]:
-        """
-        Validate all spacing constraints.
+        """Validates that all components meet the required spacing constraints.
+
+        This method checks for minimum spacing between components and from the
+        board edge to ensure manufacturability.
 
         Returns:
-            Tuple of (is_valid, list of violations)
+            A tuple containing a boolean indicating if all spacing constraints
+            are met, and a list of violation messages.
         """
         violations = []
 
@@ -589,11 +681,15 @@ class ComponentPlacement:
         return len(violations) == 0, violations
 
     def optimize_routing_accessibility(self) -> Dict[str, float]:
-        """
-        Calculate routing accessibility score for each component.
+        """Calculates a routing accessibility score for each component.
+
+        This score is determined by factors such as the component's distance
+        from the board edge and the density of nearby components. A higher score
+        indicates that the component is easier to route to.
 
         Returns:
-            Dictionary of reference to accessibility score (0-1)
+            A dictionary where keys are component references and values are their
+            routing accessibility scores (from 0 to 1).
         """
         scores = {}
 
@@ -628,11 +724,13 @@ class ComponentPlacement:
         return scores
 
     def generate_placement_report(self) -> str:
-        """
-        Generate comprehensive placement report.
+        """Generates a comprehensive report of the component placement results.
+
+        The report includes information about thermal zones, component clusters,
+        spacing validation, and routing accessibility.
 
         Returns:
-            Multi-line report string
+            A formatted string containing the placement report.
         """
         lines = []
         lines.append("=" * 80)
@@ -715,11 +813,13 @@ class ComponentPlacement:
         return '\n'.join(lines)
 
     def generate_ascii_visualization(self) -> str:
-        """
-        Generate ASCII art visualization of component placement.
+        """Generates an ASCII art visualization of the component placement.
+
+        This method provides a simple, text-based view of the board layout,
+        showing the positions of components and thermal zones.
 
         Returns:
-            ASCII diagram string
+            A string containing the ASCII visualization.
         """
         # Create grid (2mm per character)
         scale = 2.0  # mm per character
@@ -791,7 +891,12 @@ class ComponentPlacement:
         return '\n'.join(lines + legend)
 
     def apply_placement_to_board(self) -> None:
-        """Apply calculated placements to KiCad board"""
+        """Applies the calculated component placements to the KiCad board file.
+
+        This method updates the positions and rotations of all components in the
+        `pcbnew` board object based on the results of the placement algorithm.
+        It requires the `pcbnew` API to be available.
+        """
         if not self.pcbnew_available or self.board is None:
             logging.info("Skipping board update (pcbnew not available)")
             return
@@ -813,11 +918,14 @@ class ComponentPlacement:
                     )
 
     def execute(self) -> bool:
-        """
-        Execute full Phase 2 placement pipeline.
+        """Executes the full component placement pipeline.
+
+        This method runs all the placement phases in sequence, from defining
+        thermal zones to placing all components and verifying the results.
 
         Returns:
-            True if successful, False otherwise
+            True if the placement is successful and passes all verification
+            checks, False otherwise.
         """
         try:
             print("Starting Phase 2: Component Placement")

@@ -38,10 +38,10 @@ from automated_routing import (
 
 
 class TestTraceSpecification(unittest.TestCase):
-    """Test TraceSpecification dataclass"""
+    """Tests for the TraceSpecification dataclass."""
 
     def test_trace_spec_creation(self):
-        """Test creating a trace specification"""
+        """Verify that a TraceSpecification object is created with the correct attributes."""
         spec = TraceSpecification(
             net_name="VCC",
             net_type=NetType.POWER,
@@ -59,7 +59,7 @@ class TestTraceSpecification(unittest.TestCase):
         self.assertEqual(spec.clearance_um, 200)
 
     def test_differential_pair_spec(self):
-        """Test differential pair specification"""
+        """Verify that a TraceSpecification for a differential pair is created correctly."""
         spec = TraceSpecification(
             net_name="USB_D+",
             net_type=NetType.DIFFERENTIAL,
@@ -78,10 +78,10 @@ class TestTraceSpecification(unittest.TestCase):
 
 
 class TestViaSpecification(unittest.TestCase):
-    """Test ViaSpecification dataclass"""
+    """Tests for the ViaSpecification dataclass."""
 
     def test_standard_via(self):
-        """Test standard via specification"""
+        """Verify that a standard ViaSpecification object is created correctly."""
         via = ViaSpecification(
             diameter_mm=0.6,
             drill_mm=0.3,
@@ -96,7 +96,7 @@ class TestViaSpecification(unittest.TestCase):
         self.assertFalse(via.thermal_relief)
 
     def test_thermal_via(self):
-        """Test thermal via specification"""
+        """Verify that a thermal ViaSpecification object is created correctly."""
         via = ViaSpecification(
             diameter_mm=0.3,
             drill_mm=0.15,
@@ -109,10 +109,10 @@ class TestViaSpecification(unittest.TestCase):
 
 
 class TestCopperZone(unittest.TestCase):
-    """Test CopperZone dataclass"""
+    """Tests for the CopperZone dataclass."""
 
     def test_copper_zone_creation(self):
-        """Test creating a copper zone"""
+        """Verify that a CopperZone object is created with the correct attributes."""
         zone = CopperZone(
             name="GND_L2",
             net_name="GND",
@@ -133,10 +133,10 @@ class TestCopperZone(unittest.TestCase):
 
 
 class TestRoutingResult(unittest.TestCase):
-    """Test RoutingResult dataclass"""
+    """Tests for the RoutingResult dataclass."""
 
     def test_routing_result_success(self):
-        """Test successful routing result"""
+        """Verify that a successful RoutingResult is correctly evaluated."""
         result = RoutingResult(
             status=RoutingStatus.COMPLETED,
             nets_routed=50,
@@ -150,7 +150,7 @@ class TestRoutingResult(unittest.TestCase):
         self.assertEqual(result.completion_percentage, 100.0)
 
     def test_routing_result_partial(self):
-        """Test partial routing result"""
+        """Verify that a partially successful RoutingResult is correctly evaluated."""
         result = RoutingResult(
             status=RoutingStatus.COMPLETED,
             nets_routed=45,
@@ -164,7 +164,7 @@ class TestRoutingResult(unittest.TestCase):
         self.assertEqual(result.completion_percentage, 90.0)
 
     def test_routing_result_failed(self):
-        """Test failed routing result"""
+        """Verify that a failed RoutingResult is correctly evaluated."""
         result = RoutingResult(
             status=RoutingStatus.FAILED,
             nets_routed=0,
@@ -179,10 +179,10 @@ class TestRoutingResult(unittest.TestCase):
 
 
 class TestK1RoutingConfiguration(unittest.TestCase):
-    """Test K1 Lightwave routing configuration"""
+    """Tests for the K1RoutingConfiguration class."""
 
     def test_power_nets(self):
-        """Test power net specifications"""
+        """Verify the correctness of the power net specifications."""
         power_nets = K1RoutingConfiguration.POWER_NETS
 
         self.assertIn("VBUS_USB_5V", power_nets)
@@ -196,7 +196,7 @@ class TestK1RoutingConfiguration(unittest.TestCase):
         self.assertEqual(led_5v.width_mm, 4.06)
 
     def test_spi_nets(self):
-        """Test SPI net specifications"""
+        """Verify the correctness of the SPI net specifications."""
         spi_nets = K1RoutingConfiguration.SPI_NETS
 
         self.assertIn("SPI_SCK_A2B", spi_nets)
@@ -208,7 +208,7 @@ class TestK1RoutingConfiguration(unittest.TestCase):
             self.assertEqual(spi_nets[net].series_damping_ohm, 33)
 
     def test_usb_nets(self):
-        """Test USB differential pair specifications"""
+        """Verify the correctness of the USB differential pair specifications."""
         usb_nets = K1RoutingConfiguration.USB_NETS
 
         self.assertIn("USB_D+", usb_nets)
@@ -222,7 +222,7 @@ class TestK1RoutingConfiguration(unittest.TestCase):
             self.assertEqual(spec.length_match_tolerance_mm, 0.5)
 
     def test_copper_zones(self):
-        """Test copper zone specifications"""
+        """Verify the correctness of the copper zone specifications."""
         zones = K1RoutingConfiguration.COPPER_ZONES
 
         self.assertEqual(len(zones), 3)
@@ -234,7 +234,7 @@ class TestK1RoutingConfiguration(unittest.TestCase):
         self.assertEqual(gnd_zone.priority, 1)
 
     def test_thermal_vias(self):
-        """Test thermal via array specifications"""
+        """Verify the correctness of the thermal via array specifications."""
         thermal_vias = K1RoutingConfiguration.THERMAL_VIAS
 
         self.assertEqual(len(thermal_vias), 3)
@@ -246,7 +246,7 @@ class TestK1RoutingConfiguration(unittest.TestCase):
         self.assertEqual(mcu_a.grid_spacing_mm, 1.27)
 
     def test_get_all_critical_nets(self):
-        """Test getting all critical nets"""
+        """Verify that all critical nets are correctly aggregated."""
         all_nets = K1RoutingConfiguration.get_all_critical_nets()
 
         self.assertGreater(len(all_nets), 0)
@@ -257,21 +257,21 @@ class TestK1RoutingConfiguration(unittest.TestCase):
 
 
 class TestCriticalNetRouter(unittest.TestCase):
-    """Test CriticalNetRouter class"""
+    """Tests for the CriticalNetRouter class."""
 
     def setUp(self):
-        """Set up test fixtures"""
+        """Set up a temporary directory and a dummy board file for testing."""
         self.temp_dir = tempfile.mkdtemp()
         self.board_path = Path(self.temp_dir) / "test_board.kicad_pcb"
         self.board_path.touch()
 
     def tearDown(self):
-        """Clean up test fixtures"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     @patch('automated_routing.pcbnew')
     def test_load_board(self, mock_pcbnew):
-        """Test loading KiCad board"""
+        """Verify that the KiCad board is loaded correctly."""
         mock_board = Mock()
         mock_pcbnew.LoadBoard.return_value = mock_board
 
@@ -282,7 +282,7 @@ class TestCriticalNetRouter(unittest.TestCase):
         self.assertEqual(router.board, mock_board)
 
     def test_route_power_nets(self):
-        """Test routing power nets"""
+        """Verify that power nets are routed as expected."""
         router = CriticalNetRouter(str(self.board_path))
         router.board = Mock()
 
@@ -294,7 +294,7 @@ class TestCriticalNetRouter(unittest.TestCase):
         self.assertIn("LED_5V", results["nets_routed"])
 
     def test_route_spi_signals(self):
-        """Test routing SPI signals"""
+        """Verify that SPI signals are routed as expected."""
         router = CriticalNetRouter(str(self.board_path))
         router.board = Mock()
 
@@ -305,7 +305,7 @@ class TestCriticalNetRouter(unittest.TestCase):
         self.assertIn("SPI_MOSI_A2B", results["nets_routed"])
 
     def test_route_usb_signals(self):
-        """Test routing USB differential pair"""
+        """Verify that USB differential pairs are routed as expected."""
         router = CriticalNetRouter(str(self.board_path))
         router.board = Mock()
 
@@ -316,7 +316,7 @@ class TestCriticalNetRouter(unittest.TestCase):
         self.assertIn("USB_D-", results["nets_routed"])
 
     def test_route_i2c_i2s(self):
-        """Test routing I2C and I2S signals"""
+        """Verify that I2C and I2S signals are routed as expected."""
         router = CriticalNetRouter(str(self.board_path))
         router.board = Mock()
 
@@ -328,27 +328,27 @@ class TestCriticalNetRouter(unittest.TestCase):
 
 
 class TestFreeRoutingIntegration(unittest.TestCase):
-    """Test FreeRoutingIntegration class"""
+    """Tests for the FreeRoutingIntegration class."""
 
     def setUp(self):
-        """Set up test fixtures"""
+        """Set up a temporary directory and a dummy board file for testing."""
         self.temp_dir = tempfile.mkdtemp()
         self.board_path = Path(self.temp_dir) / "test_board.kicad_pcb"
         self.board_path.touch()
 
     def tearDown(self):
-        """Clean up test fixtures"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     def test_initialization(self):
-        """Test FreeRouting integration initialization"""
+        """Verify that the FreeRoutingIntegration class is initialized correctly."""
         integration = FreeRoutingIntegration(str(self.board_path))
 
         self.assertEqual(integration.board_path, self.board_path)
         self.assertTrue(integration.work_dir.exists())
 
     def test_find_freerouting_jar_custom(self):
-        """Test finding custom FreeRouting JAR"""
+        """Verify that a custom FreeRouting JAR path is correctly identified."""
         jar_path = Path(self.temp_dir) / "freerouting.jar"
         jar_path.touch()
 
@@ -362,7 +362,7 @@ class TestFreeRoutingIntegration(unittest.TestCase):
 
     @patch('automated_routing.DSN')
     def test_export_to_dsn(self, mock_dsn_module):
-        """Test DSN export"""
+        """Verify that the board is correctly exported to a DSN file."""
         mock_db = Mock()
         mock_dsn_module.SPECCTRA_DB.return_value = mock_db
 
@@ -378,7 +378,7 @@ class TestFreeRoutingIntegration(unittest.TestCase):
         self.assertTrue(success)
 
     def test_configure_freerouting(self):
-        """Test FreeRouting configuration"""
+        """Verify that the FreeRouting configuration is generated correctly."""
         integration = FreeRoutingIntegration(str(self.board_path))
         config = integration.configure_freerouting()
 
@@ -389,7 +389,7 @@ class TestFreeRoutingIntegration(unittest.TestCase):
 
     @patch('automated_routing.subprocess.run')
     def test_run_freerouting_success(self, mock_run):
-        """Test successful FreeRouting execution"""
+        """Verify that the FreeRouting process is executed successfully."""
         # Mock successful subprocess
         mock_result = Mock()
         mock_result.returncode = 0
@@ -420,7 +420,7 @@ class TestFreeRoutingIntegration(unittest.TestCase):
         mock_run.assert_called_once()
 
     def test_verify_routing(self):
-        """Test routing verification"""
+        """Verify that the routing verification method runs without errors."""
         integration = FreeRoutingIntegration(str(self.board_path))
 
         success, message = integration.verify_routing()
@@ -430,20 +430,20 @@ class TestFreeRoutingIntegration(unittest.TestCase):
 
 
 class TestAutomatedRouting(unittest.TestCase):
-    """Test AutomatedRouting orchestrator"""
+    """Tests for the AutomatedRouting orchestrator class."""
 
     def setUp(self):
-        """Set up test fixtures"""
+        """Set up a temporary directory and a dummy board file for testing."""
         self.temp_dir = tempfile.mkdtemp()
         self.board_path = Path(self.temp_dir) / "test_board.kicad_pcb"
         self.board_path.touch()
 
     def tearDown(self):
-        """Clean up test fixtures"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     def test_initialization(self):
-        """Test AutomatedRouting initialization"""
+        """Verify that the AutomatedRouting class is initialized correctly."""
         router = AutomatedRouting(str(self.board_path))
 
         self.assertEqual(router.board_path, self.board_path)
@@ -457,7 +457,7 @@ class TestAutomatedRouting(unittest.TestCase):
     @patch.object(CriticalNetRouter, 'route_usb_signals')
     @patch.object(CriticalNetRouter, 'route_i2c_i2s')
     def test_route_critical_nets(self, mock_i2c, mock_usb, mock_spi, mock_power, mock_load):
-        """Test critical net routing orchestration"""
+        """Verify that the critical net routing orchestration works as expected."""
         mock_load.return_value = True
         mock_power.return_value = {"nets_routed": ["VCC"], "status": "completed"}
         mock_spi.return_value = {"nets_routed": ["SPI_SCK"], "status": "completed"}
@@ -474,7 +474,7 @@ class TestAutomatedRouting(unittest.TestCase):
         self.assertIn("i2c_i2s", results)
 
     def test_create_copper_zones(self):
-        """Test copper zone creation"""
+        """Verify that the copper zone creation process runs without errors."""
         router = AutomatedRouting(str(self.board_path))
         results = router.create_copper_zones()
 
@@ -482,7 +482,7 @@ class TestAutomatedRouting(unittest.TestCase):
         self.assertGreater(len(results["zones_created"]), 0)
 
     def test_place_thermal_vias(self):
-        """Test thermal via placement"""
+        """Verify that the thermal via placement process runs without errors."""
         router = AutomatedRouting(str(self.board_path))
         results = router.place_thermal_vias()
 
@@ -492,16 +492,16 @@ class TestAutomatedRouting(unittest.TestCase):
 
 
 class TestIntegration(unittest.TestCase):
-    """Integration tests for full routing pipeline"""
+    """Integration tests for the full automated routing pipeline."""
 
     def setUp(self):
-        """Set up test fixtures"""
+        """Set up a temporary directory and a dummy board file for testing."""
         self.temp_dir = tempfile.mkdtemp()
         self.board_path = Path(self.temp_dir) / "k1_test.kicad_pcb"
         self.board_path.touch()
 
     def tearDown(self):
-        """Clean up test fixtures"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     @patch.object(CriticalNetRouter, 'load_board')
@@ -510,7 +510,7 @@ class TestIntegration(unittest.TestCase):
     @patch.object(FreeRoutingIntegration, 'import_routing_results')
     @patch.object(FreeRoutingIntegration, 'verify_routing')
     def test_full_pipeline_mock(self, mock_verify, mock_import, mock_run, mock_export, mock_load):
-        """Test full routing pipeline with mocked external dependencies"""
+        """Verify that the full routing pipeline executes with mocked external dependencies."""
         mock_load.return_value = True
         mock_export.return_value = True
         mock_run.return_value = True

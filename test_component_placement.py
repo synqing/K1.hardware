@@ -17,16 +17,16 @@ from component_placement import (
 
 
 class TestPoint(unittest.TestCase):
-    """Test Point class"""
+    """Tests for the Point class."""
 
     def test_distance_calculation(self):
-        """Test distance calculation between points"""
+        """Verify that the distance between two points is calculated correctly."""
         p1 = Point(0, 0)
         p2 = Point(3, 4)
         self.assertAlmostEqual(p1.distance_to(p2), 5.0, places=2)
 
     def test_point_addition(self):
-        """Test point addition"""
+        """Verify that two points can be added together."""
         p1 = Point(1, 2)
         p2 = Point(3, 4)
         p3 = p1 + p2
@@ -34,7 +34,7 @@ class TestPoint(unittest.TestCase):
         self.assertEqual(p3.y, 6)
 
     def test_point_subtraction(self):
-        """Test point subtraction"""
+        """Verify that one point can be subtracted from another."""
         p1 = Point(5, 7)
         p2 = Point(2, 3)
         p3 = p1 - p2
@@ -43,10 +43,10 @@ class TestPoint(unittest.TestCase):
 
 
 class TestK1ThermalZone(unittest.TestCase):
-    """Test K1ThermalZone class"""
+    """Tests for the K1ThermalZone class."""
 
     def setUp(self):
-        """Set up test thermal zone"""
+        """Set up a test thermal zone for use in the test cases."""
         self.zone = K1ThermalZone(
             name="Test Zone",
             center=Point(25, 40),
@@ -57,7 +57,7 @@ class TestK1ThermalZone(unittest.TestCase):
         )
 
     def test_zone_contains_point_inside(self):
-        """Test point inside zone"""
+        """Verify that a point inside the zone is correctly identified."""
         point = Point(25, 40)  # Center
         self.assertTrue(self.zone.contains_point(point))
 
@@ -65,17 +65,17 @@ class TestK1ThermalZone(unittest.TestCase):
         self.assertTrue(self.zone.contains_point(point))
 
     def test_zone_contains_point_outside(self):
-        """Test point outside zone"""
+        """Verify that a point outside the zone is correctly identified."""
         point = Point(40, 40)  # 15mm from center
         self.assertFalse(self.zone.contains_point(point))
 
     def test_zone_contains_point_boundary(self):
-        """Test point on zone boundary"""
+        """Verify that a point on the zone's boundary is correctly identified."""
         point = Point(35, 40)  # Exactly 10mm from center
         self.assertTrue(self.zone.contains_point(point))
 
     def test_add_component(self):
-        """Test adding component to zone"""
+        """Verify that a component can be successfully added to the zone."""
         comp = ComponentInfo(
             reference="U1",
             footprint="Package_DFN_QFN:QFN-56-1EP_7x7mm",
@@ -88,23 +88,23 @@ class TestK1ThermalZone(unittest.TestCase):
 
 
 class TestComponentPlacementInitialization(unittest.TestCase):
-    """Test ComponentPlacement initialization and loading"""
+    """Tests for the initialization and component loading of the ComponentPlacement class."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board path"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_initialization(self):
-        """Test placement engine initialization"""
+        """Verify that the placement engine initializes correctly with a valid board file."""
         placer = ComponentPlacement(str(self.board_path))
         self.assertIsNotNone(placer.board)
         self.assertGreater(len(placer.components), 0)
 
     def test_component_loading(self):
-        """Test component loading from board"""
+        """Verify that components are correctly loaded from the board file."""
         placer = ComponentPlacement(str(self.board_path))
 
         # Verify key components are loaded
@@ -118,23 +118,23 @@ class TestComponentPlacementInitialization(unittest.TestCase):
             self.assertIsInstance(comp.position, Point)
 
     def test_invalid_board_path(self):
-        """Test initialization with invalid board path"""
+        """Verify that initialization fails with an invalid board path."""
         with self.assertRaises(RuntimeError):
             ComponentPlacement("/nonexistent/board.kicad_pcb")
 
 
 class TestThermalZoneDefinition(unittest.TestCase):
-    """Test thermal zone definition"""
+    """Tests for the definition of thermal zones."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_define_thermal_zones(self):
-        """Test thermal zone creation"""
+        """Verify that the correct number and names of thermal zones are created."""
         placer = ComponentPlacement(str(self.board_path))
         zones = placer.define_thermal_zones()
 
@@ -152,7 +152,7 @@ class TestThermalZoneDefinition(unittest.TestCase):
         self.assertEqual(zone_names, expected_names)
 
     def test_zone_priorities(self):
-        """Test thermal zone priorities"""
+        """Verify that the thermal zones have the correct priorities."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
 
@@ -169,7 +169,7 @@ class TestThermalZoneDefinition(unittest.TestCase):
             self.assertEqual(zone.priority, 2)
 
     def test_zone_power_dissipation(self):
-        """Test thermal zone power specifications"""
+        """Verify that the thermal zones have the correct power dissipation specifications."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
 
@@ -183,17 +183,17 @@ class TestThermalZoneDefinition(unittest.TestCase):
 
 
 class TestComponentClustering(unittest.TestCase):
-    """Test component clustering by function"""
+    """Tests for the component clustering functionality."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_cluster_components(self):
-        """Test component clustering"""
+        """Verify that all expected component clusters are created."""
         placer = ComponentPlacement(str(self.board_path))
         clusters = placer.cluster_components()
 
@@ -206,7 +206,7 @@ class TestComponentClustering(unittest.TestCase):
             self.assertIn(cluster, clusters)
 
     def test_power_cluster(self):
-        """Test power component clustering"""
+        """Verify that power-related components are correctly clustered."""
         placer = ComponentPlacement(str(self.board_path))
         placer.cluster_components()
 
@@ -217,7 +217,7 @@ class TestComponentClustering(unittest.TestCase):
         self.assertIn('J1', j1_refs)
 
     def test_mcu_cluster(self):
-        """Test MCU clustering"""
+        """Verify that MCUs are correctly clustered."""
         placer = ComponentPlacement(str(self.board_path))
         placer.cluster_components()
 
@@ -229,7 +229,7 @@ class TestComponentClustering(unittest.TestCase):
         self.assertIn('U3', mcu_refs)
 
     def test_decoupling_cluster(self):
-        """Test decoupling capacitor clustering"""
+        """Verify that decoupling capacitors are correctly clustered."""
         placer = ComponentPlacement(str(self.board_path))
         placer.cluster_components()
 
@@ -241,7 +241,7 @@ class TestComponentClustering(unittest.TestCase):
             self.assertIn(ref, decoupling_refs)
 
     def test_all_components_clustered(self):
-        """Test that all components are assigned to clusters"""
+        """Verify that every component is assigned to a cluster."""
         placer = ComponentPlacement(str(self.board_path))
         placer.cluster_components()
 
@@ -250,17 +250,17 @@ class TestComponentClustering(unittest.TestCase):
 
 
 class TestFixedComponentPlacement(unittest.TestCase):
-    """Test Phase 2A: Fixed component placement"""
+    """Tests for Phase 2A: Placement of fixed components."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_usb_connector_placement(self):
-        """Test J1 (USB-C) placement at bottom-center"""
+        """Verify the placement of the J1 (USB-C) connector at the bottom-center."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -273,7 +273,7 @@ class TestFixedComponentPlacement(unittest.TestCase):
             self.assertAlmostEqual(j1.position.y, placer.EDGE_CLEARANCE, delta=1.0)
 
     def test_led_connector_placement(self):
-        """Test LED connector placement at right edge"""
+        """Verify the placement of the LED connectors on the right edge."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -294,7 +294,7 @@ class TestFixedComponentPlacement(unittest.TestCase):
                 prev_y = comp.position.y
 
     def test_i2c_connector_placement(self):
-        """Test I2C connector placement at top edge"""
+        """Verify the placement of the I2C connectors on the top edge."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -309,7 +309,7 @@ class TestFixedComponentPlacement(unittest.TestCase):
                 self.assertGreater(comp.position.y, placer.BOARD_HEIGHT - placer.EDGE_CLEARANCE - 1)
 
     def test_i2s_connector_placement(self):
-        """Test I2S connector placement at left edge"""
+        """Verify the placement of the I2S connectors on the left edge."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -325,17 +325,17 @@ class TestFixedComponentPlacement(unittest.TestCase):
 
 
 class TestPrimaryComponentPlacement(unittest.TestCase):
-    """Test Phase 2B: Primary component placement"""
+    """Tests for Phase 2B: Placement of primary components."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_mcu_a_zone_placement(self):
-        """Test MCU-A zone component placement"""
+        """Verify the placement of components within the MCU-A thermal zone."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
         placer.place_primary_components()
@@ -351,7 +351,7 @@ class TestPrimaryComponentPlacement(unittest.TestCase):
             self.assertLess(distance, 5.0)
 
     def test_mcu_b_zone_placement(self):
-        """Test MCU-B zone component placement"""
+        """Verify the placement of components within the MCU-B thermal zone."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
         placer.place_primary_components()
@@ -367,7 +367,7 @@ class TestPrimaryComponentPlacement(unittest.TestCase):
             self.assertLess(distance, 5.0)
 
     def test_decoupling_placement(self):
-        """Test decoupling capacitor placement around MCU"""
+        """Verify the placement of decoupling capacitors around the MCU."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
         placer.cluster_components()
@@ -385,7 +385,7 @@ class TestPrimaryComponentPlacement(unittest.TestCase):
                 self.assertEqual(comp.thermal_zone, "MCU-B Zone")
 
     def test_usb_fuse_placement(self):
-        """Test F_USB placement near J1"""
+        """Verify the placement of the F_USB fuse near the J1 connector."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
         placer.define_thermal_zones()
@@ -403,17 +403,17 @@ class TestPrimaryComponentPlacement(unittest.TestCase):
 
 
 class TestSpacingValidation(unittest.TestCase):
-    """Test spacing validation and DFM checks"""
+    """Tests for spacing validation and DFM checks."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_verify_spacing_structure(self):
-        """Test spacing verification returns correct structure"""
+        """Verify that the spacing verification method returns the correct data structure."""
         placer = ComponentPlacement(str(self.board_path))
         is_valid, violations = placer.verify_spacing()
 
@@ -421,7 +421,7 @@ class TestSpacingValidation(unittest.TestCase):
         self.assertIsInstance(violations, list)
 
     def test_edge_clearance_detection(self):
-        """Test detection of edge clearance violations"""
+        """Verify that edge clearance violations are correctly detected."""
         placer = ComponentPlacement(str(self.board_path))
 
         # Manually create violation
@@ -434,7 +434,7 @@ class TestSpacingValidation(unittest.TestCase):
             self.assertGreater(len(violations), 0)
 
     def test_spacing_calculation(self):
-        """Test inter-component spacing calculation"""
+        """Verify that inter-component spacing violations are correctly calculated."""
         placer = ComponentPlacement(str(self.board_path))
 
         # Create two components very close together
@@ -452,17 +452,17 @@ class TestSpacingValidation(unittest.TestCase):
 
 
 class TestRoutingAccessibility(unittest.TestCase):
-    """Test routing accessibility optimization"""
+    """Tests for the routing accessibility optimization."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_accessibility_scores(self):
-        """Test routing accessibility scoring"""
+        """Verify that routing accessibility scores are calculated for all components."""
         placer = ComponentPlacement(str(self.board_path))
         scores = placer.optimize_routing_accessibility()
 
@@ -475,7 +475,7 @@ class TestRoutingAccessibility(unittest.TestCase):
             self.assertLessEqual(score, 1.0)
 
     def test_edge_components_higher_score(self):
-        """Test that edge components have better accessibility"""
+        """Verify that components placed at the edge have a higher accessibility score."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -487,17 +487,17 @@ class TestRoutingAccessibility(unittest.TestCase):
 
 
 class TestFullPlacementPipeline(unittest.TestCase):
-    """Test complete placement pipeline"""
+    """Tests for the complete component placement pipeline."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_execute_pipeline(self):
-        """Test full placement execution"""
+        """Verify that the full placement pipeline executes successfully."""
         # Create temporary output file
         with tempfile.NamedTemporaryFile(suffix='.kicad_pcb', delete=False) as tmp:
             tmp_path = tmp.name
@@ -522,7 +522,7 @@ class TestFullPlacementPipeline(unittest.TestCase):
                 Path(tmp_path).unlink()
 
     def test_report_generation(self):
-        """Test placement report generation"""
+        """Verify that the placement report is generated with all key sections."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
         placer.cluster_components()
@@ -538,7 +538,7 @@ class TestFullPlacementPipeline(unittest.TestCase):
         self.assertIn("PLACEMENT SUMMARY", report)
 
     def test_ascii_visualization(self):
-        """Test ASCII visualization generation"""
+        """Verify that the ASCII visualization is generated correctly."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -554,17 +554,17 @@ class TestFullPlacementPipeline(unittest.TestCase):
 
 
 class TestPlacementValidation(unittest.TestCase):
-    """Test placement validation criteria"""
+    """Tests for the validation of the final component placement."""
 
     @classmethod
     def setUpClass(cls):
-        """Set up test board"""
+        """Set up the path to the test board file."""
         cls.board_path = Path("hardware/k1-lightwave/kicad/K1_Lightwave.kicad_pcb")
         if not cls.board_path.exists():
             raise unittest.SkipTest(f"Board file not found: {cls.board_path}")
 
     def test_all_connectors_at_edge(self):
-        """Verify all connectors placed at board edge"""
+        """Verify that all connectors are placed at the board edge."""
         placer = ComponentPlacement(str(self.board_path))
         placer.place_fixed_components()
 
@@ -584,7 +584,7 @@ class TestPlacementValidation(unittest.TestCase):
                           f"{conn.reference} not at edge: {min_edge_dist:.2f}mm")
 
     def test_minimum_spacing_compliance(self):
-        """Verify 2mm minimum spacing between all components"""
+        """Verify that the 2mm minimum spacing between components is respected."""
         placer = ComponentPlacement(str(self.board_path))
         placer.execute()
 
@@ -607,7 +607,7 @@ class TestPlacementValidation(unittest.TestCase):
                        f"Too many spacing violations: {len(spacing_violations)}")
 
     def test_thermal_zone_compliance(self):
-        """Verify thermal zone assignments"""
+        """Verify that components are correctly assigned to thermal zones."""
         placer = ComponentPlacement(str(self.board_path))
         placer.define_thermal_zones()
         placer.place_primary_components()
@@ -619,7 +619,7 @@ class TestPlacementValidation(unittest.TestCase):
                                  f"{zone.name} has no components")
 
     def test_board_density(self):
-        """Verify reasonable board density (<5% unoccupied)"""
+        """Verify that the board has a reasonable component density."""
         placer = ComponentPlacement(str(self.board_path))
         placer.execute()
 

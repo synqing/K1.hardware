@@ -341,6 +341,47 @@ See **SETUP_CREDENTIALS.md** for API credential issues.
 
 ---
 
+## Developer Guide
+
+This section provides instructions for setting up a development environment, running tests, and understanding the project's internal structure.
+
+### Development Environment Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-repo/K1_Lightwave.git
+    cd K1_Lightwave
+    ```
+
+2.  **Create a virtual environment:**
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Running Tests
+
+To run the test suite, use the following command:
+```bash
+python3 -m unittest discover -s tests
+```
+
+### Project Structure Overview
+
+-   `elite_pcb_designer.py`: The main entry point and orchestrator for the PCB design process.
+-   `design_preparation.py`: Handles the initial loading and preparation of the design files.
+-   `component_placement.py`: Manages the intelligent placement of components.
+-   `automated_routing.py`: Orchestrates the automated routing process.
+-   `design_validation.py`: Performs final validation and generates manufacturing files.
+-   `tests/`: Contains the unit tests for the project.
+
+---
+
 ## License & Credits
 
 K1 Lightwave design pipeline. Built with KiCad, Python, Claude AI, and open-source EDA tools.

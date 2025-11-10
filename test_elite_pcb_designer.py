@@ -33,10 +33,10 @@ from elite_pcb_designer import (
 
 
 class TestElitePCBDesignerInitialization(unittest.TestCase):
-    """Test initialization and validation"""
+    """Tests for the initialization and input validation of the ElitePCBDesigner class."""
 
     def setUp(self):
-        """Create temporary test files"""
+        """Set up a temporary directory and dummy files for testing."""
         self.temp_dir = Path(tempfile.mkdtemp())
         self.netlist_path = self.temp_dir / "test.net"
         self.board_path = self.temp_dir / "test.kicad_pcb"
@@ -47,11 +47,11 @@ class TestElitePCBDesignerInitialization(unittest.TestCase):
         self.board_path.write_text("(kicad_pcb (version 20221018)")
 
     def tearDown(self):
-        """Clean up temporary files"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     def test_initialization_valid_inputs(self):
-        """Test successful initialization with valid inputs"""
+        """Verify that the designer initializes successfully with valid inputs."""
         designer = ElitePCBDesigner(
             netlist_path=str(self.netlist_path),
             board_path=str(self.board_path),
@@ -65,7 +65,7 @@ class TestElitePCBDesignerInitialization(unittest.TestCase):
         self.assertEqual(len(designer.skip_phases), 0)
 
     def test_initialization_missing_netlist(self):
-        """Test initialization fails with missing netlist"""
+        """Verify that initialization fails if the netlist file is missing."""
         with self.assertRaises(FileNotFoundError):
             ElitePCBDesigner(
                 netlist_path="nonexistent.net",
@@ -73,7 +73,7 @@ class TestElitePCBDesignerInitialization(unittest.TestCase):
             )
 
     def test_initialization_missing_board(self):
-        """Test initialization fails with missing board"""
+        """Verify that initialization fails if the board file is missing."""
         with self.assertRaises(FileNotFoundError):
             ElitePCBDesigner(
                 netlist_path=str(self.netlist_path),
@@ -81,7 +81,7 @@ class TestElitePCBDesignerInitialization(unittest.TestCase):
             )
 
     def test_initialization_with_skip_phases(self):
-        """Test initialization with skip phases"""
+        """Verify that phases can be skipped during initialization."""
         designer = ElitePCBDesigner(
             netlist_path=str(self.netlist_path),
             board_path=str(self.board_path),
@@ -91,7 +91,7 @@ class TestElitePCBDesignerInitialization(unittest.TestCase):
         self.assertEqual(designer.skip_phases, {2, 3})
 
     def test_initialization_verbose_mode(self):
-        """Test initialization with verbose mode"""
+        """Verify that verbose mode is correctly enabled during initialization."""
         designer = ElitePCBDesigner(
             netlist_path=str(self.netlist_path),
             board_path=str(self.board_path),
@@ -102,10 +102,10 @@ class TestElitePCBDesignerInitialization(unittest.TestCase):
 
 
 class TestPhaseExecution(unittest.TestCase):
-    """Test individual phase execution"""
+    """Tests for the execution of individual design phases."""
 
     def setUp(self):
-        """Create temporary test environment"""
+        """Set up a temporary test environment for phase execution tests."""
         self.temp_dir = Path(tempfile.mkdtemp())
         self.netlist_path = self.temp_dir / "test.net"
         self.board_path = self.temp_dir / "test.kicad_pcb"
@@ -120,12 +120,12 @@ class TestPhaseExecution(unittest.TestCase):
         )
 
     def tearDown(self):
-        """Clean up"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     @patch('elite_pcb_designer.DesignPreparation')
     def test_phase_1_success(self, mock_phase1):
-        """Test Phase 1 successful execution"""
+        """Verify that a successful execution of Phase 1 is handled correctly."""
         # Mock Phase 1 to return success
         mock_instance = MagicMock()
         mock_instance.execute.return_value = True
@@ -143,7 +143,7 @@ class TestPhaseExecution(unittest.TestCase):
 
     @patch('elite_pcb_designer.DesignPreparation')
     def test_phase_1_failure(self, mock_phase1):
-        """Test Phase 1 failure handling"""
+        """Verify that a failed execution of Phase 1 is handled correctly."""
         mock_instance = MagicMock()
         mock_instance.execute.return_value = False
         mock_phase1.return_value = mock_instance
@@ -157,7 +157,7 @@ class TestPhaseExecution(unittest.TestCase):
 
     @patch('elite_pcb_designer.DesignPreparation')
     def test_phase_1_exception(self, mock_phase1):
-        """Test Phase 1 exception handling"""
+        """Verify that exceptions during Phase 1 execution are handled correctly."""
         mock_instance = MagicMock()
         mock_instance.execute.side_effect = Exception("Test error")
         mock_phase1.return_value = mock_instance
@@ -170,7 +170,7 @@ class TestPhaseExecution(unittest.TestCase):
         self.assertIsNotNone(result.error_message)
 
     def test_phase_skip(self):
-        """Test phase skipping"""
+        """Verify that a phase can be successfully skipped."""
         self.designer.skip_phases = {1}
         self.designer._skip_phase(1, "Design Preparation")
 
@@ -180,10 +180,10 @@ class TestPhaseExecution(unittest.TestCase):
 
 
 class TestReportGeneration(unittest.TestCase):
-    """Test report generation"""
+    """Tests for the generation of design reports."""
 
     def setUp(self):
-        """Create test environment"""
+        """Set up a test environment with mock results for report generation."""
         self.temp_dir = Path(tempfile.mkdtemp())
         self.netlist_path = self.temp_dir / "test.net"
         self.board_path = self.temp_dir / "test.kicad_pcb"
@@ -225,11 +225,11 @@ class TestReportGeneration(unittest.TestCase):
         self.designer.end_time = start_time + timedelta(seconds=180)
 
     def tearDown(self):
-        """Clean up"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     def test_text_report_generation(self):
-        """Test text report generation"""
+        """Verify that the text report is generated with the correct content."""
         report = self.designer._generate_text_report()
 
         self.assertIn("ELITE PCB DESIGNER AGENT", report)
@@ -239,7 +239,7 @@ class TestReportGeneration(unittest.TestCase):
         self.assertIn("COMPLETED", report)
 
     def test_json_report_generation(self):
-        """Test JSON report generation"""
+        """Verify that the JSON report is generated with the correct structure."""
         report = self.designer._generate_json_report()
 
         self.assertIn('project', report)
@@ -250,7 +250,7 @@ class TestReportGeneration(unittest.TestCase):
         self.assertIn('2', report['phases'])
 
     def test_combined_report_saving(self):
-        """Test combined report saving"""
+        """Verify that both text and JSON reports are saved correctly."""
         report_path = self.designer.generate_combined_report()
 
         # Check text report
@@ -268,10 +268,10 @@ class TestReportGeneration(unittest.TestCase):
 
 
 class TestOutputOrganization(unittest.TestCase):
-    """Test output directory organization"""
+    """Tests for the organization of output files and directories."""
 
     def setUp(self):
-        """Create test environment"""
+        """Set up a test environment for output organization tests."""
         self.temp_dir = Path(tempfile.mkdtemp())
         self.netlist_path = self.temp_dir / "test.net"
         self.board_path = self.temp_dir / "test.kicad_pcb"
@@ -287,11 +287,11 @@ class TestOutputOrganization(unittest.TestCase):
         )
 
     def tearDown(self):
-        """Clean up"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     def test_output_directory_creation(self):
-        """Test output directory structure creation"""
+        """Verify that the correct output directory structure is created."""
         outputs = self.designer.save_all_outputs()
 
         # Check main output directory
@@ -312,10 +312,10 @@ class TestOutputOrganization(unittest.TestCase):
 
 
 class TestPhaseResult(unittest.TestCase):
-    """Test PhaseResult dataclass"""
+    """Tests for the PhaseResult dataclass."""
 
     def test_phase_result_creation(self):
-        """Test PhaseResult creation"""
+        """Verify that a PhaseResult object is created with the correct attributes."""
         from datetime import datetime
 
         start = datetime.now()
@@ -334,7 +334,7 @@ class TestPhaseResult(unittest.TestCase):
         self.assertEqual(result.duration_seconds, 120.5)
 
     def test_duration_string_formatting(self):
-        """Test duration string formatting"""
+        """Verify that the duration is correctly formatted as a string."""
         result = PhaseResult(
             phase_num=1,
             phase_name="Test",
@@ -345,7 +345,7 @@ class TestPhaseResult(unittest.TestCase):
         self.assertEqual(result.duration_str, "2:05")
 
     def test_phase_result_to_dict(self):
-        """Test PhaseResult to dict conversion"""
+        """Verify that the PhaseResult can be correctly converted to a dictionary."""
         from datetime import datetime
 
         start = datetime.now()
@@ -370,10 +370,10 @@ class TestPhaseResult(unittest.TestCase):
 
 
 class TestErrorRecovery(unittest.TestCase):
-    """Test error handling and recovery"""
+    """Tests for error handling and recovery mechanisms."""
 
     def setUp(self):
-        """Create test environment"""
+        """Set up a test environment for error recovery tests."""
         self.temp_dir = Path(tempfile.mkdtemp())
         self.netlist_path = self.temp_dir / "test.net"
         self.board_path = self.temp_dir / "test.kicad_pcb"
@@ -387,12 +387,12 @@ class TestErrorRecovery(unittest.TestCase):
         )
 
     def tearDown(self):
-        """Clean up"""
+        """Remove the temporary directory and its contents after testing."""
         shutil.rmtree(self.temp_dir)
 
     @patch('elite_pcb_designer.DesignPreparation')
     def test_phase_failure_stops_pipeline(self, mock_phase1):
-        """Test that phase failure stops pipeline"""
+        """Verify that the pipeline stops execution after a phase failure."""
         mock_instance = MagicMock()
         mock_instance.execute.return_value = False
         mock_phase1.return_value = mock_instance
@@ -406,7 +406,7 @@ class TestErrorRecovery(unittest.TestCase):
 
     @patch('elite_pcb_designer.DesignPreparation')
     def test_keyboard_interrupt_handling(self, mock_phase1):
-        """Test keyboard interrupt handling"""
+        """Verify that a KeyboardInterrupt is handled gracefully."""
         mock_instance = MagicMock()
         mock_instance.execute.side_effect = KeyboardInterrupt()
         mock_phase1.return_value = mock_instance
@@ -418,10 +418,10 @@ class TestErrorRecovery(unittest.TestCase):
 
 
 class TestUtilityMethods(unittest.TestCase):
-    """Test utility and helper methods"""
+    """Tests for utility and helper methods."""
 
     def test_format_duration(self):
-        """Test duration formatting"""
+        """Verify that the duration is formatted correctly."""
         from elite_pcb_designer import ElitePCBDesigner
 
         # 0 seconds
