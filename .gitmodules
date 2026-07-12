@@ -1,0 +1,3 @@
+[submodule "mcp/mcp-lcsc"]
+	path = mcp/mcp-lcsc
+	url = https://github.com/SpectraSynq/mcp-lcsc.git
