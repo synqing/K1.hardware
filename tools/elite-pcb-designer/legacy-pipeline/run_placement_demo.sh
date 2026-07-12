@@ -1,5 +1,7 @@
 #!/bin/bash
-# Wrapper script to run component placement tests with KiCad's Python
+# Run K1 Lightwave component placement demo with KiCad's Python
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # KiCad Python path
 KICAD_PYTHON="/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3"
@@ -10,8 +12,8 @@ if [ ! -f "$KICAD_PYTHON" ]; then
     exit 1
 fi
 
-# Run the test with KiCad's Python
+# Run the demo with KiCad's Python
 echo "Using KiCad Python: $KICAD_PYTHON"
 echo ""
 
-exec "$KICAD_PYTHON" test_component_placement.py "$@"
+exec "$KICAD_PYTHON" "$SCRIPT_DIR/demo_placement.py" "$@"
