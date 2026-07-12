@@ -55,3 +55,10 @@ out_fab/
 design_preparation_report.json
 
 _scratch/
+
+# Local agent/config artifacts
+.claude/
+.cursor/
+.taskmaster/
+lib_pickle_dir/
+mcp/mcp-rag/index/tokens.pkl
