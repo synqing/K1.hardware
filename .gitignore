@@ -53,3 +53,5 @@ out_fab/
 *.erc
 *.net
 design_preparation_report.json
+
+_scratch/
