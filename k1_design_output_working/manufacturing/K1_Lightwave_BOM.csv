@@ -1,7 +1,0 @@
-Reference,Value,Footprint,Quantity
-R*,5k-100k,Resistor_SMD:R_0603_1608Metric,22
-C*,0.1u-10u,Capacitor_SMD:C_0603_1608Metric,5
-D*,TVS/Schottky,Diode_SMD:D_SOD-323,9
-F*,Polyfuse,Fuse:Fuse_1206_3216Metric,5
-J*,Connectors,Various,9
-U*,ICs,Various,5
