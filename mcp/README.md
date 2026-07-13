@@ -7,4 +7,4 @@ Extracted servers move to standalone SpectraSynq repositories and become canonic
 Current extraction:
 
 - `mcp/mcp-lcsc` -> `https://github.com/SpectraSynq/mcp-lcsc`
-
+- `mcp/mcp-kicad-cli` -> `https://github.com/SpectraSynq/mcp-kicad-cli`
