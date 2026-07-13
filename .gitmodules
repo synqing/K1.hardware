@@ -4,3 +4,6 @@
 [submodule "mcp/mcp-kicad-cli"]
 	path = mcp/mcp-kicad-cli
 	url = https://github.com/SpectraSynq/mcp-kicad-cli.git
+[submodule "mcp/mcp-nexar"]
+	path = mcp/mcp-nexar
+	url = https://github.com/SpectraSynq/mcp-nexar.git
