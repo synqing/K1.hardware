@@ -1,3 +1,6 @@
 [submodule "mcp/mcp-lcsc"]
 	path = mcp/mcp-lcsc
 	url = https://github.com/SpectraSynq/mcp-lcsc.git
+[submodule "mcp/mcp-kicad-cli"]
+	path = mcp/mcp-kicad-cli
+	url = https://github.com/SpectraSynq/mcp-kicad-cli.git
